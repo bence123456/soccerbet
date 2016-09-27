@@ -7,19 +7,14 @@ import javax.persistence.*;
 public class Team {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "name")
     private String name;
 
     public Team(){}
 
-    public Team(Long id) {
+    public Team(Long id, String name) {
         this.id = id;
-    }
-
-    public Team(String name) {
         this.name = name;
     }
 

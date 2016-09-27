@@ -4,7 +4,6 @@ import com.bkonecsni.soccerbet.domain.Team;
 import com.bkonecsni.soccerbet.domain.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,10 +15,10 @@ public class TeamController {
 
     @RequestMapping("/create")
     @ResponseBody
-    public String create(String name) {
+    public String create(Long id, String name) {
         Team team;
         try {
-            team = new Team(name);
+            team = new Team(id, name);
             teamRepository.save(team);
         }
         catch (Exception ex) {
@@ -28,11 +27,18 @@ public class TeamController {
         return "Team succesfully created! " + team.toString();
     }
 
-    public TeamRepository getTeamRepository() {
-        return teamRepository;
-    }
-
-    public void setTeamRepository(TeamRepository teamRepository) {
-        this.teamRepository = teamRepository;
+    @RequestMapping("/listTeams")
+    @ResponseBody
+    public String listTeams() {
+        String teams = "";
+        try {
+            for (Team team : teamRepository.findAll()) {
+                teams += team.toString() + ", ";
+            }
+        }
+        catch (Exception ex) {
+            return "Error creating the team: " + ex.toString();
+        }
+        return "List of teams: " + teams;
     }
 }
