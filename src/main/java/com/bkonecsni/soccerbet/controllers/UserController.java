@@ -1,44 +1,44 @@
 package com.bkonecsni.soccerbet.controllers;
 
-import com.bkonecsni.soccerbet.domain.Team;
-import com.bkonecsni.soccerbet.repositories.TeamRepository;
+import com.bkonecsni.soccerbet.domain.User;
+import com.bkonecsni.soccerbet.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class TeamController {
+public class UserController {
 
     @Autowired
-    private TeamRepository teamRepository;
+    private UserRepository userRepository;
 
-    @RequestMapping("/team/create")
+    @RequestMapping("/user/create")
     @ResponseBody
-    public String create(Long id, String name) {
-        Team team;
+    public String create(String name, String password, int points) {
+        User user;
         try {
-            team = new Team(id, name);
-            teamRepository.save(team);
+            user = new User(name, password, points);
+            userRepository.save(user);
         }
         catch (Exception ex) {
             return "Error creating the team: " + ex.toString();
         }
-        return "Team succesfully created! " + team.toString();
+        return "Team succesfully created! " + user.toString();
     }
 
-    @RequestMapping("/team/listAll")
+    @RequestMapping("/user/listAll")
     @ResponseBody
     public String listTeams() {
-        String teams = "";
+        String bets = "";
         try {
-            for (Team team : teamRepository.findAll()) {
-                teams += team.toString() + ", ";
+            for (User bet : userRepository.findAll()) {
+                bets += bet.toString() + ", ";
             }
         }
         catch (Exception ex) {
             return "Error creating the team: " + ex.toString();
         }
-        return "List of teams: " + teams;
+        return "List of bets: " + bets;
     }
 }

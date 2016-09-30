@@ -1,5 +1,6 @@
-package com.bkonecsni.soccerbet.domain;
+package com.bkonecsni.soccerbet.repositories;
 
+import com.bkonecsni.soccerbet.domain.Team;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
