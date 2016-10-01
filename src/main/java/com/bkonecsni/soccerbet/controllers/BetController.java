@@ -25,9 +25,9 @@ public class BetController {
             betRepository.save(bet);
         }
         catch (Exception ex) {
-            return "Error creating the team: " + ex.toString();
+            return "Error creating the bet: " + ex.toString();
         }
-        return "Team succesfully created! " + bet.toString();
+        return "Bet succesfully created! " + bet.toString();
     }
 
     @RequestMapping("/bet/listAll")
@@ -40,7 +40,7 @@ public class BetController {
             }
         }
         catch (Exception ex) {
-            return "Error creating the team: " + ex.toString();
+            return "Error creating the bet: " + ex.toString();
         }
         return "List of bets: " + bets;
     }

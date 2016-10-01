@@ -28,19 +28,20 @@ public class Match {
     // match day in the API
     private int round;
 
-//    private DateTime date;
-    private Date date;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateTime;
+
 
     public Match() {}
 
-    public Match(Team homeTeam, Team awayTeam, int homeTeamGoals, int awayTeamGoals, String status, int round, Date date) {
+    public Match(Team homeTeam, Team awayTeam, int homeTeamGoals, int awayTeamGoals, String status, int round, Date dateTime) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.homeTeamGoals = homeTeamGoals;
         this.awayTeamGoals = awayTeamGoals;
         this.status = status;
         this.round = round;
-        this.date = date;
+        this.dateTime = dateTime;
     }
 
     @Override
@@ -53,7 +54,7 @@ public class Match {
                 ", awayTeamGoals=" + awayTeamGoals +
                 ", status='" + status + '\'' +
                 ", round=" + round +
-                ", date=" + date +
+                ", dateTime=" + dateTime +
                 '}';
     }
 
@@ -113,11 +114,11 @@ public class Match {
         this.round = round;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDateTime() {
+        return dateTime;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 }

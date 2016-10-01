@@ -18,16 +18,16 @@ public class MatchController {
 
     @RequestMapping("/match/create")
     @ResponseBody
-    public String create(Team homeTeam, Team awayTeam, int homeTeamGoals, int awayTeamGoals, String status, int round, Date date) {
+    public String create(Team homeTeam, Team awayTeam, int homeTeamGoals, int awayTeamGoals, String status, int round, Date dateTime) {
         Match match;
         try {
-            match = new Match(homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, status, round, date);
+            match = new Match(homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, status, round, dateTime);
             matchRepository.save(match);
         }
         catch (Exception ex) {
-            return "Error creating the team: " + ex.toString();
+            return "Error creating the match: " + ex.toString();
         }
-        return "Team succesfully created! " + match.toString();
+        return "Match succesfully created! " + match.toString();
     }
 
     @RequestMapping("/match/listAll")
@@ -40,8 +40,8 @@ public class MatchController {
             }
         }
         catch (Exception ex) {
-            return "Error creating the team: " + ex.toString();
+            return "Error creating the match: " + ex.toString();
         }
-        return "List of bets: " + bets;
+        return "List of matches: " + bets;
     }
 }

@@ -22,9 +22,9 @@ public class UserController {
             userRepository.save(user);
         }
         catch (Exception ex) {
-            return "Error creating the team: " + ex.toString();
+            return "Error creating the user: " + ex.toString();
         }
-        return "Team succesfully created! " + user.toString();
+        return "User succesfully created! " + user.toString();
     }
 
     @RequestMapping("/user/listAll")
@@ -37,8 +37,8 @@ public class UserController {
             }
         }
         catch (Exception ex) {
-            return "Error creating the team: " + ex.toString();
+            return "Error creating the user: " + ex.toString();
         }
-        return "List of bets: " + bets;
+        return "List of users: " + bets;
     }
 }
