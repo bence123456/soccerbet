@@ -1,8 +1,6 @@
 'use strict';
 
-const React = require('react');
-const ReactDOM = require('react-dom')
-const client = require('./client');
+
 
 class App extends React.Component {
 
@@ -12,14 +10,19 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		client({method: 'GET', path: '/api/teams'}).done(response => {
-			this.setState({teams: response.entity._embedded.teams});
-		});
+
+       fetch('http://localhost:8080/api/teams').then( (response) => {
+                                                                return response.json() })
+                                                                    .then( (json) => {
+                                                                        this.setState({teams: json._embedded.teams});
+                                                                    });
+        //.then((response) => this.setState({teams: response.entity._embedded.teams}););
+
 	}
 
 	render() {
 		return (
-			<TeamList teams={this.state.teams}/>
+			<TeamList teams={this.state.teams}> </TeamList>
 		)
 	}
 }
