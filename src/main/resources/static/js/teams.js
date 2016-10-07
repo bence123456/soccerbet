@@ -1,8 +1,6 @@
 'use strict';
 
-
-
-class App extends React.Component {
+class Teams extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -10,14 +8,9 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-
-       fetch('http://localhost:8080/api/teams').then( (response) => {
-                                                                return response.json() })
-                                                                    .then( (json) => {
-                                                                        this.setState({teams: json._embedded.teams});
-                                                                    });
-        //.then((response) => this.setState({teams: response.entity._embedded.teams}););
-
+       fetch('http://localhost:8080/api/teams')
+       .then((response) => { return response.json() })
+       .then( (json) => {this.setState({teams: json._embedded.teams}); });
 	}
 
 	render() {
@@ -56,6 +49,6 @@ class Team extends React.Component{
 }
 
 ReactDOM.render(
-	<App />,
+	<Teams />,
 	document.getElementById('react')
 )
