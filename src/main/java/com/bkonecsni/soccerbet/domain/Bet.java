@@ -1,6 +1,10 @@
 package com.bkonecsni.soccerbet.domain;
 
+import com.bkonecsni.soccerbet.common.MatchResult;
+
 import javax.persistence.*;
+
+import static javax.persistence.EnumType.STRING;
 
 @Entity
 @Table(name = "bet", catalog = "soccerbet")
@@ -22,6 +26,9 @@ public class Bet {
 
     private int awayTeamGoals;
 
+    @Enumerated(STRING)
+    private MatchResult matchResult;
+
     public Bet() {}
 
     public Bet(User user, Match match, int homeTeamGoals, int awayTeamGoals) {
@@ -29,6 +36,19 @@ public class Bet {
         this.match = match;
         this.homeTeamGoals = homeTeamGoals;
         this.awayTeamGoals = awayTeamGoals;
+        this.matchResult = calculateMatchResult(homeTeamGoals, awayTeamGoals);
+    }
+
+    private MatchResult calculateMatchResult(int homeTeamGoals, int awayTeamGoals) {
+        MatchResult matchResult = MatchResult.HOME_TEAM_WINS;
+
+        if (homeTeamGoals == awayTeamGoals) {
+            matchResult = MatchResult.DRAW;
+        } else if (homeTeamGoals < awayTeamGoals) {
+            matchResult = MatchResult.AWAY_TEAM_WINS;
+        }
+
+        return matchResult;
     }
 
     @Override
@@ -39,6 +59,7 @@ public class Bet {
                 ", match=" + match +
                 ", homeTeamGoals=" + homeTeamGoals +
                 ", awayTeamGoals=" + awayTeamGoals +
+                ", matchResult=" + matchResult +
                 '}';
     }
 
@@ -80,5 +101,13 @@ public class Bet {
 
     public void setAwayTeamGoals(int awayTeamGoals) {
         this.awayTeamGoals = awayTeamGoals;
+    }
+
+    public MatchResult getMatchResult() {
+        return matchResult;
+    }
+
+    public void setMatchResult(MatchResult matchResult) {
+        this.matchResult = matchResult;
     }
 }

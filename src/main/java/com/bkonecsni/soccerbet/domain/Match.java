@@ -1,7 +1,11 @@
 package com.bkonecsni.soccerbet.domain;
 
+import com.bkonecsni.soccerbet.common.MatchResult;
+
 import javax.persistence.*;
 import java.util.Date;
+
+import static javax.persistence.EnumType.STRING;
 
 @Entity
 @Table(name = "match", catalog = "soccerbet")
@@ -30,6 +34,8 @@ public class Match {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateTime;
 
+    @Enumerated(STRING)
+    private MatchResult matchResult;
 
     public Match() {}
 
@@ -43,6 +49,23 @@ public class Match {
         this.status = status;
         this.round = round;
         this.dateTime = dateTime;
+        this.matchResult = calculateMatchResult(homeTeamGoals, awayTeamGoals);
+    }
+
+    private MatchResult calculateMatchResult(int homeTeamGoals, int awayTeamGoals) {
+        MatchResult matchResult = MatchResult.NOT_FINISHED;
+
+        if (status.equals("FINISHED")) {
+            matchResult = MatchResult.HOME_TEAM_WINS;
+
+            if (homeTeamGoals == awayTeamGoals) {
+                matchResult = MatchResult.DRAW;
+            } else if (homeTeamGoals < awayTeamGoals) {
+                matchResult = MatchResult.AWAY_TEAM_WINS;
+            }
+        }
+
+        return matchResult;
     }
 
     @Override
@@ -56,6 +79,7 @@ public class Match {
                 ", status='" + status + '\'' +
                 ", round=" + round +
                 ", dateTime=" + dateTime +
+                ", matchResult=" + matchResult +
                 '}';
     }
 
@@ -121,5 +145,13 @@ public class Match {
 
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public MatchResult getMatchResult() {
+        return matchResult;
+    }
+
+    public void setMatchResult(MatchResult matchResult) {
+        this.matchResult = matchResult;
     }
 }
