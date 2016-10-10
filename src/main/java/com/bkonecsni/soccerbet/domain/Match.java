@@ -8,7 +8,6 @@ import java.util.Date;
 public class Match {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne(targetEntity = DBTeam.class, fetch = FetchType.EAGER)
@@ -34,7 +33,9 @@ public class Match {
 
     public Match() {}
 
-    public Match(DBTeam homeTeam, DBTeam awayTeam, int homeTeamGoals, int awayTeamGoals, String status, int round, Date dateTime) {
+    public Match(Long id, DBTeam homeTeam, DBTeam awayTeam, int homeTeamGoals, int awayTeamGoals, String status,
+                 int round, Date dateTime) {
+        this.id = id;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.homeTeamGoals = homeTeamGoals;

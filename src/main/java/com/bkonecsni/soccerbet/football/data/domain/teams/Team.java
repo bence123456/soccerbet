@@ -1,4 +1,6 @@
-package com.bkonecsni.soccerbet.football.data.domain;
+package com.bkonecsni.soccerbet.football.data.domain.teams;
+
+import com.bkonecsni.soccerbet.football.data.domain._links;
 
 public class Team {
 
