@@ -1,7 +1,7 @@
 package com.bkonecsni.soccerbet.controllers;
 
 import com.bkonecsni.soccerbet.domain.Match;
-import com.bkonecsni.soccerbet.domain.Team;
+import com.bkonecsni.soccerbet.domain.DBTeam;
 import com.bkonecsni.soccerbet.repositories.MatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ public class MatchController {
 
     @RequestMapping("/match/create")
     @ResponseBody
-    public String create(Team homeTeam, Team awayTeam, int homeTeamGoals, int awayTeamGoals, String status, int round, Date dateTime) {
+    public String create(DBTeam homeTeam, DBTeam awayTeam, int homeTeamGoals, int awayTeamGoals, String status, int round, Date dateTime) {
         Match match;
         try {
             match = new Match(homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, status, round, dateTime);

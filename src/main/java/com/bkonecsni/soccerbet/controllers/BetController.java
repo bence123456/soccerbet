@@ -2,7 +2,6 @@ package com.bkonecsni.soccerbet.controllers;
 
 import com.bkonecsni.soccerbet.domain.Bet;
 import com.bkonecsni.soccerbet.domain.Match;
-import com.bkonecsni.soccerbet.domain.Team;
 import com.bkonecsni.soccerbet.domain.User;
 import com.bkonecsni.soccerbet.repositories.BetRepository;
 import org.springframework.beans.factory.annotation.Autowired;

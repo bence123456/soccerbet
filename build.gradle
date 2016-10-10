@@ -10,7 +10,6 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
@@ -22,7 +21,7 @@ repositories {
 }
 
 jar {
-    baseName = 'gs-spring-boot'
+    baseName = 'soccerbet'
     version =  '0.1.0'
 }
 

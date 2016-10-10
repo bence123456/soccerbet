@@ -1,4 +1,4 @@
-package com.bkonecsni.soccerbet.data_api.domain;
+package com.bkonecsni.soccerbet.football.data.domain;
 
 import java.util.List;
 

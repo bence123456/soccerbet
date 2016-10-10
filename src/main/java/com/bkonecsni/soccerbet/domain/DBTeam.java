@@ -4,23 +4,23 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "team", catalog = "soccerbet")
-public class Team {
+public class DBTeam {
 
     @Id
     private Long id;
 
     private String name;
 
-    public Team(){}
+    public DBTeam(){}
 
-    public Team(Long id, String name) {
+    public DBTeam(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
     @Override
     public String toString() {
-        return "Team{" +
+        return "DBTeam{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

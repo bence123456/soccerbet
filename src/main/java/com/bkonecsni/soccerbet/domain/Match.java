@@ -11,13 +11,13 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(targetEntity = Team.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = DBTeam.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "home_team_id")
-    private Team homeTeam;
+    private DBTeam homeTeam;
 
-    @ManyToOne(targetEntity = Team.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = DBTeam.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "away_team_id")
-    private Team awayTeam;
+    private DBTeam awayTeam;
 
     private int homeTeamGoals;
 
@@ -34,7 +34,7 @@ public class Match {
 
     public Match() {}
 
-    public Match(Team homeTeam, Team awayTeam, int homeTeamGoals, int awayTeamGoals, String status, int round, Date dateTime) {
+    public Match(DBTeam homeTeam, DBTeam awayTeam, int homeTeamGoals, int awayTeamGoals, String status, int round, Date dateTime) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.homeTeamGoals = homeTeamGoals;
@@ -66,19 +66,19 @@ public class Match {
         this.id = id;
     }
 
-    public Team getHomeTeam() {
+    public DBTeam getHomeTeam() {
         return homeTeam;
     }
 
-    public void setHomeTeam(Team homeTeam) {
+    public void setHomeTeam(DBTeam homeTeam) {
         this.homeTeam = homeTeam;
     }
 
-    public Team getAwayTeam() {
+    public DBTeam getAwayTeam() {
         return awayTeam;
     }
 
-    public void setAwayTeam(Team awayTeam) {
+    public void setAwayTeam(DBTeam awayTeam) {
         this.awayTeam = awayTeam;
     }
 
