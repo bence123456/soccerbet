@@ -59,7 +59,7 @@ public class TeamController {
         Call<TeamList> call = footballDataService.listTeams();
         TeamList teamList = call.execute().body();
 
-        if (teamList.getCount() != teamRepository.count()) {
+        if (teamList != null && teamList.getCount() != teamRepository.count()) {
             persistTeams(teamList);
         }
     }

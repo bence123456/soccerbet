@@ -22,6 +22,10 @@ public class Match {
     @JoinColumn(name = "away_team_id")
     private DBTeam awayTeam;
 
+    private String homeTeamName;
+
+    private String awayTeamName;
+
     private int homeTeamGoals;
 
     private int awayTeamGoals;
@@ -39,11 +43,13 @@ public class Match {
 
     public Match() {}
 
-    public Match(Long id, DBTeam homeTeam, DBTeam awayTeam, int homeTeamGoals, int awayTeamGoals, String status,
-                 int round, Date dateTime) {
+    public Match(Long id, DBTeam homeTeam, DBTeam awayTeam, String homeTeamName, String awayTeamName,
+                 int homeTeamGoals, int awayTeamGoals, String status, int round, Date dateTime) {
         this.id = id;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
+        this.homeTeamName = homeTeamName;
+        this.awayTeamName = awayTeamName;
         this.homeTeamGoals = homeTeamGoals;
         this.awayTeamGoals = awayTeamGoals;
         this.status = status;
@@ -74,6 +80,8 @@ public class Match {
                 "id=" + id +
                 ", homeTeam=" + homeTeam +
                 ", awayTeam=" + awayTeam +
+                ", homeTeamName=" + homeTeamName +
+                ", awayTeamName=" + awayTeamName +
                 ", homeTeamGoals=" + homeTeamGoals +
                 ", awayTeamGoals=" + awayTeamGoals +
                 ", status='" + status + '\'' +
@@ -105,6 +113,22 @@ public class Match {
 
     public void setAwayTeam(DBTeam awayTeam) {
         this.awayTeam = awayTeam;
+    }
+
+    public String getHomeTeamName() {
+        return homeTeamName;
+    }
+
+    public void setHomeTeamName(String homeTeamName) {
+        this.homeTeamName = homeTeamName;
+    }
+
+    public String getAwayTeamName() {
+        return awayTeamName;
+    }
+
+    public void setAwayTeamName(String awayTeamName) {
+        this.awayTeamName = awayTeamName;
     }
 
     public int getHomeTeamGoals() {

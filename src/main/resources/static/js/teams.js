@@ -8,9 +8,9 @@ class Teams extends React.Component {
 	}
 
 	componentDidMount() {
-       fetch('http://localhost:8080/api/teams')
+       fetch('http://localhost:8080/api/dBTeams')
        .then((response) => { return response.json() })
-       .then( (json) => {this.setState({teams: json._embedded.teams}); });
+       .then( (json) => {this.setState({teams: json._embedded.dBTeams}); });
 	}
 
 	render() {
@@ -50,5 +50,10 @@ class Team extends React.Component{
 
 ReactDOM.render(
 	<Teams />,
-	document.getElementById('react')
+	document.getElementById('teams')
 )
+
+//  if (typeof module !== 'undefined' && typeof module.exports !== 'undefined')
+//    module.exports = Teams;
+//  else
+//    window.Teams = Teams;

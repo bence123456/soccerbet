@@ -32,10 +32,11 @@ public class MatchController {
 
     @RequestMapping("/match/create")
     @ResponseBody
-    public String create(Long id, DBTeam homeTeam, DBTeam awayTeam, int homeTeamGoals, int awayTeamGoals, String status, int round, Date dateTime) {
+    public String create(Long id, DBTeam homeTeam, DBTeam awayTeam, String homeTeamName, String awayTeamName,
+                         int homeTeamGoals, int awayTeamGoals, String status, int round, Date dateTime) {
         Match match;
         try {
-            match = new Match(id, homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, status, round, dateTime);
+            match = new Match(id, homeTeam, awayTeam, homeTeamName, awayTeamName, homeTeamGoals, awayTeamGoals, status, round, dateTime);
             matchRepository.save(match);
         }
         catch (Exception ex) {
@@ -65,10 +66,12 @@ public class MatchController {
         Call<FixtureList> call = footballDataService.listFixtures();
         FixtureList fixtureList = call.execute().body();
 
-        for (Fixture fixture : fixtureList.getFixtures()) {
-            Long id = commonService.getIdFromUrl(fixture.get_links().getSelf().getHref());
-            if (!matchRepository.exists(id)) {
-                persistMatch(fixture, id);
+        if (fixtureList != null) {
+            for (Fixture fixture : fixtureList.getFixtures()) {
+                Long id = commonService.getIdFromUrl(fixture.get_links().getSelf().getHref());
+                if (!matchRepository.exists(id)) {
+                    persistMatch(fixture, id);
+                }
             }
         }
     }
@@ -82,6 +85,8 @@ public class MatchController {
     private Match createMatchFromFixture(Fixture fixture, Long id) {
         DBTeam homeTeam = loadTeamFromDB(fixture.get_links().getHomeTeam().getHref());
         DBTeam awayTeam = loadTeamFromDB(fixture.get_links().getAwayTeam().getHref());
+        String homeTeamName = fixture.getHomeTeamName();
+        String awayTeamName = fixture.getAwayTeamName();
         int homeTeamGoals = fixture.getResult().getGoalsHomeTeam();
         int awayTeamGoals = fixture.getResult().getGoalsAwayTeam();
         String status = fixture.getStatus();
@@ -89,7 +94,7 @@ public class MatchController {
         Date date = fixture.getDate();
 
 
-        return new Match(id, homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, status, round, date);
+        return new Match(id, homeTeam, awayTeam, homeTeamName, awayTeamName, homeTeamGoals, awayTeamGoals, status, round, date);
     }
 
     //TODO: move it to commonservice?
