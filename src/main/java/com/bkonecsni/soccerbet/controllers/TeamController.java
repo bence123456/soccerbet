@@ -53,7 +53,7 @@ public class TeamController {
         return "List of teams: " + teams;
     }
 
-    @PostConstruct
+    //@PostConstruct
     private void persistTeamsIfNecessary() throws IOException {
         FootballDataService footballDataService = commonService.getFootballDataService();
         Call<TeamList> call = footballDataService.listTeams();

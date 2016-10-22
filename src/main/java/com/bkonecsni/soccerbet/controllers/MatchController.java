@@ -60,7 +60,7 @@ public class MatchController {
         return "List of matches: " + bets;
     }
 
-    @PostConstruct
+    //@PostConstruct
     private void persistMatchesIfNecessary() throws IOException {
         FootballDataService footballDataService = commonService.getFootballDataService();
         Call<FixtureList> call = footballDataService.listFixtures();
