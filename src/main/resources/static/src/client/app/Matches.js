@@ -1,4 +1,5 @@
 'use strict';
+import React from 'react';
 
 class Matches extends React.Component {
 
@@ -30,6 +31,11 @@ class MatchList extends React.Component{
 				<tbody>
 					<tr>
 						<th>Home Team</th>
+						<th>Away Team</th>
+						<th>Home Team Goal</th>
+						<th>Away Team Goal</th>
+						<th>Round</th>
+						<th>Date</th>
 					</tr>
 					{matches}
 				</tbody>
@@ -42,13 +48,15 @@ class Match extends React.Component{
 	render() {
 		return (
 			<tr>
-				<td>{this.props.matches.homeTeamName}</td>
+				<td>{this.props.match.homeTeamName}</td>
+				<td>{this.props.match.awayTeamName}</td>
+				<td>{this.props.match.homeTeamGoals}</td>
+				<td>{this.props.match.awayTeamGoals}</td>
+				<td>{this.props.match.round}</td>
+				<td>{this.props.match.dateTime}</td>
 			</tr>
 		)
 	}
 }
 
-ReactDOM.render(
-	<Matches />,
-	document.getElementById('matches')
-)
+export default Matches;

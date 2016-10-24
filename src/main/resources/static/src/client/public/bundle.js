@@ -77,6 +77,10 @@
 	
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 	
+	var _Matches = __webpack_require__(/*! ./Matches */ 467);
+	
+	var _Matches2 = _interopRequireDefault(_Matches);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -86,6 +90,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	(0, _reactTapEventPlugin2.default)();
+	
 	
 	var styles = {
 	    headline: {
@@ -134,10 +139,11 @@
 	                null,
 	                _react2.default.createElement(
 	                    _Tabs.Tabs,
-	                    { onChange: this.handleChange, value: this.state.slideIndex },
-	                    _react2.default.createElement(_Tabs.Tab, { label: 'Tab One', value: 0 }),
-	                    _react2.default.createElement(_Tabs.Tab, { label: 'Tab Two', value: 1 }),
-	                    _react2.default.createElement(_Tabs.Tab, { label: 'Tab Three', value: 2 })
+	                    { inkBarStyle: { background: '#212121' }, onChange: this.handleChange, value: this.state.slideIndex },
+	                    _react2.default.createElement(_Tabs.Tab, { label: 'Match Results', value: 0 }),
+	                    _react2.default.createElement(_Tabs.Tab, { label: 'Upcoming Matches', value: 1 }),
+	                    _react2.default.createElement(_Tabs.Tab, { label: 'Ranking', value: 2 }),
+	                    _react2.default.createElement(_Tabs.Tab, { label: 'My bets', value: 3 })
 	                ),
 	                _react2.default.createElement(
 	                    _reactSwipeableViews2.default,
@@ -148,20 +154,25 @@
 	                        _react2.default.createElement(
 	                            'h2',
 	                            { style: styles.headline },
-	                            'Tabs with slide effect'
+	                            'Results of the already finished matches.'
 	                        ),
-	                        'Swipe to see the next slide.',
+	                        'Swipe to see the next slide!!!.',
 	                        _react2.default.createElement('br', null)
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { style: styles.slide },
-	                        'slide n\xB02'
+	                        _react2.default.createElement(_Matches2.default, null)
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { style: styles.slide },
 	                        'slide n\xB03'
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { style: styles.slide },
+	                        'slide n\xB04'
 	                    )
 	                )
 	            );
@@ -28300,7 +28311,7 @@
 	      spacing: 24
 	    },
 	    tabs: {
-	      backgroundColor: palette.primary1Color,
+	      backgroundColor: '#4caf50',
 	      textColor: (0, _colorManipulator.fade)(palette.alternateTextColor, 0.7),
 	      selectedTextColor: palette.alternateTextColor
 	    },
@@ -37692,6 +37703,188 @@
 	};
 	
 	module.exports = keyOf;
+
+/***/ },
+/* 467 */
+/*!***********************************!*\
+  !*** ./src/client/app/Matches.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Matches = function (_React$Component) {
+		_inherits(Matches, _React$Component);
+	
+		function Matches(props) {
+			_classCallCheck(this, Matches);
+	
+			var _this = _possibleConstructorReturn(this, (Matches.__proto__ || Object.getPrototypeOf(Matches)).call(this, props));
+	
+			_this.state = { matches: [] };
+			return _this;
+		}
+	
+		_createClass(Matches, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				var _this2 = this;
+	
+				fetch('http://localhost:8080/api/matches/search/findByStatus?status=FINISHED').then(function (response) {
+					return response.json();
+				}).then(function (json) {
+					_this2.setState({ matches: json._embedded.matches });
+				});
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					MatchList,
+					{ matches: this.state.matches },
+					' '
+				);
+			}
+		}]);
+	
+		return Matches;
+	}(_react2.default.Component);
+	
+	var MatchList = function (_React$Component2) {
+		_inherits(MatchList, _React$Component2);
+	
+		function MatchList() {
+			_classCallCheck(this, MatchList);
+	
+			return _possibleConstructorReturn(this, (MatchList.__proto__ || Object.getPrototypeOf(MatchList)).apply(this, arguments));
+		}
+	
+		_createClass(MatchList, [{
+			key: 'render',
+			value: function render() {
+				var matches = this.props.matches.map(function (match) {
+					return _react2.default.createElement(Match, { key: match._links.self.href, match: match });
+				});
+				return _react2.default.createElement(
+					'table',
+					null,
+					_react2.default.createElement(
+						'tbody',
+						null,
+						_react2.default.createElement(
+							'tr',
+							null,
+							_react2.default.createElement(
+								'th',
+								null,
+								'Home Team'
+							),
+							_react2.default.createElement(
+								'th',
+								null,
+								'Away Team'
+							),
+							_react2.default.createElement(
+								'th',
+								null,
+								'Home Team Goal'
+							),
+							_react2.default.createElement(
+								'th',
+								null,
+								'Away Team Goal'
+							),
+							_react2.default.createElement(
+								'th',
+								null,
+								'Round'
+							),
+							_react2.default.createElement(
+								'th',
+								null,
+								'Date'
+							)
+						),
+						matches
+					)
+				);
+			}
+		}]);
+	
+		return MatchList;
+	}(_react2.default.Component);
+	
+	var Match = function (_React$Component3) {
+		_inherits(Match, _React$Component3);
+	
+		function Match() {
+			_classCallCheck(this, Match);
+	
+			return _possibleConstructorReturn(this, (Match.__proto__ || Object.getPrototypeOf(Match)).apply(this, arguments));
+		}
+	
+		_createClass(Match, [{
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'tr',
+					null,
+					_react2.default.createElement(
+						'td',
+						null,
+						this.props.match.homeTeamName
+					),
+					_react2.default.createElement(
+						'td',
+						null,
+						this.props.match.awayTeamName
+					),
+					_react2.default.createElement(
+						'td',
+						null,
+						this.props.match.homeTeamGoals
+					),
+					_react2.default.createElement(
+						'td',
+						null,
+						this.props.match.awayTeamGoals
+					),
+					_react2.default.createElement(
+						'td',
+						null,
+						this.props.match.round
+					),
+					_react2.default.createElement(
+						'td',
+						null,
+						this.props.match.dateTime
+					)
+				);
+			}
+		}]);
+	
+		return Match;
+	}(_react2.default.Component);
+	
+	exports.default = Matches;
 
 /***/ }
 /******/ ]);
