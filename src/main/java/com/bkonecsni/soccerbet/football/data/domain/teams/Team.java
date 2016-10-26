@@ -8,9 +8,6 @@ public class Team {
 
     private _links _links;
 
-    //TODO: use this if teams logo needed, delete otherwise. Can be null!!
-    private String crestUrl;
-
     public String getName() {
         return name;
     }
@@ -25,13 +22,5 @@ public class Team {
 
     public void set_links(_links _links) {
         this._links = _links;
-    }
-
-    public String getCrestUrl() {
-        return crestUrl;
-    }
-
-    public void setCrestUrl(String crestUrl) {
-        this.crestUrl = crestUrl;
     }
 }

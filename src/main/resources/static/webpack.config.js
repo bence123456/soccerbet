@@ -16,7 +16,11 @@ var config = {
          test : /\.jsx?/,
          include : APP_DIR,
          loader : 'babel'
-       }
+       },
+	   {
+		 test: /\.(jpe?g|png|gif|svg)$/i,
+		 loader: "file-loader?name=/images/[name].[ext]"
+	   }
      ]
    }
 };

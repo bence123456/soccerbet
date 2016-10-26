@@ -8,6 +8,7 @@ import SwipeableViews from 'react-swipeable-views';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 import Matches from './Matches';
+import FinishedMatchResults from './FinishedMatchResults';
 
 const styles = {
   headline: {
@@ -51,14 +52,13 @@ class App extends React.Component {
                 </Tabs>
                 <SwipeableViews index={this.state.slideIndex} onChangeIndex={this.handleChange} >
                     <div>
-                        <h2 style={styles.headline}>Results of the already finished matches.</h2>
-                        Swipe to see the next slide!!!.<br />
+                        <FinishedMatchResults />
                     </div>
                     <div style={styles.slide}>
                         <Matches />
                     </div>
                     <div style={styles.slide}>
-                        slide n°3
+                        slide n3
                     </div>
 					<div style={styles.slide}>
                         slide n°4
