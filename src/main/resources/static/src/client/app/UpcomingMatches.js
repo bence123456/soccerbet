@@ -3,7 +3,7 @@ import {List, ListItem} from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 
-class FinishedMatchResult extends React.Component {
+class UpcomingMatches extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -11,20 +11,20 @@ class FinishedMatchResult extends React.Component {
 	}
 
 	componentDidMount() {
-       fetch('http://localhost:8080/api/matches/search/findByStatus?status=FINISHED')
+       fetch('http://localhost:8080/api/matches/search/findByStatus?status=TIMED')
        .then((response) => { return response.json() })
        .then( (json) => {this.setState({matches: json._embedded.matches}); });
 	}
 
 	render() {
         var matchNodes = this.state.matches.map(function (match, i) {
-			var homeTeamName = match.homeTeamName;
+			var homeTeamName = match.homeTeamName; 
 			var awayTeamName = match.awayTeamName;
 			var homeTeamLogoSrc = "/images/" + homeTeamName.replace("/", "") + ".png";
 			var awayTeamLogoSrc = "/images/" + awayTeamName + ".png";
-
+			
               return (
-				<div key={i}>
+				<div key={i}> 
 					<List >
 						<ListItem
 							primaryText = {homeTeamName}
@@ -48,4 +48,4 @@ class FinishedMatchResult extends React.Component {
 	}
 }
 
-export default FinishedMatchResult;
+export default UpcomingMatches;

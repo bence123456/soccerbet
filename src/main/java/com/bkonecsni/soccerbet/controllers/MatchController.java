@@ -69,7 +69,7 @@ public class MatchController {
         if (fixtureList != null) {
             for (Fixture fixture : fixtureList.getFixtures()) {
                 Long id = commonService.getIdFromUrl(fixture.get_links().getSelf().getHref());
-                if (!matchRepository.exists(id)) {
+                if (!matchRepository.exists(id) || !fixture.getStatus().equals(matchRepository.findOne(id))) {
                     persistMatch(fixture, id);
                 }
             }

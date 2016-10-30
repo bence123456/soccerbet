@@ -7,8 +7,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import SwipeableViews from 'react-swipeable-views';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
-import Matches from './Matches';
 import FinishedMatchResults from './FinishedMatchResults';
+import UpcomingMatches from './UpcomingMatches';
 
 const styles = {
   headline: {
@@ -55,7 +55,7 @@ class App extends React.Component {
                         <FinishedMatchResults />
                     </div>
                     <div style={styles.slide}>
-                        <Matches />
+                        <UpcomingMatches />
                     </div>
                     <div style={styles.slide}>
                         slide n3

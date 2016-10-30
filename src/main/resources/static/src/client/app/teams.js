@@ -52,8 +52,3 @@ ReactDOM.render(
 	<Teams />,
 	document.getElementById('teams')
 )
-
-//  if (typeof module !== 'undefined' && typeof module.exports !== 'undefined')
-//    module.exports = Teams;
-//  else
-//    window.Teams = Teams;
