@@ -9,6 +9,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 import FinishedMatchResults from './FinishedMatchResults';
 import UpcomingMatches from './UpcomingMatches';
+import Ranking from './Ranking';
 
 const styles = {
   headline: {
@@ -58,7 +59,7 @@ class App extends React.Component {
                         <UpcomingMatches />
                     </div>
                     <div style={styles.slide}>
-                        slide n3
+                        <Ranking />
                     </div>
 					<div style={styles.slide}>
                         slide n°4

@@ -77,13 +77,17 @@
 	
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 	
-	var _FinishedMatchResults = __webpack_require__(/*! ./FinishedMatchResults */ 496);
+	var _FinishedMatchResults = __webpack_require__(/*! ./FinishedMatchResults */ 467);
 	
 	var _FinishedMatchResults2 = _interopRequireDefault(_FinishedMatchResults);
 	
 	var _UpcomingMatches = __webpack_require__(/*! ./UpcomingMatches */ 499);
 	
 	var _UpcomingMatches2 = _interopRequireDefault(_UpcomingMatches);
+	
+	var _Ranking = __webpack_require__(/*! ./Ranking */ 500);
+	
+	var _Ranking2 = _interopRequireDefault(_Ranking);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -165,7 +169,7 @@
 	                    _react2.default.createElement(
 	                        'div',
 	                        { style: styles.slide },
-	                        'slide n3'
+	                        _react2.default.createElement(_Ranking2.default, null)
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -37703,7 +37707,139 @@
 	module.exports = keyOf;
 
 /***/ },
-/* 467 */,
+/* 467 */
+/*!************************************************!*\
+  !*** ./src/client/app/FinishedMatchResults.js ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _List = __webpack_require__(/*! material-ui/List */ 468);
+	
+	var _Avatar = __webpack_require__(/*! material-ui/Avatar */ 494);
+	
+	var _Avatar2 = _interopRequireDefault(_Avatar);
+	
+	var _Divider = __webpack_require__(/*! material-ui/Divider */ 496);
+	
+	var _Divider2 = _interopRequireDefault(_Divider);
+	
+	var _MobileTearSheet = __webpack_require__(/*! ./MobileTearSheet */ 498);
+	
+	var _MobileTearSheet2 = _interopRequireDefault(_MobileTearSheet);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var styles = {
+		root: {
+			display: 'flex',
+			flexWrap: 'wrap'
+		}
+	};
+	
+	var FinishedMatchResult = function (_React$Component) {
+		_inherits(FinishedMatchResult, _React$Component);
+	
+		function FinishedMatchResult(props) {
+			_classCallCheck(this, FinishedMatchResult);
+	
+			var _this = _possibleConstructorReturn(this, (FinishedMatchResult.__proto__ || Object.getPrototypeOf(FinishedMatchResult)).call(this, props));
+	
+			_this.state = { matches: [] };
+			return _this;
+		}
+	
+		_createClass(FinishedMatchResult, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				var _this2 = this;
+	
+				fetch('http://localhost:8080/api/matches/search/findByStatus?status=FINISHED').then(function (response) {
+					return response.json();
+				}).then(function (json) {
+					_this2.setState({ matches: json._embedded.matches });
+				});
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				var matchNodes = this.state.matches.map(function (match, i) {
+					var homeTeamName = match.homeTeamName;
+					var awayTeamName = match.awayTeamName;
+					var homeTeamLogoSrc = "/images/" + homeTeamName.replace("/", "") + ".png";
+					var awayTeamLogoSrc = "/images/" + awayTeamName + ".png";
+	
+					var homeStyle = {},
+					    awayStyle = {},
+					    wonStyle = { fontWeight: 'bold' };
+					if (match.matchResult === "HOME_TEAM_WINS") {
+						homeStyle = wonStyle;
+					} else if (match.matchResult === "AWAY_TEAM_WINS") {
+						awayStyle = wonStyle;
+					}
+	
+					return _react2.default.createElement(
+						_MobileTearSheet2.default,
+						{ key: i },
+						_react2.default.createElement(
+							_List.List,
+							null,
+							_react2.default.createElement(_List.ListItem, { style: homeStyle,
+								primaryText: homeTeamName,
+								rightAvatar: _react2.default.createElement(
+									_Avatar2.default,
+									null,
+									' ',
+									match.homeTeamGoals,
+									' '
+								),
+								leftAvatar: _react2.default.createElement(_Avatar2.default, { src: homeTeamLogoSrc }) }),
+							_react2.default.createElement(_List.ListItem, { style: awayStyle,
+								primaryText: awayTeamName,
+								rightAvatar: _react2.default.createElement(
+									_Avatar2.default,
+									null,
+									' ',
+									match.awayTeamGoals,
+									' '
+								),
+								leftAvatar: _react2.default.createElement(_Avatar2.default, { src: awayTeamLogoSrc }) })
+						),
+						_react2.default.createElement(_Divider2.default, null)
+					);
+				});
+	
+				return _react2.default.createElement(
+					'div',
+					{ style: styles.root },
+					matchNodes
+				);
+			}
+		}]);
+	
+		return FinishedMatchResult;
+	}(_react2.default.Component);
+	
+	exports.default = FinishedMatchResult;
+
+/***/ },
 /* 468 */
 /*!*************************************!*\
   !*** ./~/material-ui/List/index.js ***!
@@ -40473,119 +40609,6 @@
 
 /***/ },
 /* 496 */
-/*!************************************************!*\
-  !*** ./src/client/app/FinishedMatchResults.js ***!
-  \************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _List = __webpack_require__(/*! material-ui/List */ 468);
-	
-	var _Avatar = __webpack_require__(/*! material-ui/Avatar */ 494);
-	
-	var _Avatar2 = _interopRequireDefault(_Avatar);
-	
-	var _Divider = __webpack_require__(/*! material-ui/Divider */ 497);
-	
-	var _Divider2 = _interopRequireDefault(_Divider);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var FinishedMatchResult = function (_React$Component) {
-		_inherits(FinishedMatchResult, _React$Component);
-	
-		function FinishedMatchResult(props) {
-			_classCallCheck(this, FinishedMatchResult);
-	
-			var _this = _possibleConstructorReturn(this, (FinishedMatchResult.__proto__ || Object.getPrototypeOf(FinishedMatchResult)).call(this, props));
-	
-			_this.state = { matches: [] };
-			return _this;
-		}
-	
-		_createClass(FinishedMatchResult, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {
-				var _this2 = this;
-	
-				fetch('http://localhost:8080/api/matches/search/findByStatus?status=FINISHED').then(function (response) {
-					return response.json();
-				}).then(function (json) {
-					_this2.setState({ matches: json._embedded.matches });
-				});
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				var matchNodes = this.state.matches.map(function (match, i) {
-					var homeTeamName = match.homeTeamName;
-					var awayTeamName = match.awayTeamName;
-					var homeTeamLogoSrc = "/images/" + homeTeamName.replace("/", "") + ".png";
-					var awayTeamLogoSrc = "/images/" + awayTeamName + ".png";
-	
-					return _react2.default.createElement(
-						'div',
-						{ key: i },
-						_react2.default.createElement(
-							_List.List,
-							null,
-							_react2.default.createElement(_List.ListItem, {
-								primaryText: homeTeamName,
-								rightAvatar: _react2.default.createElement(
-									_Avatar2.default,
-									null,
-									' ',
-									match.homeTeamGoals,
-									' '
-								),
-								leftAvatar: _react2.default.createElement(_Avatar2.default, { src: homeTeamLogoSrc }) }),
-							_react2.default.createElement(_List.ListItem, {
-								primaryText: awayTeamName,
-								rightAvatar: _react2.default.createElement(
-									_Avatar2.default,
-									null,
-									' ',
-									match.awayTeamGoals,
-									' '
-								),
-								leftAvatar: _react2.default.createElement(_Avatar2.default, { src: awayTeamLogoSrc }) })
-						),
-						_react2.default.createElement(_Divider2.default, null)
-					);
-				});
-	
-				return _react2.default.createElement(
-					'div',
-					null,
-					matchNodes
-				);
-			}
-		}]);
-	
-		return FinishedMatchResult;
-	}(_react2.default.Component);
-	
-	exports.default = FinishedMatchResult;
-
-/***/ },
-/* 497 */
 /*!****************************************!*\
   !*** ./~/material-ui/Divider/index.js ***!
   \****************************************/
@@ -40598,7 +40621,7 @@
 	});
 	exports.default = undefined;
 	
-	var _Divider = __webpack_require__(/*! ./Divider */ 498);
+	var _Divider = __webpack_require__(/*! ./Divider */ 497);
 	
 	var _Divider2 = _interopRequireDefault(_Divider);
 	
@@ -40607,7 +40630,7 @@
 	exports.default = _Divider2.default;
 
 /***/ },
-/* 498 */
+/* 497 */
 /*!******************************************!*\
   !*** ./~/material-ui/Divider/Divider.js ***!
   \******************************************/
@@ -40685,6 +40708,98 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
+/* 498 */
+/*!*******************************************!*\
+  !*** ./src/client/app/MobileTearSheet.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var MobileTearSheet = function (_Component) {
+	  _inherits(MobileTearSheet, _Component);
+	
+	  function MobileTearSheet() {
+	    _classCallCheck(this, MobileTearSheet);
+	
+	    return _possibleConstructorReturn(this, (MobileTearSheet.__proto__ || Object.getPrototypeOf(MobileTearSheet)).apply(this, arguments));
+	  }
+	
+	  _createClass(MobileTearSheet, [{
+	    key: 'render',
+	    value: function render() {
+	      var prepareStyles = this.context.muiTheme.prepareStyles;
+	
+	
+	      var styles = {
+	        root: {
+	          marginTop: 24,
+	          marginRight: 15,
+	          marginLeft: 15,
+	          maxWidth: 360,
+	          width: '100%'
+	        },
+	        container: {
+	          border: 'solid 1px #d9d9d9',
+	          borderBottom: 'none',
+	          height: this.props.height,
+	          overflow: 'hidden'
+	        },
+	        bottomTear: {
+	          display: 'block',
+	          position: 'relative',
+	          marginTop: -10,
+	          maxWidth: 360
+	        }
+	      };
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { style: prepareStyles(styles.root) },
+	        _react2.default.createElement(
+	          'div',
+	          { style: prepareStyles(styles.container) },
+	          this.props.children
+	        ),
+	        _react2.default.createElement('img', { style: prepareStyles(styles.bottomTear), src: 'images/bottom-tear.svg' })
+	      );
+	    }
+	  }]);
+	
+	  return MobileTearSheet;
+	}(_react.Component);
+	
+	MobileTearSheet.propTypes = {
+	  children: _react.PropTypes.node,
+	  height: _react.PropTypes.number.isRequired
+	};
+	MobileTearSheet.defaultProps = {
+	  height: 650
+	};
+	MobileTearSheet.contextTypes = {
+	  muiTheme: _react.PropTypes.object.isRequired
+	};
+	exports.default = MobileTearSheet;
+
+/***/ },
 /* 499 */
 /*!*******************************************!*\
   !*** ./src/client/app/UpcomingMatches.js ***!
@@ -40709,7 +40824,7 @@
 	
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 	
-	var _Divider = __webpack_require__(/*! material-ui/Divider */ 497);
+	var _Divider = __webpack_require__(/*! material-ui/Divider */ 496);
 	
 	var _Divider2 = _interopRequireDefault(_Divider);
 	
@@ -40796,6 +40911,68 @@
 	}(_react2.default.Component);
 	
 	exports.default = UpcomingMatches;
+
+/***/ },
+/* 500 */
+/*!***********************************!*\
+  !*** ./src/client/app/Ranking.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _MobileTearSheet = __webpack_require__(/*! ./MobileTearSheet */ 498);
+	
+	var _MobileTearSheet2 = _interopRequireDefault(_MobileTearSheet);
+	
+	var _List = __webpack_require__(/*! material-ui/List */ 468);
+	
+	var _Divider = __webpack_require__(/*! material-ui/Divider */ 496);
+	
+	var _Divider2 = _interopRequireDefault(_Divider);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Ranking = function (_React$Component) {
+	    _inherits(Ranking, _React$Component);
+	
+	    function Ranking() {
+	        _classCallCheck(this, Ranking);
+	
+	        return _possibleConstructorReturn(this, (Ranking.__proto__ || Object.getPrototypeOf(Ranking)).apply(this, arguments));
+	    }
+	
+	    _createClass(Ranking, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                '\xE1\xE1\xE1\xE1\xE1\xE1\xE1'
+	            );
+	        }
+	    }]);
+	
+	    return Ranking;
+	}(_react2.default.Component);
+	
+	exports.default = Ranking;
 
 /***/ }
 /******/ ]);

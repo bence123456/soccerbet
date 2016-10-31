@@ -2,6 +2,14 @@ import React from 'react';
 import {List, ListItem} from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
+import MobileTearSheet from './MobileTearSheet';
+
+const styles = {
+  root: {
+	display: 'flex',
+	flexWrap: 'wrap',
+  },
+};
 
 class FinishedMatchResult extends React.Component {
 
@@ -22,26 +30,33 @@ class FinishedMatchResult extends React.Component {
 			var awayTeamName = match.awayTeamName;
 			var homeTeamLogoSrc = "/images/" + homeTeamName.replace("/", "") + ".png";
 			var awayTeamLogoSrc = "/images/" + awayTeamName + ".png";
+			
+			var homeStyle = {}, awayStyle = {}, wonStyle = {fontWeight: 'bold'};
+			if (match.matchResult === "HOME_TEAM_WINS") {
+				homeStyle = wonStyle;
+			} else if (match.matchResult === "AWAY_TEAM_WINS") {
+				awayStyle = wonStyle;
+			}
 
-              return (
-				<div key={i}>
+            return (
+			    <MobileTearSheet key={i}>
 					<List >
-						<ListItem
+						<ListItem style = {homeStyle}
 							primaryText = {homeTeamName}
 							rightAvatar = { <Avatar> {match.homeTeamGoals} </Avatar> }
 							leftAvatar = {<Avatar src = {homeTeamLogoSrc} />} />
-						<ListItem
+						<ListItem style = {awayStyle}
 							primaryText = {awayTeamName}
 							rightAvatar = { <Avatar> {match.awayTeamGoals} </Avatar> }
 							leftAvatar = {<Avatar src = {awayTeamLogoSrc} />} />
 					</List>
 				    <Divider/>
-				</div>
-              );
+				</MobileTearSheet>
+            );
         });
 
         return (
-			<div>
+			<div style={styles.root}>
 				{matchNodes}
 			</div>
         );
