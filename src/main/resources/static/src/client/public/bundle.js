@@ -37796,40 +37796,55 @@
 					}
 	
 					return _react2.default.createElement(
-						_MobileTearSheet2.default,
-						{ key: i },
-						_react2.default.createElement(
-							_List.List,
-							null,
-							_react2.default.createElement(_List.ListItem, { style: homeStyle,
-								primaryText: homeTeamName,
-								rightAvatar: _react2.default.createElement(
-									_Avatar2.default,
-									null,
-									' ',
-									match.homeTeamGoals,
-									' '
-								),
-								leftAvatar: _react2.default.createElement(_Avatar2.default, { src: homeTeamLogoSrc }) }),
-							_react2.default.createElement(_List.ListItem, { style: awayStyle,
-								primaryText: awayTeamName,
-								rightAvatar: _react2.default.createElement(
-									_Avatar2.default,
-									null,
-									' ',
-									match.awayTeamGoals,
-									' '
-								),
-								leftAvatar: _react2.default.createElement(_Avatar2.default, { src: awayTeamLogoSrc }) })
-						),
-						_react2.default.createElement(_Divider2.default, null)
+						_List.List,
+						null,
+						_react2.default.createElement(_List.ListItem, { style: homeStyle,
+							primaryText: homeTeamName,
+							rightAvatar: _react2.default.createElement(
+								_Avatar2.default,
+								null,
+								' ',
+								match.homeTeamGoals,
+								' '
+							),
+							leftAvatar: _react2.default.createElement(_Avatar2.default, { src: homeTeamLogoSrc }) }),
+						_react2.default.createElement(_List.ListItem, { style: awayStyle,
+							primaryText: awayTeamName,
+							rightAvatar: _react2.default.createElement(
+								_Avatar2.default,
+								null,
+								' ',
+								match.awayTeamGoals,
+								' '
+							),
+							leftAvatar: _react2.default.createElement(_Avatar2.default, { src: awayTeamLogoSrc }) })
 					);
+				});
+	
+				var mobileTearSheets = matchNodes.map(function (matchNode, i) {
+					var sheets = [];
+					if (i % 4 == 0) {
+						var sheet = _react2.default.createElement(
+							_MobileTearSheet2.default,
+							{ key: i },
+							matchNodes[i],
+							_react2.default.createElement(_Divider2.default, null),
+							matchNodes[i + 1],
+							_react2.default.createElement(_Divider2.default, null),
+							matchNodes[i + 2],
+							_react2.default.createElement(_Divider2.default, null),
+							matchNodes[i + 3]
+						);
+						sheets.push(sheet);
+					}
+	
+					return sheets;
 				});
 	
 				return _react2.default.createElement(
 					'div',
 					{ style: styles.root },
-					matchNodes
+					mobileTearSheets
 				);
 			}
 		}]);
@@ -40752,8 +40767,7 @@
 	      var styles = {
 	        root: {
 	          marginTop: 24,
-	          marginRight: 15,
-	          marginLeft: 15,
+	          marginLeft: 32,
 	          maxWidth: 360,
 	          width: '100%'
 	        },
@@ -40792,7 +40806,7 @@
 	  height: _react.PropTypes.number.isRequired
 	};
 	MobileTearSheet.defaultProps = {
-	  height: 650
+	  height: 520
 	};
 	MobileTearSheet.contextTypes = {
 	  muiTheme: _react.PropTypes.object.isRequired
@@ -40853,7 +40867,7 @@
 			value: function componentDidMount() {
 				var _this2 = this;
 	
-				fetch('http://localhost:8080/api/matches/search/findByStatus?status=TIMED').then(function (response) {
+				fetch('http://localhost:8080/api/matches/search/findByStatus?status=SCHEDULED').then(function (response) {
 					return response.json();
 				}).then(function (json) {
 					_this2.setState({ matches: json._embedded.matches });

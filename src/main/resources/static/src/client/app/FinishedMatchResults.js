@@ -39,25 +39,42 @@ class FinishedMatchResult extends React.Component {
 			}
 
             return (
-			    <MobileTearSheet key={i}>
-					<List >
-						<ListItem style = {homeStyle}
-							primaryText = {homeTeamName}
-							rightAvatar = { <Avatar> {match.homeTeamGoals} </Avatar> }
-							leftAvatar = {<Avatar src = {homeTeamLogoSrc} />} />
-						<ListItem style = {awayStyle}
-							primaryText = {awayTeamName}
-							rightAvatar = { <Avatar> {match.awayTeamGoals} </Avatar> }
-							leftAvatar = {<Avatar src = {awayTeamLogoSrc} />} />
-					</List>
-				    <Divider/>
-				</MobileTearSheet>
+				<List >
+					<ListItem style = {homeStyle}
+						primaryText = {homeTeamName}
+						rightAvatar = { <Avatar> {match.homeTeamGoals} </Avatar> }
+						leftAvatar = {<Avatar src = {homeTeamLogoSrc} />} />
+					<ListItem style = {awayStyle}
+						primaryText = {awayTeamName}
+						rightAvatar = { <Avatar> {match.awayTeamGoals} </Avatar> }
+						leftAvatar = {<Avatar src = {awayTeamLogoSrc} />} />
+				</List>
             );
         });
+		
+		var mobileTearSheets = matchNodes.map(function (matchNode, i) {
+			var sheets = [];
+				if (i % 4 == 0) {
+					const sheet = (
+						<MobileTearSheet key={i}>
+							{matchNodes[i]}
+							<Divider/>
+							{matchNodes[i+1]}
+							<Divider/>
+							{matchNodes[i+2]}
+							<Divider/>
+							{matchNodes[i+3]}
+						</MobileTearSheet>
+					);
+					sheets.push(sheet);
+				}
+			
+			return sheets;
+		});
 
         return (
 			<div style={styles.root}>
-				{matchNodes}
+				{mobileTearSheets}
 			</div>
         );
 	}

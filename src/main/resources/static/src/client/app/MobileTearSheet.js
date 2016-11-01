@@ -8,7 +8,7 @@ class MobileTearSheet extends Component {
   };
 
   static defaultProps = {
-    height: 650,
+    height: 520,
   };
 
   static contextTypes = {
@@ -23,8 +23,7 @@ class MobileTearSheet extends Component {
     const styles = {
       root: {
         marginTop: 24,
-        marginRight: 15,
-        marginLeft: 15,
+        marginLeft: 32,
         maxWidth: 360,
         width: '100%',
       },
