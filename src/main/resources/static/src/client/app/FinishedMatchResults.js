@@ -4,13 +4,6 @@ import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 import MobileTearSheet from './MobileTearSheet';
 
-const styles = {
-  root: {
-	display: 'flex',
-	flexWrap: 'wrap',
-  },
-};
-
 class FinishedMatchResult extends React.Component {
 
 	constructor(props) {
@@ -28,8 +21,8 @@ class FinishedMatchResult extends React.Component {
         var matchNodes = this.state.matches.map(function (match, i) {
 			var homeTeamName = match.homeTeamName;
 			var awayTeamName = match.awayTeamName;
-			var homeTeamLogoSrc = "/images/" + homeTeamName.replace("/", "") + ".png";
-			var awayTeamLogoSrc = "/images/" + awayTeamName + ".png";
+			var homeTeamLogoSrc = "/images/logos/" + homeTeamName.replace("/", "") + ".png";
+			var awayTeamLogoSrc = "/images/logos/" + awayTeamName + ".png";
 			
 			var homeStyle = {}, awayStyle = {}, wonStyle = {fontWeight: 'bold'};
 			if (match.matchResult === "HOME_TEAM_WINS") {
@@ -73,7 +66,7 @@ class FinishedMatchResult extends React.Component {
 		});
 
         return (
-			<div style={styles.root}>
+			<div style={{display: 'flex', flexWrap: 'wrap'}}>
 				{mobileTearSheets}
 			</div>
         );

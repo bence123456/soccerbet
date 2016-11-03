@@ -23,7 +23,7 @@ class MobileTearSheet extends Component {
     const styles = {
       root: {
         marginTop: 24,
-        marginLeft: 32,
+        marginLeft: 24,
         maxWidth: 360,
         width: '100%',
       },
