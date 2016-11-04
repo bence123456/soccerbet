@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
 import {render} from 'react-dom';
+import FlatButton from 'material-ui/FlatButton';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -45,7 +46,7 @@ class App extends Component {
 
 const Nav = () => (
     <div>
-        <Link style={linkStyle} to='/'>Home</Link>
+        <Link style={linkStyle} to='/'>Kezdőlap</Link>
         <Link style={linkStyle} to='/finishedmatchresults'>Eredmények</Link>
         <Link style={linkStyle} to='/upcomingmatches'>Tippelés</Link>
         <Link style={linkStyle} to='/ranking'>Ranglista</Link>
@@ -54,9 +55,9 @@ const Nav = () => (
 )
 
 const Container = (props) => (
-    <div style={{height: '1450px', position: 'relative'}}>
+    <div style={{height: '1560px', position: 'relative'}}>
         <Layout style={{background: 'url(/images/4.jpg) center / cover'}}>
-            <Header transparent title="DFB-Pokal Tippjáték" style={{color: 'green'}}>
+            <Header transparent title={<FlatButton label="DFB-Pokal Tippjáték" containerElement={<Link to="/"/>} style={{color: 'green'}} />} style={{color: 'green'}}>
                 <Navigation>
                     <Nav />
                 </Navigation>
@@ -65,7 +66,7 @@ const Container = (props) => (
                 {props.children}
             </Content>
             <Footer size="mini">
-                <FooterSection>
+                <FooterSection type="middle">
                     <FooterLinkList>
                         <FooterLinks />
                     </FooterLinkList>

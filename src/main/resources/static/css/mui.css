@@ -384,8 +384,7 @@ optgroup {
  * Remove most spacing between table cells.
  */
 table {
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 625px;
 }
 
 td,
