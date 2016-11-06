@@ -7,7 +7,6 @@ import com.bkonecsni.soccerbet.football.data.api.FootballDataService;
 import com.bkonecsni.soccerbet.football.data.domain.fixtures.Fixture;
 import com.bkonecsni.soccerbet.football.data.domain.fixtures.FixtureList;
 import com.bkonecsni.soccerbet.repositories.MatchRepository;
-import com.bkonecsni.soccerbet.repositories.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,9 +22,6 @@ public class MatchController {
 
     @Autowired
     private MatchRepository matchRepository;
-
-    @Autowired
-    private TeamRepository teamRepository;
 
     @Autowired
     private CommonService commonService;
@@ -47,17 +43,17 @@ public class MatchController {
 
     @RequestMapping("/match/listAll")
     @ResponseBody
-    public String listTeams() {
-        String bets = "";
+    public String listMatches() {
+        String matches = "";
         try {
             for (Match match : matchRepository.findAll()) {
-                bets += match.toString() + ", ";
+                matches += match.toString() + ", ";
             }
         }
         catch (Exception ex) {
             return "Error creating the match: " + ex.toString();
         }
-        return "List of matches: " + bets;
+        return "List of matches: " + matches;
     }
 
     //@PostConstruct
@@ -93,14 +89,12 @@ public class MatchController {
         int round = fixture.getMatchday();
         Date date = fixture.getDate();
 
-
         return new Match(id, homeTeam, awayTeam, homeTeamName, awayTeamName, homeTeamGoals, awayTeamGoals, status, round, date);
     }
 
-    //TODO: move it to commonservice?
     private DBTeam loadTeamFromDB(String teamUrl) {
         Long teamId = commonService.getIdFromUrl(teamUrl);
 
-        return teamRepository.findOne(teamId);
+        return commonService.findTeamById(teamId);
     }
 }

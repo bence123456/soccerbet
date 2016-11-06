@@ -53,14 +53,16 @@ public class TeamController {
         return "List of teams: " + teams;
     }
 
-    //@PostConstruct
+    @PostConstruct
     private void persistTeamsIfNecessary() throws IOException {
-        FootballDataService footballDataService = commonService.getFootballDataService();
-        Call<TeamList> call = footballDataService.listTeams();
-        TeamList teamList = call.execute().body();
+        if (teamRepository.count() != 64) {
+            FootballDataService footballDataService = commonService.getFootballDataService();
+            Call<TeamList> call = footballDataService.listTeams();
+            TeamList teamList = call.execute().body();
 
-        if (teamList != null && teamList.getCount() != teamRepository.count()) {
-            persistTeams(teamList);
+            if (teamList != null) {
+                persistTeams(teamList);
+            }
         }
     }
 

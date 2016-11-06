@@ -15,10 +15,10 @@ public class UserController {
 
     @RequestMapping("/user/create")
     @ResponseBody
-    public String create(String name, String password, int points) {
+    public String create(Long id, String name, int points) {
         User user;
         try {
-            user = new User(name, password, points);
+            user = new User(id, name, points);
             userRepository.save(user);
         }
         catch (Exception ex) {
@@ -29,16 +29,16 @@ public class UserController {
 
     @RequestMapping("/user/listAll")
     @ResponseBody
-    public String listTeams() {
-        String bets = "";
+    public String listUsers() {
+        String users = "";
         try {
-            for (User bet : userRepository.findAll()) {
-                bets += bet.toString() + ", ";
+            for (User user : userRepository.findAll()) {
+                users += user.toString() + ", ";
             }
         }
         catch (Exception ex) {
             return "Error creating the user: " + ex.toString();
         }
-        return "List of users: " + bets;
+        return "List of users: " + users;
     }
 }

@@ -7,21 +7,17 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
-
-    private String password;
 
     private int points;
 
     public User() {}
 
-    public User(String name, String password, int points) {
+    public User(Long id, String name, int points) {
         this.id = id;
         this.name = name;
-        this.password = password;
         this.points = points;
     }
 
@@ -30,7 +26,6 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
                 ", points=" + points +
                 '}';
     }
@@ -49,14 +44,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public int getPoints() {
