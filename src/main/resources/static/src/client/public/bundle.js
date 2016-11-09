@@ -148,7 +148,6 @@
 	                    _react2.default.createElement(_reactRouter.Route, { path: 'FinishedMatchResults', component: _FinishedMatchResults2.default }),
 	                    _react2.default.createElement(_reactRouter.Route, { path: 'UpcomingMatches', component: _UpcomingMatches2.default }),
 	                    _react2.default.createElement(_reactRouter.Route, { path: 'Ranking', component: _Ranking2.default }),
-	                    _react2.default.createElement(_reactRouter.Route, { path: 'MyBets', component: _MyBets2.default }),
 	                    _react2.default.createElement(_reactRouter.Route, { path: '*', component: _NotFound2.default })
 	                )
 	            );
