@@ -1,6 +1,5 @@
 package com.bkonecsni.soccerbet.controllers;
 
-import com.bkonecsni.soccerbet.common.CommonService;
 import com.bkonecsni.soccerbet.domain.User;
 import com.bkonecsni.soccerbet.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +13,14 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private CommonService commonService;
-
     @RequestMapping("/user/create")
-    public String create(String hrefUrl, String name, int points) {
+    public String create(String id, String name) {
         User user;
-        String id = commonService.getStringIdFromUrl(hrefUrl);
         try {
-            user = new User(id, name, points);
-            userRepository.save(user);
+            user = new User(id, name);
+            if (!userRepository.exists(id)) {
+                userRepository.save(user);
+            }
         }
         catch (Exception ex) {
            ex.toString();
