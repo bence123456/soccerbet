@@ -1,9 +1,12 @@
 import React from 'react';
-import {List, ListItem} from 'material-ui/List';
-import Avatar from 'material-ui/Avatar';
-import Divider from 'material-ui/Divider';
-import MobileTearSheet from './MobileTearSheet';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+
+const tableStyle = {
+    width: '800px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    background:'transparent'
+};
 
 class Ranking extends React.Component {	
 
@@ -24,7 +27,7 @@ class Ranking extends React.Component {
 			var points = user.points;
 
             return (
-                <TableRow key={i} >
+                <TableRow key={i} style={{color: 'white'}} >
                     <TableRowColumn> {i + 1} </TableRowColumn>
                     <TableRowColumn> {name} </TableRowColumn>
                     <TableRowColumn> {points} </TableRowColumn>
@@ -33,9 +36,9 @@ class Ranking extends React.Component {
         });
 
         return (
-			<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-			    <Table style={{width: 800}}>
-                    <TableHeader displaySelectAll={false} >
+			<div style={{marginTop: '50px'}} >
+			    <Table transparent style={tableStyle}>
+                    <TableHeader displaySelectAll={false} adjustForCheckbox={false} >
                         <TableRow>
                             <TableHeaderColumn> Helyezés </TableHeaderColumn>
                             <TableHeaderColumn> Felhasználónév </TableHeaderColumn>
@@ -43,7 +46,7 @@ class Ranking extends React.Component {
                         </TableRow>
                     </TableHeader>
                     <TableBody displayRowCheckbox={false}>
-				        {userNodes}
+                        {userNodes}
 				    </TableBody>
                 </Table>
 			</div>

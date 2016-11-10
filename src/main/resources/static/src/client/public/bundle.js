@@ -97,11 +97,11 @@
 	
 	var _Ranking2 = _interopRequireDefault(_Ranking);
 	
-	var _MyBets = __webpack_require__(/*! ./MyBets */ 529);
+	var _MyBets = __webpack_require__(/*! ./MyBets */ 545);
 	
 	var _MyBets2 = _interopRequireDefault(_MyBets);
 	
-	var _NotFound = __webpack_require__(/*! ./NotFound */ 530);
+	var _NotFound = __webpack_require__(/*! ./NotFound */ 546);
 	
 	var _NotFound2 = _interopRequireDefault(_NotFound);
 	
@@ -51504,21 +51504,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _List = __webpack_require__(/*! material-ui/List */ 515);
-	
-	var _Avatar = __webpack_require__(/*! material-ui/Avatar */ 500);
-	
-	var _Avatar2 = _interopRequireDefault(_Avatar);
-	
-	var _Divider = __webpack_require__(/*! material-ui/Divider */ 524);
-	
-	var _Divider2 = _interopRequireDefault(_Divider);
-	
-	var _MobileTearSheet = __webpack_require__(/*! ./MobileTearSheet */ 526);
-	
-	var _MobileTearSheet2 = _interopRequireDefault(_MobileTearSheet);
-	
-	var _Table = __webpack_require__(/*! material-ui/Table */ 531);
+	var _Table = __webpack_require__(/*! material-ui/Table */ 529);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -51527,6 +51513,13 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var tableStyle = {
+	    width: '800px',
+	    marginLeft: 'auto',
+	    marginRight: 'auto',
+	    background: 'transparent'
+	};
 	
 	var Ranking = function (_React$Component) {
 	    _inherits(Ranking, _React$Component);
@@ -51560,7 +51553,7 @@
 	
 	                return _react2.default.createElement(
 	                    _Table.TableRow,
-	                    { key: i },
+	                    { key: i, style: { color: 'white' } },
 	                    _react2.default.createElement(
 	                        _Table.TableRowColumn,
 	                        null,
@@ -51587,13 +51580,13 @@
 	
 	            return _react2.default.createElement(
 	                'div',
-	                { style: { display: 'flex', alignItems: 'center', justifyContent: 'center' } },
+	                { style: { marginTop: '50px' } },
 	                _react2.default.createElement(
 	                    _Table.Table,
-	                    { style: { width: 800, display: 'flex', alignItems: 'center', justifyContent: 'center' } },
+	                    { transparent: true, style: tableStyle },
 	                    _react2.default.createElement(
 	                        _Table.TableHeader,
-	                        { displaySelectAll: false },
+	                        { displaySelectAll: false, adjustForCheckbox: false },
 	                        _react2.default.createElement(
 	                            _Table.TableRow,
 	                            null,
@@ -51631,127 +51624,6 @@
 
 /***/ },
 /* 529 */
-/*!**********************************!*\
-  !*** ./src/client/app/MyBets.js ***!
-  \**********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Ranking = function (_React$Component) {
-	    _inherits(Ranking, _React$Component);
-	
-	    function Ranking() {
-	        _classCallCheck(this, Ranking);
-	
-	        return _possibleConstructorReturn(this, (Ranking.__proto__ || Object.getPrototypeOf(Ranking)).apply(this, arguments));
-	    }
-	
-	    _createClass(Ranking, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                'mybetrsmybetrsmybetrsmybetrsmybetrs'
-	            );
-	        }
-	    }]);
-	
-	    return Ranking;
-	}(_react2.default.Component);
-	
-	exports.default = Ranking;
-
-/***/ },
-/* 530 */
-/*!************************************!*\
-  !*** ./src/client/app/NotFound.js ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _FlatButton = __webpack_require__(/*! material-ui/FlatButton */ 172);
-	
-	var _FlatButton2 = _interopRequireDefault(_FlatButton);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 352);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var leftMarginStyle = {
-	    marginLeft: '100px'
-	};
-	
-	var Ranking = function (_React$Component) {
-	    _inherits(Ranking, _React$Component);
-	
-	    function Ranking() {
-	        _classCallCheck(this, Ranking);
-	
-	        return _possibleConstructorReturn(this, (Ranking.__proto__ || Object.getPrototypeOf(Ranking)).apply(this, arguments));
-	    }
-	
-	    _createClass(Ranking, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'h4',
-	                    { style: leftMarginStyle },
-	                    'Nincs ilyen oldal a rendszerben!',
-	                    _react2.default.createElement('br', null),
-	                    ' K\xE9rlek az oldalon l\xE9v\u0151 linkeket haszn\xE1ld a navig\xE1ci\xF3hoz, vagy gy\u0151z\u0151dj meg r\xF3la, hogy helyes url-t \xEDrt\xE1l be!'
-	                ),
-	                _react2.default.createElement(_FlatButton2.default, { label: 'Vissza a kezd\u0151lapra', containerElement: _react2.default.createElement(_reactRouter.Link, { to: '/' }), backgroundColor: 'white', style: leftMarginStyle })
-	            );
-	        }
-	    }]);
-	
-	    return Ranking;
-	}(_react2.default.Component);
-	
-	exports.default = Ranking;
-
-/***/ },
-/* 531 */
 /*!**************************************!*\
   !*** ./~/material-ui/Table/index.js ***!
   \**************************************/
@@ -51764,31 +51636,31 @@
 	});
 	exports.default = exports.TableRowColumn = exports.TableRow = exports.TableHeaderColumn = exports.TableHeader = exports.TableFooter = exports.TableBody = exports.Table = undefined;
 	
-	var _Table2 = __webpack_require__(/*! ./Table */ 532);
+	var _Table2 = __webpack_require__(/*! ./Table */ 530);
 	
 	var _Table3 = _interopRequireDefault(_Table2);
 	
-	var _TableBody2 = __webpack_require__(/*! ./TableBody */ 533);
+	var _TableBody2 = __webpack_require__(/*! ./TableBody */ 531);
 	
 	var _TableBody3 = _interopRequireDefault(_TableBody2);
 	
-	var _TableFooter2 = __webpack_require__(/*! ./TableFooter */ 543);
+	var _TableFooter2 = __webpack_require__(/*! ./TableFooter */ 541);
 	
 	var _TableFooter3 = _interopRequireDefault(_TableFooter2);
 	
-	var _TableHeader2 = __webpack_require__(/*! ./TableHeader */ 544);
+	var _TableHeader2 = __webpack_require__(/*! ./TableHeader */ 542);
 	
 	var _TableHeader3 = _interopRequireDefault(_TableHeader2);
 	
-	var _TableHeaderColumn2 = __webpack_require__(/*! ./TableHeaderColumn */ 545);
+	var _TableHeaderColumn2 = __webpack_require__(/*! ./TableHeaderColumn */ 543);
 	
 	var _TableHeaderColumn3 = _interopRequireDefault(_TableHeaderColumn2);
 	
-	var _TableRow2 = __webpack_require__(/*! ./TableRow */ 546);
+	var _TableRow2 = __webpack_require__(/*! ./TableRow */ 544);
 	
 	var _TableRow3 = _interopRequireDefault(_TableRow2);
 	
-	var _TableRowColumn2 = __webpack_require__(/*! ./TableRowColumn */ 541);
+	var _TableRowColumn2 = __webpack_require__(/*! ./TableRowColumn */ 539);
 	
 	var _TableRowColumn3 = _interopRequireDefault(_TableRowColumn2);
 	
@@ -51804,7 +51676,7 @@
 	exports.default = _Table3.default;
 
 /***/ },
-/* 532 */
+/* 530 */
 /*!**************************************!*\
   !*** ./~/material-ui/Table/Table.js ***!
   \**************************************/
@@ -52169,7 +52041,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 533 */
+/* 531 */
 /*!******************************************!*\
   !*** ./~/material-ui/Table/TableBody.js ***!
   \******************************************/
@@ -52181,7 +52053,7 @@
 	  value: true
 	});
 	
-	var _getIterator2 = __webpack_require__(/*! babel-runtime/core-js/get-iterator */ 534);
+	var _getIterator2 = __webpack_require__(/*! babel-runtime/core-js/get-iterator */ 532);
 	
 	var _getIterator3 = _interopRequireDefault(_getIterator2);
 	
@@ -52225,15 +52097,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Checkbox = __webpack_require__(/*! ../Checkbox */ 537);
+	var _Checkbox = __webpack_require__(/*! ../Checkbox */ 535);
 	
 	var _Checkbox2 = _interopRequireDefault(_Checkbox);
 	
-	var _TableRowColumn = __webpack_require__(/*! ./TableRowColumn */ 541);
+	var _TableRowColumn = __webpack_require__(/*! ./TableRowColumn */ 539);
 	
 	var _TableRowColumn2 = _interopRequireDefault(_TableRowColumn);
 	
-	var _ClickAwayListener = __webpack_require__(/*! ../internal/ClickAwayListener */ 542);
+	var _ClickAwayListener = __webpack_require__(/*! ../internal/ClickAwayListener */ 540);
 	
 	var _ClickAwayListener2 = _interopRequireDefault(_ClickAwayListener);
 	
@@ -52703,16 +52575,16 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 534 */
+/* 532 */
 /*!***************************************************************!*\
   !*** ./~/material-ui/~/babel-runtime/core-js/get-iterator.js ***!
   \***************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/get-iterator */ 535), __esModule: true };
+	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/get-iterator */ 533), __esModule: true };
 
 /***/ },
-/* 535 */
+/* 533 */
 /*!****************************************************************************!*\
   !*** ./~/material-ui/~/babel-runtime/~/core-js/library/fn/get-iterator.js ***!
   \****************************************************************************/
@@ -52720,10 +52592,10 @@
 
 	__webpack_require__(/*! ../modules/web.dom.iterable */ 239);
 	__webpack_require__(/*! ../modules/es6.string.iterator */ 227);
-	module.exports = __webpack_require__(/*! ../modules/core.get-iterator */ 536);
+	module.exports = __webpack_require__(/*! ../modules/core.get-iterator */ 534);
 
 /***/ },
-/* 536 */
+/* 534 */
 /*!**************************************************************************************!*\
   !*** ./~/material-ui/~/babel-runtime/~/core-js/library/modules/core.get-iterator.js ***!
   \**************************************************************************************/
@@ -52738,7 +52610,7 @@
 	};
 
 /***/ },
-/* 537 */
+/* 535 */
 /*!*****************************************!*\
   !*** ./~/material-ui/Checkbox/index.js ***!
   \*****************************************/
@@ -52751,7 +52623,7 @@
 	});
 	exports.default = undefined;
 	
-	var _Checkbox = __webpack_require__(/*! ./Checkbox */ 538);
+	var _Checkbox = __webpack_require__(/*! ./Checkbox */ 536);
 	
 	var _Checkbox2 = _interopRequireDefault(_Checkbox);
 	
@@ -52760,7 +52632,7 @@
 	exports.default = _Checkbox2.default;
 
 /***/ },
-/* 538 */
+/* 536 */
 /*!********************************************!*\
   !*** ./~/material-ui/Checkbox/Checkbox.js ***!
   \********************************************/
@@ -52816,11 +52688,11 @@
 	
 	var _transitions2 = _interopRequireDefault(_transitions);
 	
-	var _checkBoxOutlineBlank = __webpack_require__(/*! ../svg-icons/toggle/check-box-outline-blank */ 539);
+	var _checkBoxOutlineBlank = __webpack_require__(/*! ../svg-icons/toggle/check-box-outline-blank */ 537);
 	
 	var _checkBoxOutlineBlank2 = _interopRequireDefault(_checkBoxOutlineBlank);
 	
-	var _checkBox = __webpack_require__(/*! ../svg-icons/toggle/check-box */ 540);
+	var _checkBox = __webpack_require__(/*! ../svg-icons/toggle/check-box */ 538);
 	
 	var _checkBox2 = _interopRequireDefault(_checkBox);
 	
@@ -53061,7 +52933,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 539 */
+/* 537 */
 /*!*******************************************************************!*\
   !*** ./~/material-ui/svg-icons/toggle/check-box-outline-blank.js ***!
   \*******************************************************************/
@@ -53101,7 +52973,7 @@
 	exports.default = ToggleCheckBoxOutlineBlank;
 
 /***/ },
-/* 540 */
+/* 538 */
 /*!*****************************************************!*\
   !*** ./~/material-ui/svg-icons/toggle/check-box.js ***!
   \*****************************************************/
@@ -53141,7 +53013,7 @@
 	exports.default = ToggleCheckBox;
 
 /***/ },
-/* 541 */
+/* 539 */
 /*!***********************************************!*\
   !*** ./~/material-ui/Table/TableRowColumn.js ***!
   \***********************************************/
@@ -53329,7 +53201,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 542 */
+/* 540 */
 /*!*****************************************************!*\
   !*** ./~/material-ui/internal/ClickAwayListener.js ***!
   \*****************************************************/
@@ -53463,7 +53335,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 543 */
+/* 541 */
 /*!********************************************!*\
   !*** ./~/material-ui/Table/TableFooter.js ***!
   \********************************************/
@@ -53515,7 +53387,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _TableRowColumn = __webpack_require__(/*! ./TableRowColumn */ 541);
+	var _TableRowColumn = __webpack_require__(/*! ./TableRowColumn */ 539);
 	
 	var _TableRowColumn2 = _interopRequireDefault(_TableRowColumn);
 	
@@ -53622,7 +53494,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 544 */
+/* 542 */
 /*!********************************************!*\
   !*** ./~/material-ui/Table/TableHeader.js ***!
   \********************************************/
@@ -53662,11 +53534,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Checkbox = __webpack_require__(/*! ../Checkbox */ 537);
+	var _Checkbox = __webpack_require__(/*! ../Checkbox */ 535);
 	
 	var _Checkbox2 = _interopRequireDefault(_Checkbox);
 	
-	var _TableHeaderColumn = __webpack_require__(/*! ./TableHeaderColumn */ 545);
+	var _TableHeaderColumn = __webpack_require__(/*! ./TableHeaderColumn */ 543);
 	
 	var _TableHeaderColumn2 = _interopRequireDefault(_TableHeaderColumn);
 	
@@ -53877,7 +53749,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 545 */
+/* 543 */
 /*!**************************************************!*\
   !*** ./~/material-ui/Table/TableHeaderColumn.js ***!
   \**************************************************/
@@ -54084,7 +53956,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 546 */
+/* 544 */
 /*!*****************************************!*\
   !*** ./~/material-ui/Table/TableRow.js ***!
   \*****************************************/
@@ -54365,6 +54237,127 @@
 	} : void 0;
 	exports.default = TableRow;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
+
+/***/ },
+/* 545 */
+/*!**********************************!*\
+  !*** ./src/client/app/MyBets.js ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Ranking = function (_React$Component) {
+	    _inherits(Ranking, _React$Component);
+	
+	    function Ranking() {
+	        _classCallCheck(this, Ranking);
+	
+	        return _possibleConstructorReturn(this, (Ranking.__proto__ || Object.getPrototypeOf(Ranking)).apply(this, arguments));
+	    }
+	
+	    _createClass(Ranking, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                'mybetrsmybetrsmybetrsmybetrsmybetrs'
+	            );
+	        }
+	    }]);
+	
+	    return Ranking;
+	}(_react2.default.Component);
+	
+	exports.default = Ranking;
+
+/***/ },
+/* 546 */
+/*!************************************!*\
+  !*** ./src/client/app/NotFound.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _FlatButton = __webpack_require__(/*! material-ui/FlatButton */ 172);
+	
+	var _FlatButton2 = _interopRequireDefault(_FlatButton);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 352);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var leftMarginStyle = {
+	    marginLeft: '100px'
+	};
+	
+	var Ranking = function (_React$Component) {
+	    _inherits(Ranking, _React$Component);
+	
+	    function Ranking() {
+	        _classCallCheck(this, Ranking);
+	
+	        return _possibleConstructorReturn(this, (Ranking.__proto__ || Object.getPrototypeOf(Ranking)).apply(this, arguments));
+	    }
+	
+	    _createClass(Ranking, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'h4',
+	                    { style: leftMarginStyle },
+	                    'Nincs ilyen oldal a rendszerben!',
+	                    _react2.default.createElement('br', null),
+	                    ' K\xE9rlek az oldalon l\xE9v\u0151 linkeket haszn\xE1ld a navig\xE1ci\xF3hoz, vagy gy\u0151z\u0151dj meg r\xF3la, hogy helyes url-t \xEDrt\xE1l be!'
+	                ),
+	                _react2.default.createElement(_FlatButton2.default, { label: 'Vissza a kezd\u0151lapra', containerElement: _react2.default.createElement(_reactRouter.Link, { to: '/' }), backgroundColor: 'white', style: leftMarginStyle })
+	            );
+	        }
+	    }]);
+	
+	    return Ranking;
+	}(_react2.default.Component);
+	
+	exports.default = Ranking;
 
 /***/ }
 /******/ ]);
