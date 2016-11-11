@@ -29,7 +29,7 @@ public class MatchController {
     @RequestMapping("/match/create")
     @ResponseBody
     public String create(Long id, DBTeam homeTeam, DBTeam awayTeam, String homeTeamName, String awayTeamName,
-                         int homeTeamGoals, int awayTeamGoals, String status, int round, Date dateTime) {
+                         Integer homeTeamGoals, Integer awayTeamGoals, String status, int round, Date dateTime) {
         Match match;
         try {
             match = new Match(id, homeTeam, awayTeam, homeTeamName, awayTeamName, homeTeamGoals, awayTeamGoals, status, round, dateTime);
@@ -83,8 +83,8 @@ public class MatchController {
         DBTeam awayTeam = loadTeamFromDB(fixture.get_links().getAwayTeam().getHref());
         String homeTeamName = fixture.getHomeTeamName();
         String awayTeamName = fixture.getAwayTeamName();
-        int homeTeamGoals = fixture.getResult().getGoalsHomeTeam();
-        int awayTeamGoals = fixture.getResult().getGoalsAwayTeam();
+        Integer homeTeamGoals = fixture.getResult().getGoalsHomeTeam();
+        Integer awayTeamGoals = fixture.getResult().getGoalsAwayTeam();
         String status = fixture.getStatus();
         int round = fixture.getMatchday();
         Date date = fixture.getDate();

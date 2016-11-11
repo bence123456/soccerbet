@@ -26,9 +26,9 @@ public class Match {
 
     private String awayTeamName;
 
-    private int homeTeamGoals;
+    private Integer homeTeamGoals;
 
-    private int awayTeamGoals;
+    private Integer awayTeamGoals;
 
     private String status;
 
@@ -44,7 +44,7 @@ public class Match {
     public Match() {}
 
     public Match(Long id, DBTeam homeTeam, DBTeam awayTeam, String homeTeamName, String awayTeamName,
-                 int homeTeamGoals, int awayTeamGoals, String status, int round, Date dateTime) {
+                 Integer homeTeamGoals, Integer awayTeamGoals, String status, int round, Date dateTime) {
         this.id = id;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
@@ -58,7 +58,7 @@ public class Match {
         this.matchResult = calculateMatchResult(homeTeamGoals, awayTeamGoals);
     }
 
-    private MatchResult calculateMatchResult(int homeTeamGoals, int awayTeamGoals) {
+    private MatchResult calculateMatchResult(Integer homeTeamGoals, Integer awayTeamGoals) {
         MatchResult matchResult = MatchResult.NOT_FINISHED;
 
         if (status.equals("FINISHED")) {
@@ -131,19 +131,19 @@ public class Match {
         this.awayTeamName = awayTeamName;
     }
 
-    public int getHomeTeamGoals() {
+    public Integer getHomeTeamGoals() {
         return homeTeamGoals;
     }
 
-    public void setHomeTeamGoals(int homeTeamGoals) {
+    public void setHomeTeamGoals(Integer homeTeamGoals) {
         this.homeTeamGoals = homeTeamGoals;
     }
 
-    public int getAwayTeamGoals() {
+    public Integer getAwayTeamGoals() {
         return awayTeamGoals;
     }
 
-    public void setAwayTeamGoals(int awayTeamGoals) {
+    public void setAwayTeamGoals(Integer awayTeamGoals) {
         this.awayTeamGoals = awayTeamGoals;
     }
 
