@@ -49835,7 +49835,7 @@
 			value: function componentDidMount() {
 				var _this2 = this;
 	
-				fetch('http://localhost:8080/api/matches/search/findByStatus?status=FINISHED').then(function (response) {
+				fetch(window.backendHost + '/api/matches/search/findByStatus?status=FINISHED').then(function (response) {
 					return response.json();
 				}).then(function (json) {
 					_this2.setState({ matches: json._embedded.matches });
@@ -51469,7 +51469,7 @@
 			value: function componentDidMount() {
 				var _this2 = this;
 	
-				fetch('http://localhost:8080/api/matches/search/findByStatus?status=SCHEDULED').then(function (response) {
+				fetch(window.backendHost + '/api/matches/search/findByStatus?status=SCHEDULED').then(function (response) {
 					return response.json();
 				}).then(function (json) {
 					_this2.setState({ matches: json._embedded.matches });
@@ -52847,7 +52847,7 @@
 	        value: function componentDidMount() {
 	            var _this2 = this;
 	
-	            fetch('http://localhost:8080/api/users/search/findAllByOrderByPointsDesc').then(function (response) {
+	            fetch(window.backendHost + '/api/users/search/findAllByOrderByPointsDesc').then(function (response) {
 	                return response.json();
 	            }).then(function (json) {
 	                _this2.setState({ users: json._embedded.users });

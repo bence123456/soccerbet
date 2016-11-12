@@ -7,8 +7,6 @@ import com.bkonecsni.soccerbet.football.data.api.FootballDataService;
 
 public interface CommonService {
 
-    String getStringIdFromUrl(String url);
-
     Long getIdFromUrl(String url);
 
     FootballDataService getFootballDataService();

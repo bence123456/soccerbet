@@ -28,14 +28,11 @@ public class CommonServiceImpl implements CommonService{
     TeamRepository teamRepository;
 
     @Override
-    public String getStringIdFromUrl(String url) {
-        int lastIndexOfBackSlash = url.lastIndexOf("/");
-        return url.substring(lastIndexOfBackSlash + 1);
-    }
-
-    @Override
     public Long getIdFromUrl(String url) {
-        return Long.valueOf(getStringIdFromUrl(url));
+        int lastIndexOfBackSlash = url.lastIndexOf("/");
+        String stringId = url.substring(lastIndexOfBackSlash + 1);
+
+        return Long.valueOf(stringId);
     }
 
     @Override

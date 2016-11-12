@@ -16,9 +16,9 @@ class Ranking extends React.Component {
 	}
 
 	componentDidMount() {
-       fetch('http://localhost:8080/api/users/search/findAllByOrderByPointsDesc')
-       .then((response) => { return response.json() })
-       .then( (json) => {this.setState({users: json._embedded.users}); });
+        fetch(window.backendHost + '/api/users/search/findAllByOrderByPointsDesc')
+        .then((response) => { return response.json() })
+        .then( (json) => {this.setState({users: json._embedded.users}); });
 	}
 
     render() {

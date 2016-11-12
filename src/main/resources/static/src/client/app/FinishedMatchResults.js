@@ -12,9 +12,9 @@ class FinishedMatchResult extends React.Component {
 	}
 
 	componentDidMount() {
-       fetch('http://localhost:8080/api/matches/search/findByStatus?status=FINISHED')
-       .then((response) => { return response.json() })
-       .then( (json) => {this.setState({matches: json._embedded.matches}); });
+        fetch(window.backendHost + '/api/matches/search/findByStatus?status=FINISHED')
+        .then((response) => { return response.json() })
+        .then( (json) => {this.setState({matches: json._embedded.matches}); });
 	}
 
 	render() {
