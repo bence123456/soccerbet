@@ -6,7 +6,7 @@ const leftMarginStyle = {
 	marginLeft: '100px'
 };
 
-class Ranking extends React.Component {
+class NotFound extends React.Component {
 
     render() {
         return (
@@ -21,4 +21,4 @@ class Ranking extends React.Component {
     }
 }
 
-export default Ranking;
+export default NotFound;

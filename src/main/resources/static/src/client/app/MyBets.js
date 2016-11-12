@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Ranking extends React.Component {
+class MyBets extends React.Component {
 
     render() {
         return (
@@ -11,4 +11,4 @@ class Ranking extends React.Component {
     }
 }
 
-export default Ranking;
+export default MyBets;
