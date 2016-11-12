@@ -45579,12 +45579,15 @@
 	                _react2.default.createElement(
 	                    _Card.CardText,
 	                    { expandable: true },
-	                    _react2.default.createElement('p', null),
-	                    ' A j\xE1t\xE9k elkezd\xE9s\xE9hez minnd\xF6ssze az al\xE1bbi h\xE1rom szab\xE1lyt \xE9rdemes \xE9szben tartani:',
+	                    _react2.default.createElement(
+	                        'p',
+	                        { style: { fontStyle: 'italic' } },
+	                        ' A j\xE1t\xE9k elkezd\xE9s\xE9hez minnd\xF6ssze az al\xE1bbi h\xE1rom szab\xE1lyt \xE9rdemes \xE9szben tartani: '
+	                    ),
 	                    _react2.default.createElement('p', null),
 	                    ' 1: Csak a rendes j\xE1t\xE9kid\u0151 v\xE9geredm\xE9nye sz\xE1m\xEDt.',
 	                    _react2.default.createElement('p', null),
-	                    ' 2: Tippel\xE9s csak a m\xE9rk\u0151z\xE9s kezdet\xE9ig lehet leadni!',
+	                    ' 2: Tippeket csak a m\xE9rk\u0151z\xE9s kezdet\xE9ig lehet leadni!',
 	                    _react2.default.createElement('p', null),
 	                    ' 3: Pontoz\xE1s: ',
 	                    _react2.default.createElement(
@@ -49847,9 +49850,9 @@
 					var homeTeamLogoSrc = "/images/logos/" + homeTeamName.replace("/", "") + ".png";
 					var awayTeamLogoSrc = "/images/logos/" + awayTeamName + ".png";
 	
-					var homeStyle = {},
-					    awayStyle = {},
-					    wonStyle = { fontWeight: 'bold' };
+					var homeStyle = { color: 'black' },
+					    awayStyle = { color: 'black' },
+					    wonStyle = { color: 'black', fontWeight: 'bold' };
 					if (match.matchResult === "HOME_TEAM_WINS") {
 						homeStyle = wonStyle;
 					} else if (match.matchResult === "AWAY_TEAM_WINS") {
@@ -51429,6 +51432,10 @@
 		marginLeft: '100px'
 	};
 	
+	var blackStyle = {
+		color: 'black'
+	};
+	
 	var UpcomingMatches = function (_React$Component) {
 		_inherits(UpcomingMatches, _React$Component);
 	
@@ -51439,6 +51446,7 @@
 	
 			_this.state = {
 				matches: [],
+				betButtonDisabled: false,
 				errorText: '',
 				value: props.value
 			};
@@ -51449,10 +51457,11 @@
 		_createClass(UpcomingMatches, [{
 			key: 'onChange',
 			value: function onChange(event) {
-				if (event.target.value.match('[0-9]')) {
-					this.setState({ errorText: '' });
+				var bet = event.target.value;
+				if (bet != "" && !isNaN(bet) && Number(bet) >= 0 && Number(bet) < 100) {
+					this.setState({ errorText: '', betButtonDisabled: false });
 				} else {
-					this.setState({ errorText: '0..99 között pls!' });
+					this.setState({ errorText: 'Kérlek ellenőrizd, hogy minden mező ki van-e töltve érvényes, 0 és 99 közötti számmal!', betButtonDisabled: true });
 				}
 			}
 		}, {
@@ -51478,25 +51487,25 @@
 					return _react2.default.createElement(
 						_List.List,
 						null,
-						_react2.default.createElement(_List.ListItem, {
+						_react2.default.createElement(_List.ListItem, { style: blackStyle,
 							primaryText: homeTeamName,
 							rightAvatar: _react2.default.createElement(
 								_Avatar2.default,
 								null,
 								' ',
 								_react2.default.createElement(_TextField2.default, { underlineShow: false, inputStyle: { textAlign: 'center' }, style: { width: '20px' },
-									hintStyle: { textAlign: 'center', width: '20px' }, hintText: '0', onChange: this.onChange }),
+									hintStyle: { textAlign: 'center', width: '20px' }, defaultValue: '0', hintText: '0', onChange: this.onChange }),
 								' '
 							),
 							leftAvatar: _react2.default.createElement(_Avatar2.default, { src: homeTeamLogoSrc }) }),
-						_react2.default.createElement(_List.ListItem, {
+						_react2.default.createElement(_List.ListItem, { style: blackStyle,
 							primaryText: awayTeamName,
 							rightAvatar: _react2.default.createElement(
 								_Avatar2.default,
 								null,
 								' ',
 								_react2.default.createElement(_TextField2.default, { underlineShow: false, inputStyle: { textAlign: 'center' }, style: { width: '20px' },
-									hintStyle: { textAlign: 'center', width: '20px' }, hintText: '0', onChange: this.onChange }),
+									hintStyle: { textAlign: 'center', width: '20px' }, defaultValue: '0', hintText: '0', onChange: this.onChange }),
 								' '
 							),
 							leftAvatar: _react2.default.createElement(_Avatar2.default, { src: awayTeamLogoSrc }) })
@@ -51527,19 +51536,49 @@
 					return match.dateTime.replace("T", " ").substring(0, 16);
 				});
 	
-				if (this.state.matches.length > 0) {
+				if (this.state.matches.length >= 0) {
 					return _react2.default.createElement(
 						'div',
-						{ style: { display: 'flex', flexWrap: 'wrap', marginLeft: '80px' } },
+						{ style: { display: 'flex', flexWrap: 'wrap', marginLeft: '145px' } },
 						_react2.default.createElement(
 							_Card.Card,
-							null,
+							{ style: { backgroundColor: '#E0E0E0', marginTop: '24px', height: '520px', width: '520px' } },
+							_react2.default.createElement(_Card.CardHeader, { style: { fontWeight: 'bold' }, title: 'Tippeld meg az aktu\xE1lis fordul\xF3 p\xE1ros\xEDt\xE1sainak eredm\xE9nyeit!' }),
 							_react2.default.createElement(
 								_Card.CardText,
-								null,
+								{ style: blackStyle },
 								' Minden m\xE9rk\u0151z\xE9s kezd\xE9si id\u0151pontja: ',
 								times[0],
 								' '
+							),
+							_react2.default.createElement(
+								_Card.CardText,
+								{ style: blackStyle },
+								_react2.default.createElement(
+									'p',
+									{ style: { fontStyle: 'italic' } },
+									' P\xE1r fontos tudnival\u0151 a tippek lead\xE1sa el\u0151tt: '
+								),
+								_react2.default.createElement('p', null),
+								' 1: Tippel\xE9s megad\xE1s\xE1hoz \xEDrd be a csapatok mellett tal\xE1lhat\xF3 sz\xFCrke k\xF6rbe az \xE1ltalad gondolt g\xF3lok sz\xE1m\xE1t!',
+								_react2.default.createElement('p', null),
+								' 2: Egy felhaszn\xE1l\xF3 csak egyszer tippelhet!',
+								_react2.default.createElement('p', null),
+								' 3: Kiz\xE1r\xF3lag 0 \xE9s 99 k\xF6z\xF6tti sz\xE1mokat lehet megadni!',
+								_react2.default.createElement('p', null),
+								' 4: Minden m\xE9rk\u0151z\xE9sre \xE9rv\xE9nyes \xE9rt\xE9ket kell be\xEDrni a m\xE9rk\u0151z\xE9s kezdet\xE9ig, meccsenk\xE9nti tippel\xE9s nem lehets\xE9ges!',
+								_react2.default.createElement('p', null),
+								' 5: Az alap\xE9rtelmezett \xE9rt\xE9k minden esetben a 0!'
+							),
+							_react2.default.createElement(
+								_Card.CardText,
+								{ style: { color: 'red' } },
+								this.state.errorText
+							),
+							_react2.default.createElement(
+								_Card.CardActions,
+								null,
+								_react2.default.createElement(_FlatButton2.default, { label: 'Tippek ment\xE9se', disabled: this.state.betButtonDisabled })
 							)
 						),
 						mobileTearSheets

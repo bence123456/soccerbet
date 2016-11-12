@@ -52,9 +52,9 @@ class HomeCard extends React.Component {
                 </CardMedia>
                 <CardTitle title="Szabályok" expandable={true} />
                 <CardText expandable={true}>
-                    <p/> A játék elkezdéséhez minndössze az alábbi három szabályt érdemes észben tartani:
+                    <p style={{fontStyle: 'italic'}}> A játék elkezdéséhez minndössze az alábbi három szabályt érdemes észben tartani: </p>
                          <p/> 1: Csak a rendes játékidő végeredménye számít.
-                         <p/> 2: Tippelés csak a mérkőzés kezdetéig lehet leadni!
+                         <p/> 2: Tippeket csak a mérkőzés kezdetéig lehet leadni!
                          <p/> 3: Pontozás: <p style={{marginLeft: '35px'}}>
                              Pontos végeredmény eltalása: 3 pont.
                              <br/> Végkimenetel helyes tippelése: 1 pont.

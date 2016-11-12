@@ -12,12 +12,17 @@ const leftMarginStyle = {
 	marginLeft: '100px'
 };
 
+const blackStyle = {
+	color: 'black'
+};
+
 class UpcomingMatches extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
 		    matches: [],
+		    betButtonDisabled: false,
 		    errorText: '',
 		    value: props.value
 		}
@@ -25,10 +30,11 @@ class UpcomingMatches extends React.Component {
 	}
 
     onChange(event) {
-        if (event.target.value.match('[0-9]')) {
-            this.setState({ errorText: '' })
+        var bet = event.target.value;
+        if (bet != "" && !isNaN(bet) && Number(bet) >= 0 && Number(bet) < 100) {
+            this.setState({ errorText: '',  betButtonDisabled: false})
         } else {
-            this.setState({ errorText: '0..99 között pls!' })
+            this.setState({ errorText: 'Kérlek ellenőrizd, hogy minden mező ki van-e töltve érvényes, 0 és 99 közötti számmal!',  betButtonDisabled: true })
         }
     }
 
@@ -47,15 +53,15 @@ class UpcomingMatches extends React.Component {
 
             return (
 				<List >
-					<ListItem
+					<ListItem style={blackStyle}
 						primaryText = {homeTeamName}
 						rightAvatar = { <Avatar> <TextField underlineShow={false} inputStyle={{textAlign:'center'}} style={{width: '20px'}}
-						        hintStyle={{textAlign:'center', width: '20px'}} hintText="0" onChange={this.onChange} /> </Avatar> }
+						        hintStyle={{textAlign:'center', width: '20px'}} defaultValue="0" hintText="0" onChange={this.onChange} /> </Avatar> }
 						leftAvatar = {<Avatar src = {homeTeamLogoSrc} />} />
-					<ListItem
+					<ListItem style={blackStyle}
 						primaryText = {awayTeamName}
 						rightAvatar = { <Avatar> <TextField underlineShow={false} inputStyle={{textAlign:'center'}} style={{width: '20px'}}
-						        hintStyle={{textAlign:'center', width: '20px'}} hintText="0" onChange={this.onChange} /> </Avatar> }
+						        hintStyle={{textAlign:'center', width: '20px'}} defaultValue="0" hintText="0" onChange={this.onChange} /> </Avatar> }
 						leftAvatar = {<Avatar src = {awayTeamLogoSrc} />} />
 				</List>
             );
@@ -85,11 +91,26 @@ class UpcomingMatches extends React.Component {
             return match.dateTime.replace("T"," ").substring(0,16);
         });
 
-        if (this.state.matches.length > 0) {
+        if (this.state.matches.length >= 0) {
             return (
-			    <div style={{display: 'flex', flexWrap: 'wrap', marginLeft: '80px'}}>
-                    <Card>
-                    <CardText> Minden mérkőzés kezdési időpontja: {times[0]} </CardText>
+			    <div style={{display: 'flex', flexWrap: 'wrap', marginLeft: '145px'}}>
+                    <Card style={{backgroundColor:'#E0E0E0', marginTop: '24px', height: '520px', width: '520px'}} >
+                        <CardHeader style={{fontWeight: 'bold'}} title="Tippeld meg az aktuális forduló párosításainak eredményeit!" />
+                        <CardText style={blackStyle}> Minden mérkőzés kezdési időpontja: {times[0]} </CardText>
+                        <CardText style={blackStyle}>
+                            <p style={{fontStyle: 'italic'}}> Pár fontos tudnivalő a tippek leadása előtt: </p>
+                                 <p/> 1: Tippelés megadásához írd be a csapatok mellett található szürke körbe az általad gondolt gólok számát!
+                                 <p/> 2: Egy felhasználó csak egyszer tippelhet!
+                                 <p/> 3: Kizárólag 0 és 99 közötti számokat lehet megadni!
+                                 <p/> 4: Minden mérkőzésre érvényes értéket kell beírni a mérkőzés kezdetéig, meccsenkénti tippelés nem lehetséges!
+                                 <p/> 5: Az alapértelmezett érték minden esetben a 0!
+                        </CardText>
+                        <CardText style={{color: 'red'}}>
+                            {this.state.errorText}
+                        </CardText>
+                        <CardActions>
+                            <FlatButton label="Tippek mentése" disabled={this.state.betButtonDisabled} />
+                        </CardActions>
                     </Card>
                     {mobileTearSheets}
 			    </div>
