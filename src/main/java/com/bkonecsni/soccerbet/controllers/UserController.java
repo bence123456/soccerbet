@@ -5,7 +5,6 @@ import com.bkonecsni.soccerbet.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class UserController {
@@ -15,9 +14,8 @@ public class UserController {
 
     @RequestMapping("/user/create")
     public String create(String id, String name) {
-        User user;
         try {
-            user = new User(id, name);
+            User user = new User(id, name);
             if (!userRepository.exists(id)) {
                 userRepository.save(user);
             }
@@ -26,20 +24,5 @@ public class UserController {
            ex.toString();
         }
         return "login";
-    }
-
-    @RequestMapping("/user/listAll")
-    @ResponseBody
-    public String listUsers() {
-        String users = "";
-        try {
-            for (User user : userRepository.findAll()) {
-                users += user.toString() + ", ";
-            }
-        }
-        catch (Exception ex) {
-            return "Error creating the user: " + ex.toString();
-        }
-        return "List of users: " + users;
     }
 }

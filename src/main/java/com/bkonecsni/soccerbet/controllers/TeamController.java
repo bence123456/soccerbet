@@ -8,8 +8,6 @@ import com.bkonecsni.soccerbet.domain.DBTeam;
 import com.bkonecsni.soccerbet.repositories.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import retrofit.Call;
 
 import javax.annotation.PostConstruct;
@@ -23,35 +21,6 @@ public class TeamController {
 
     @Autowired
     private CommonService commonService;
-
-    @RequestMapping("/team/create")
-    @ResponseBody
-    public String create(Long id, String name) {
-        DBTeam team;
-        try {
-            team = new DBTeam(id, name);
-            teamRepository.save(team);
-        }
-        catch (Exception ex) {
-            return "Error creating the team: " + ex.toString();
-        }
-        return "Team succesfully created! " + team.toString();
-    }
-
-    @RequestMapping("/team/listAll")
-    @ResponseBody
-    public String listTeams() {
-        String teams = "";
-        try {
-            for (DBTeam team : teamRepository.findAll()) {
-                teams += team.toString() + ", ";
-            }
-        }
-        catch (Exception ex) {
-            return "Error creating the team: " + ex.toString();
-        }
-        return "List of teams: " + teams;
-    }
 
     @PostConstruct
     private void persistTeamsIfNecessary() throws IOException {

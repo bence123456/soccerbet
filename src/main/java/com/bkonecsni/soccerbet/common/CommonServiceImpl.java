@@ -6,6 +6,7 @@ import com.bkonecsni.soccerbet.domain.Match;
 import com.bkonecsni.soccerbet.domain.User;
 import com.bkonecsni.soccerbet.football.data.api.FootballDataService;
 import com.bkonecsni.soccerbet.repositories.BetRepository;
+import com.bkonecsni.soccerbet.repositories.MatchRepository;
 import com.bkonecsni.soccerbet.repositories.TeamRepository;
 import com.bkonecsni.soccerbet.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class CommonServiceImpl implements CommonService{
     @Autowired
     TeamRepository teamRepository;
 
+    @Autowired
+    MatchRepository matchRepository;
+
     @Override
     public Long getIdFromUrl(String url) {
         int lastIndexOfBackSlash = url.lastIndexOf("/");
@@ -43,6 +47,16 @@ public class CommonServiceImpl implements CommonService{
     @Override
     public DBTeam findTeamById(Long id) {
         return teamRepository.findOne(id);
+    }
+
+    @Override
+    public User findUserById(String id) {
+        return userRepository.findOne(id);
+    }
+
+    @Override
+    public Match findMatchById(Long id) {
+        return matchRepository.findOne(id);
     }
 
     @Override

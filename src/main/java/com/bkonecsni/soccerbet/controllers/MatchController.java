@@ -9,8 +9,6 @@ import com.bkonecsni.soccerbet.football.data.domain.fixtures.FixtureList;
 import com.bkonecsni.soccerbet.repositories.MatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import retrofit.Call;
 
 import javax.annotation.PostConstruct;
@@ -25,36 +23,6 @@ public class MatchController {
 
     @Autowired
     private CommonService commonService;
-
-    @RequestMapping("/match/create")
-    @ResponseBody
-    public String create(Long id, DBTeam homeTeam, DBTeam awayTeam, String homeTeamName, String awayTeamName,
-                         Integer homeTeamGoals, Integer awayTeamGoals, String status, int round, Date dateTime) {
-        Match match;
-        try {
-            match = new Match(id, homeTeam, awayTeam, homeTeamName, awayTeamName, homeTeamGoals, awayTeamGoals, status, round, dateTime);
-            matchRepository.save(match);
-        }
-        catch (Exception ex) {
-            return "Error creating the match: " + ex.toString();
-        }
-        return "Match succesfully created! " + match.toString();
-    }
-
-    @RequestMapping("/match/listAll")
-    @ResponseBody
-    public String listMatches() {
-        String matches = "";
-        try {
-            for (Match match : matchRepository.findAll()) {
-                matches += match.toString() + ", ";
-            }
-        }
-        catch (Exception ex) {
-            return "Error creating the match: " + ex.toString();
-        }
-        return "List of matches: " + matches;
-    }
 
     //@PostConstruct
     private void persistMatchesIfNecessary() throws IOException {

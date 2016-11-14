@@ -13,5 +13,9 @@ public interface CommonService {
 
     DBTeam findTeamById(Long id);
 
+    User findUserById(String id);
+
+    Match findMatchById(Long id);
+
     void calculateAndSavePoints(Match match, User user);
 }

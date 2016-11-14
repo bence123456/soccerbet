@@ -1,5 +1,6 @@
 package com.bkonecsni.soccerbet.controllers;
 
+import com.bkonecsni.soccerbet.common.CommonService;
 import com.bkonecsni.soccerbet.domain.Bet;
 import com.bkonecsni.soccerbet.domain.Match;
 import com.bkonecsni.soccerbet.domain.User;
@@ -7,7 +8,10 @@ import com.bkonecsni.soccerbet.repositories.BetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 public class BetController {
@@ -15,32 +19,49 @@ public class BetController {
     @Autowired
     private BetRepository betRepository;
 
-    @RequestMapping("/bet/create")
-    @ResponseBody
-    public String create(User user, Match match, int homeTeamGoals, int awayTeamGoals) {
-        Bet bet;
-        try {
-            bet = new Bet(user, match, homeTeamGoals, awayTeamGoals);
-            betRepository.save(bet);
-        }
-        catch (Exception ex) {
-            return "Error creating the bet: " + ex.toString();
-        }
-        return "Bet succesfully created! " + bet.toString();
-    }
+    @Autowired
+    private CommonService commonService;
 
-    @RequestMapping("/bet/listAll")
-    @ResponseBody
-    public String listTeams() {
-        String bets = "";
+    @RequestMapping("/bet/create")
+    public String create(String userId, String matchIds, String homeGoals, String awayGoals) {
+        List<Long> matchIdList = createMatchIdList(matchIds);
+        List<Integer> homeTeamGoalsList = createGoalsList(homeGoals);
+        List<Integer> awayTeamGoalsList = createGoalsList(awayGoals);
+
         try {
-            for (Bet bet : betRepository.findAll()) {
-                bets += bet.toString() + ", ";
+            User user = commonService.findUserById(userId);
+
+            for (int i=0; i<matchIdList.size(); i++) {
+                Match match = commonService.findMatchById(matchIdList.get(i));
+                Bet bet = new Bet(user, match, homeTeamGoalsList.get(i), awayTeamGoalsList.get(i));
+                betRepository.save(bet);
             }
         }
         catch (Exception ex) {
-            return "Error creating the bet: " + ex.toString();
+            ex.toString();
         }
-        return "List of bets: " + bets;
+        return "save";
+    }
+
+    private List<Long> createMatchIdList(String matchIds) {
+        List<String> matchIdStringList = Arrays.asList(matchIds.split(","));
+        List<Long> matchIdLongList = new ArrayList<>();
+
+        for (String matchId : matchIdStringList) {
+            matchIdLongList.add(Long.valueOf(matchId));
+        }
+
+        return matchIdLongList;
+    }
+
+    private List<Integer> createGoalsList(String goals) {
+        List<String> goalsStringList = Arrays.asList(goals.split(","));
+        List<Integer> goalsIntegerList = new ArrayList<>();
+
+        for (String goal : goalsStringList) {
+            goalsIntegerList.add(Integer.valueOf(goal));
+        }
+
+        return goalsIntegerList;
     }
 }
