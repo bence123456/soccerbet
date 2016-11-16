@@ -2,22 +2,22 @@ package com.bkonecsni.soccerbet.football.data.domain.fixtures;
 
 public class Result {
 
-    private int goalsHomeTeam;
-    private int goalsAwayTeam;
+    private Integer goalsHomeTeam;
+    private Integer goalsAwayTeam;
 
-    public int getGoalsHomeTeam() {
+    public Integer getGoalsHomeTeam() {
         return goalsHomeTeam;
     }
 
-    public void setGoalsHomeTeam(int goalsHomeTeam) {
+    public void setGoalsHomeTeam(Integer goalsHomeTeam) {
         this.goalsHomeTeam = goalsHomeTeam;
     }
 
-    public int getGoalsAwayTeam() {
+    public Integer getGoalsAwayTeam() {
         return goalsAwayTeam;
     }
 
-    public void setGoalsAwayTeam(int goalsAwayTeam) {
+    public void setGoalsAwayTeam(Integer goalsAwayTeam) {
         this.goalsAwayTeam = goalsAwayTeam;
     }
 }

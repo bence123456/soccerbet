@@ -29,6 +29,8 @@ public class Bet {
     @Enumerated(STRING)
     private MatchResult matchResult;
 
+    private Integer gainedPoints;
+
     public Bet() {}
 
     public Bet(User user, Match match, int homeTeamGoals, int awayTeamGoals) {
@@ -37,6 +39,7 @@ public class Bet {
         this.homeTeamGoals = homeTeamGoals;
         this.awayTeamGoals = awayTeamGoals;
         this.matchResult = calculateMatchResult(homeTeamGoals, awayTeamGoals);
+        this.gainedPoints = null;
     }
 
     private MatchResult calculateMatchResult(int homeTeamGoals, int awayTeamGoals) {
@@ -109,5 +112,13 @@ public class Bet {
 
     public void setMatchResult(MatchResult matchResult) {
         this.matchResult = matchResult;
+    }
+
+    public Integer getGainedPoints() {
+        return gainedPoints;
+    }
+
+    public void setGainedPoints(Integer gainedPoints) {
+        this.gainedPoints = gainedPoints;
     }
 }

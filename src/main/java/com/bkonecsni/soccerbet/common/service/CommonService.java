@@ -1,4 +1,4 @@
-package com.bkonecsni.soccerbet.common;
+package com.bkonecsni.soccerbet.common.service;
 
 import com.bkonecsni.soccerbet.domain.DBTeam;
 import com.bkonecsni.soccerbet.domain.Match;
@@ -17,5 +17,5 @@ public interface CommonService {
 
     Match findMatchById(Long id);
 
-    void calculateAndSavePoints(Match match, User user);
+    void calculateAndSavePoints(Match match);
 }

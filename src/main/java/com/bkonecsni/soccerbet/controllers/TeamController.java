@@ -1,6 +1,6 @@
 package com.bkonecsni.soccerbet.controllers;
 
-import com.bkonecsni.soccerbet.common.CommonService;
+import com.bkonecsni.soccerbet.common.service.CommonService;
 import com.bkonecsni.soccerbet.football.data.api.FootballDataService;
 import com.bkonecsni.soccerbet.football.data.domain.teams.Team;
 import com.bkonecsni.soccerbet.football.data.domain.teams.TeamList;

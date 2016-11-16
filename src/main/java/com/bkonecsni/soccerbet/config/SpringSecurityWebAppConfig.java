@@ -1,4 +1,4 @@
-package com.bkonecsni.soccerbet;
+package com.bkonecsni.soccerbet.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
