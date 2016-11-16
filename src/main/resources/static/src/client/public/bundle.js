@@ -51418,6 +51418,10 @@
 	
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 	
+	var _Tooltip = __webpack_require__(/*! material-ui/internal/Tooltip */ 498);
+	
+	var _Tooltip2 = _interopRequireDefault(_Tooltip);
+	
 	var _reactRouter = __webpack_require__(/*! react-router */ 352);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -51436,6 +51440,10 @@
 	    color: 'black'
 	};
 	
+	var errorStyle = {
+	    color: 'red'
+	};
+	
 	var UpcomingMatches = function (_React$Component) {
 	    _inherits(UpcomingMatches, _React$Component);
 	
@@ -51444,25 +51452,19 @@
 	
 	        var _this = _possibleConstructorReturn(this, (UpcomingMatches.__proto__ || Object.getPrototypeOf(UpcomingMatches)).call(this, props));
 	
-	        _this.onHomeGoalsChange = function (index, event) {
-	            var tmpHomeGoals = _this.state.homeGoals;
-	            tmpHomeGoals[index] = event.target.value;
-	            _this.setState({ homeGoals: tmpHomeGoals });
-	            _this.onChange(event);
-	        };
-	
-	        _this.onAwayGoalsChange = function (index, event) {
-	            var tmpAwayGoals = _this.state.awayGoals;
-	            tmpAwayGoals[index] = event.target.value;
-	            _this.setState({ awayGoals: tmpAwayGoals });
+	        _this.onGoalsChange = function (index, event) {
+	            var tmpGoals = _this.state.goals;
+	            tmpGoals[index] = event.target.value;
+	            _this.setState({ goals: tmpGoals });
 	            _this.onChange(event);
 	        };
 	
 	        _this.state = {
 	            matches: [],
-	            homeGoals: [],
-	            awayGoals: [],
+	            goals: [],
 	            betButtonDisabled: false,
+	            dateErrorText: 'Sajnos a mérkőzések már elkezdődtek, így a tippelés nem lehetséges!',
+	            showTooltip: false,
 	            errorText: '',
 	            value: props.value
 	        };
@@ -51477,8 +51479,23 @@
 	            if (bet != "" && !isNaN(bet) && Number(bet) >= 0 && Number(bet) < 100) {
 	                this.setState({ errorText: '', betButtonDisabled: false });
 	            } else {
-	                this.setState({ errorText: 'Kérlek ellenőrizd, hogy minden mező ki van-e töltve érvényes, 0 és 99 közötti számmal!', betButtonDisabled: true });
+	                this.setState({ errorText: 'Nincs minden mező 0 és 99 közötti számmal kitöltve!', betButtonDisabled: true });
 	            }
+	        }
+	    }, {
+	        key: 'onMouseEnter',
+	        value: function onMouseEnter() {
+	            var matchesStarted = this.state.matches[0].dateTime < new Date().toJSON();
+	            if (matchesStarted) {
+	                this.setState({ showTooltip: true, betButtonDisabled: true });
+	            } else {
+	                this.setState({ showTooltip: false });
+	            }
+	        }
+	    }, {
+	        key: 'onMouseLeave',
+	        value: function onMouseLeave() {
+	            this.setState({ showTooltip: false });
 	        }
 	    }, {
 	        key: 'componentDidMount',
@@ -51489,10 +51506,13 @@
 	                return response.json();
 	            }).then(function (json) {
 	                _this2.setState({ matches: json._embedded.matches });
-	            });
 	
-	            var initGoals = ["0", "0", "0", "0", "0", "0", "0", "0"];
-	            this.setState({ homeGoals: initGoals, awayGoals: initGoals });
+	                var initGoals = [];
+	                for (var i = 0; i < json._embedded.matches.length * 2; i++) {
+	                    initGoals.push("0");
+	                }
+	                _this2.setState({ goals: initGoals });
+	            });
 	        }
 	    }, {
 	        key: 'render',
@@ -51502,6 +51522,7 @@
 	                var awayTeamName = match.awayTeamName;
 	                var homeTeamLogoSrc = "/images/logos/" + homeTeamName + ".png";
 	                var awayTeamLogoSrc = "/images/logos/" + awayTeamName + ".png";
+	                var awayIndex = this.state.matches.length + i;
 	
 	                return _react2.default.createElement(
 	                    _List.List,
@@ -51512,8 +51533,8 @@
 	                            _Avatar2.default,
 	                            null,
 	                            ' ',
-	                            _react2.default.createElement(_TextField2.default, { value: this.state.homeGoals[i], underlineShow: false, inputStyle: { textAlign: 'center' }, style: { width: '20px' },
-	                                hintStyle: { textAlign: 'center', width: '20px' }, hintText: '0', onChange: this.onHomeGoalsChange.bind(this, i) }),
+	                            _react2.default.createElement(_TextField2.default, { value: this.state.goals[i], underlineShow: false, inputStyle: { textAlign: 'center' }, style: { width: '20px' },
+	                                hintStyle: { textAlign: 'center', width: '20px' }, hintText: '0', onChange: this.onGoalsChange.bind(this, i) }),
 	                            ' '
 	                        ),
 	                        leftAvatar: _react2.default.createElement(_Avatar2.default, { src: homeTeamLogoSrc }) }),
@@ -51523,8 +51544,8 @@
 	                            _Avatar2.default,
 	                            null,
 	                            ' ',
-	                            _react2.default.createElement(_TextField2.default, { value: this.state.awayGoals[i], underlineShow: false, inputStyle: { textAlign: 'center' }, style: { width: '20px' },
-	                                hintStyle: { textAlign: 'center', width: '20px' }, hintText: '0', onChange: this.onAwayGoalsChange.bind(this, i) }),
+	                            _react2.default.createElement(_TextField2.default, { value: this.state.goals[awayIndex], underlineShow: false, inputStyle: { textAlign: 'center' }, style: { width: '20px' },
+	                                hintStyle: { textAlign: 'center', width: '20px' }, hintText: '0', onChange: this.onGoalsChange.bind(this, awayIndex) }),
 	                            ' '
 	                        ),
 	                        leftAvatar: _react2.default.createElement(_Avatar2.default, { src: awayTeamLogoSrc }) })
@@ -51552,28 +51573,17 @@
 	            });
 	
 	            var times = this.state.matches.map(function (match, i) {
-	                return match.dateTime.replace("T", " ").substring(0, 16);
+	                if (i == 0) {
+	                    var dateTime = match.dateTime.replace("T", " ").substring(0, 16);
+	                    var num = Number(dateTime.substring(12, 13)) + 1;
+	                    return dateTime.substr(0, 12) + num + dateTime.substr(13);
+	                } else {
+	                    return "";
+	                }
 	            });
 	
 	            if (this.state.matches.length >= 0) {
-	                var matchIds = "";
-	                for (var i = 0; i < this.state.matches.length; i++) {
-	                    var selfLink = this.state.matches[i]._links.self.href;
-	                    var lastIndexOfBackslash = selfLink.lastIndexOf('/');
-	                    matchIds += selfLink.substring(lastIndexOfBackslash + 1) + ",";
-	                }
-	
-	                var homeGoals = "";
-	                for (var j = 0; j < this.state.homeGoals.length; j++) {
-	                    homeGoals += this.state.homeGoals[j] + ",";
-	                }
-	
-	                var awayGoals = "";
-	                for (var k = 0; k < this.state.awayGoals.length; k++) {
-	                    awayGoals += this.state.awayGoals[k] + ",";
-	                }
-	
-	                var saveLink = "http://localhost:8080/bet/create?userId=" + window.account.id + "&matchIds=" + matchIds + "&homeGoals=" + homeGoals + "&awayGoals=" + awayGoals;
+	                var saveLink = getSaveLink(this);
 	
 	                return _react2.default.createElement(
 	                    'div',
@@ -51600,23 +51610,23 @@
 	                            _react2.default.createElement('p', null),
 	                            ' 1: Tippel\xE9s megad\xE1s\xE1hoz \xEDrd be a csapatok mellett tal\xE1lhat\xF3 sz\xFCrke k\xF6rbe az \xE1ltalad gondolt g\xF3lok sz\xE1m\xE1t!',
 	                            _react2.default.createElement('p', null),
-	                            ' 2: Egy felhaszn\xE1l\xF3 csak egyszer tippelhet!',
+	                            ' 2: Egy felhaszn\xE1l\xF3nak egy meccshez csak egy tippje lehet. Az \xFAj tippek mindig fel\xFCl\xEDrj\xE1k a r\xE9git!',
 	                            _react2.default.createElement('p', null),
 	                            ' 3: Kiz\xE1r\xF3lag 0 \xE9s 99 k\xF6z\xF6tti sz\xE1mokat lehet megadni!',
 	                            _react2.default.createElement('p', null),
-	                            ' 4: Minden m\xE9rk\u0151z\xE9sre \xE9rv\xE9nyes \xE9rt\xE9ket kell be\xEDrni a m\xE9rk\u0151z\xE9s kezdet\xE9ig, meccsenk\xE9nti tippel\xE9s nem lehets\xE9ges!',
-	                            _react2.default.createElement('p', null),
-	                            ' 5: Az alap\xE9rtelmezett \xE9rt\xE9k minden esetben a 0!'
+	                            ' 4: Minden m\xE9rk\u0151z\xE9sre \xE9rv\xE9nyes \xE9rt\xE9ket kell be\xEDrni a m\xE9rk\u0151z\xE9s kezdet\xE9ig, meccsenk\xE9nti tippel\xE9s nem lehets\xE9ges!'
 	                        ),
 	                        _react2.default.createElement(
 	                            _Card.CardText,
-	                            { style: { color: 'red' } },
+	                            { style: errorStyle },
 	                            this.state.errorText
 	                        ),
 	                        _react2.default.createElement(
 	                            _Card.CardActions,
 	                            null,
-	                            _react2.default.createElement(_FlatButton2.default, { label: 'Tippek ment\xE9se', disabled: this.state.betButtonDisabled, href: saveLink })
+	                            _react2.default.createElement(_Tooltip2.default, { show: this.state.showTooltip, style: { color: 'white' }, label: this.state.dateErrorText, horizontalPosition: 'right', verticalPosition: 'bottom' }),
+	                            _react2.default.createElement(_FlatButton2.default, { label: 'Tippek ment\xE9se', disabled: this.state.betButtonDisabled, onMouseEnter: this.onMouseEnter.bind(this),
+	                                onMouseLeave: this.onMouseLeave.bind(this), href: saveLink })
 	                        )
 	                    ),
 	                    mobileTearSheets
@@ -51638,6 +51648,27 @@
 	
 	    return UpcomingMatches;
 	}(_react2.default.Component);
+	
+	function getSaveLink(page) {
+	    var matchIds = "";
+	    for (var i = 0; i < page.state.matches.length; i++) {
+	        var selfLink = page.state.matches[i]._links.self.href;
+	        var lastIndexOfBackslash = selfLink.lastIndexOf('/');
+	        matchIds += selfLink.substring(lastIndexOfBackslash + 1) + ",";
+	    }
+	
+	    var homeGoals = "";
+	    var awayGoals = "";
+	    for (var j = 0; j < page.state.goals.length; j++) {
+	        if (page.state.matches.length <= j) {
+	            awayGoals += page.state.goals[j] + ",";
+	        } else {
+	            homeGoals += page.state.goals[j] + ",";
+	        }
+	    }
+	
+	    return "http://localhost:8080/bet/create?userId=" + window.account.id + "&matchIds=" + matchIds + "&homeGoals=" + homeGoals + "&awayGoals=" + awayGoals;
+	}
 	
 	exports.default = UpcomingMatches;
 
@@ -55604,10 +55635,6 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _TextField = __webpack_require__(/*! material-ui/TextField */ 528);
-	
-	var _TextField2 = _interopRequireDefault(_TextField);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -55619,23 +55646,10 @@
 	var MyBets = function (_React$Component) {
 	    _inherits(MyBets, _React$Component);
 	
-	    function MyBets(props) {
+	    function MyBets() {
 	        _classCallCheck(this, MyBets);
 	
-	        var _this = _possibleConstructorReturn(this, (MyBets.__proto__ || Object.getPrototypeOf(MyBets)).call(this, props));
-	
-	        _this.onChange = function (index, event) {
-	            var tmpFields = _this.state.fields;
-	            tmpFields[index] = event.target.value;
-	            _this.setState({ fields: tmpFields });
-	        };
-	
-	        _this.state = {
-	            matches: [],
-	            fields: [0, 0, 0, 0, 0, 0, 0, 0],
-	            length: 0
-	        };
-	        return _this;
+	        return _possibleConstructorReturn(this, (MyBets.__proto__ || Object.getPrototypeOf(MyBets)).apply(this, arguments));
 	    }
 	
 	    _createClass(MyBets, [{
@@ -55644,9 +55658,7 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(_TextField2.default, { id: '1', value: this.state.fields[0], onChange: this.onChange.bind(this, 0) }),
-	                'wrfndvzunodhjonjhv',
-	                this.state.fields[0]
+	                'mybetrsmybetrsmybetrsmybetrsmybetrs'
 	            );
 	        }
 	    }]);

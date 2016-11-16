@@ -30,17 +30,28 @@ public class BetController {
 
         try {
             User user = commonService.findUserById(userId);
-
             for (int i=0; i<matchIdList.size(); i++) {
-                Match match = commonService.findMatchById(matchIdList.get(i));
-                Bet bet = new Bet(user, match, homeTeamGoalsList.get(i), awayTeamGoalsList.get(i));
-                betRepository.save(bet);
+                saveOrUpdateBet(matchIdList, homeTeamGoalsList, awayTeamGoalsList, user, i);
             }
         }
         catch (Exception ex) {
             ex.toString();
         }
         return "save";
+    }
+
+    private void saveOrUpdateBet(List<Long> matchIdList, List<Integer> homeTeamGoalsList, List<Integer> awayTeamGoalsList, User user, int i) {
+        Match match = commonService.findMatchById(matchIdList.get(i));
+        Bet existingBet = betRepository.findByUserAndMatch(user, match);
+
+        if (existingBet != null) {
+            existingBet.setHomeTeamGoals(homeTeamGoalsList.get(i));
+            existingBet.setAwayTeamGoals(awayTeamGoalsList.get(i));
+            betRepository.save(existingBet);
+        } else {
+            Bet bet = new Bet(user, match, homeTeamGoalsList.get(i), awayTeamGoalsList.get(i));
+            betRepository.save(bet);
+        }
     }
 
     private List<Long> createMatchIdList(String matchIds) {

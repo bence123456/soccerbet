@@ -6,6 +6,7 @@ import MobileTearSheet from './MobileTearSheet';
 import TextField from 'material-ui/TextField';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import Tooltip from 'material-ui/internal/Tooltip';
 import {Link} from 'react-router'
 
 const leftMarginStyle = {
@@ -16,32 +17,30 @@ const blackStyle = {
 	color: 'black'
 };
 
+const errorStyle = {
+	color: 'red'
+};
+
 class UpcomingMatches extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
 		    matches: [],
-		    homeGoals: [],
-		    awayGoals: [],
+		    goals: [],
 		    betButtonDisabled: false,
+		    dateErrorText: 'Sajnos a mérkőzések már elkezdődtek, így a tippelés nem lehetséges!',
+		    showTooltip: false,
 		    errorText: '',
 		    value: props.value
 		}
         this.onChange = this.onChange.bind(this);
 	}
 
-    onHomeGoalsChange = (index, event) => {
-        var tmpHomeGoals = this.state.homeGoals;
-        tmpHomeGoals[index] = event.target.value;
-        this.setState({homeGoals: tmpHomeGoals });
-        this.onChange(event);
-    }
-
-    onAwayGoalsChange = (index, event) => {
-        var tmpAwayGoals = this.state.awayGoals;
-        tmpAwayGoals[index] = event.target.value;
-        this.setState({awayGoals: tmpAwayGoals });
+    onGoalsChange = (index, event) => {
+        var tmpGoals = this.state.goals;
+        tmpGoals[index] = event.target.value;
+        this.setState({goals: tmpGoals });
         this.onChange(event);
     }
 
@@ -50,8 +49,21 @@ class UpcomingMatches extends React.Component {
         if (bet != "" && !isNaN(bet) && Number(bet) >= 0 && Number(bet) < 100) {
             this.setState({ errorText: '',  betButtonDisabled: false})
         } else {
-            this.setState({ errorText: 'Kérlek ellenőrizd, hogy minden mező ki van-e töltve érvényes, 0 és 99 közötti számmal!',  betButtonDisabled: true })
+            this.setState({ errorText: 'Nincs minden mező 0 és 99 közötti számmal kitöltve!',  betButtonDisabled: true })
         }
+    }
+
+    onMouseEnter() {
+        var matchesStarted = this.state.matches[0].dateTime < new Date().toJSON();
+        if (matchesStarted) {
+            this.setState({showTooltip: true, betButtonDisabled: true});
+        } else {
+            this.setState({showTooltip: false});
+        }
+    }
+
+    onMouseLeave() {
+        this.setState({showTooltip: false});
     }
 
 	componentDidMount() {
@@ -60,11 +72,12 @@ class UpcomingMatches extends React.Component {
         .then( (json) => {
             this.setState({matches: json._embedded.matches});
 
-
+            var initGoals = [];
+            for(var i=0; i<json._embedded.matches.length*2; i++) {
+                initGoals.push("0");
+            }
+            this.setState({goals: initGoals});
         });
-
-        var initGoals = ["0", "0", "0", "0", "0", "0", "0", "0"];
-        this.setState({homeGoals: initGoals, awayGoals: initGoals });
 	}
 
 	render() {
@@ -73,18 +86,19 @@ class UpcomingMatches extends React.Component {
 			var awayTeamName = match.awayTeamName;
 			var homeTeamLogoSrc = "/images/logos/" + homeTeamName + ".png";
 			var awayTeamLogoSrc = "/images/logos/" + awayTeamName + ".png";
+			var awayIndex = this.state.matches.length + i;
 
             return (
 				<List >
 					<ListItem style={blackStyle}
 						primaryText = {homeTeamName}
-						rightAvatar = { <Avatar> <TextField value={this.state.homeGoals[i]} underlineShow={false} inputStyle={{textAlign:'center'}} style={{width: '20px'}}
-						        hintStyle={{textAlign:'center', width: '20px'}} hintText="0" onChange={this.onHomeGoalsChange.bind(this, i)} /> </Avatar> }
+						rightAvatar = { <Avatar> <TextField value={this.state.goals[i]} underlineShow={false} inputStyle={{textAlign:'center'}} style={{width: '20px'}}
+						        hintStyle={{textAlign:'center', width: '20px'}} hintText="0" onChange={this.onGoalsChange.bind(this, i)} /> </Avatar> }
 						leftAvatar = {<Avatar src = {homeTeamLogoSrc} />} />
 					<ListItem style={blackStyle}
 						primaryText = {awayTeamName}
-						rightAvatar = { <Avatar> <TextField value={this.state.awayGoals[i]} underlineShow={false} inputStyle={{textAlign:'center'}} style={{width: '20px'}}
-						        hintStyle={{textAlign:'center', width: '20px'}} hintText="0" onChange={this.onAwayGoalsChange.bind(this, i)} /> </Avatar> }
+						rightAvatar = { <Avatar> <TextField value={this.state.goals[awayIndex]} underlineShow={false} inputStyle={{textAlign:'center'}} style={{width: '20px'}}
+						        hintStyle={{textAlign:'center', width: '20px'}} hintText="0" onChange={this.onGoalsChange.bind(this, awayIndex)} /> </Avatar> }
 						leftAvatar = {<Avatar src = {awayTeamLogoSrc} />} />
 				</List>
             );
@@ -111,28 +125,17 @@ class UpcomingMatches extends React.Component {
 		});
 
         var times = this.state.matches.map(function (match, i) {
-            return match.dateTime.replace("T"," ").substring(0,16);
+            if (i == 0) {
+                var dateTime = match.dateTime.replace("T"," ").substring(0,16);
+                var num = Number(dateTime.substring(12,13)) + 1;
+                return dateTime.substr(0, 12) + num + dateTime.substr(13);
+            } else {
+                return "";
+            }
         });
 
         if (this.state.matches.length >= 0) {
-            var matchIds = "";
-            for (var i=0; i<this.state.matches.length; i++) {
-                var selfLink = this.state.matches[i]._links.self.href;
-                var lastIndexOfBackslash = selfLink.lastIndexOf('/');
-                matchIds += selfLink.substring(lastIndexOfBackslash + 1) + ",";
-            }
-
-            var homeGoals = "";
-            for(var j=0; j<this.state.homeGoals.length; j++) {
-                homeGoals += this.state.homeGoals[j] + ",";
-            }
-
-            var awayGoals = "";
-            for(var k=0; k<this.state.awayGoals.length; k++) {
-                awayGoals += this.state.awayGoals[k] + ",";
-            }
-
-            var saveLink = "http://localhost:8080/bet/create?userId=" + window.account.id + "&matchIds=" + matchIds + "&homeGoals=" + homeGoals + "&awayGoals=" + awayGoals
+            var saveLink = getSaveLink(this);
 
             return (
 			    <div style={{display: 'flex', flexWrap: 'wrap', marginLeft: '145px'}}>
@@ -142,16 +145,17 @@ class UpcomingMatches extends React.Component {
                         <CardText style={blackStyle}>
                             <p style={{fontStyle: 'italic'}}> Néhány fontos tudnivalő a tippek leadása előtt: </p>
                                  <p/> 1: Tippelés megadásához írd be a csapatok mellett található szürke körbe az általad gondolt gólok számát!
-                                 <p/> 2: Egy felhasználó csak egyszer tippelhet!
+                                 <p/> 2: Egy felhasználónak egy meccshez csak egy tippje lehet. Az új tippek mindig felülírják a régit!
                                  <p/> 3: Kizárólag 0 és 99 közötti számokat lehet megadni!
                                  <p/> 4: Minden mérkőzésre érvényes értéket kell beírni a mérkőzés kezdetéig, meccsenkénti tippelés nem lehetséges!
-                                 <p/> 5: Az alapértelmezett érték minden esetben a 0!
                         </CardText>
-                        <CardText style={{color: 'red'}}>
+                        <CardText style={errorStyle}>
                             {this.state.errorText}
                         </CardText>
-                        <CardActions>
-                            <FlatButton label="Tippek mentése" disabled={this.state.betButtonDisabled} href={saveLink} />
+                        <CardActions >
+                            <Tooltip show={this.state.showTooltip} style={{color: 'white'}} label={this.state.dateErrorText} horizontalPosition="right" verticalPosition="bottom" />
+                            <FlatButton label="Tippek mentése" disabled={this.state.betButtonDisabled}  onMouseEnter={this.onMouseEnter.bind(this)}
+                                onMouseLeave={this.onMouseLeave.bind(this)} href={saveLink} />
                         </CardActions>
                     </Card>
                     {mobileTearSheets}
@@ -168,6 +172,27 @@ class UpcomingMatches extends React.Component {
 			);
 		}
 	}
+}
+
+function getSaveLink(page) {
+    var matchIds = "";
+    for (var i=0; i<page.state.matches.length; i++) {
+        var selfLink = page.state.matches[i]._links.self.href;
+        var lastIndexOfBackslash = selfLink.lastIndexOf('/');
+        matchIds += selfLink.substring(lastIndexOfBackslash + 1) + ",";
+    }
+
+    var homeGoals = "";
+    var awayGoals = "";
+    for(var j=0; j<page.state.goals.length; j++) {
+        if (page.state.matches.length <= j) {
+            awayGoals += page.state.goals[j] + ",";
+        } else {
+            homeGoals += page.state.goals[j] + ",";
+        }
+    }
+
+    return "http://localhost:8080/bet/create?userId=" + window.account.id + "&matchIds=" + matchIds + "&homeGoals=" + homeGoals + "&awayGoals=" + awayGoals;
 }
 
 export default UpcomingMatches;
