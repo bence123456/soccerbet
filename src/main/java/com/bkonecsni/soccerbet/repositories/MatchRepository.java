@@ -11,4 +11,6 @@ import java.util.List;
 public interface MatchRepository extends CrudRepository<Match, Long>{
 
     List<Match> findByStatus(@Param("status") String status);
+
+    List<Match> findByIdIn(@Param("ids") Long[] ids);
 }

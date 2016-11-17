@@ -55635,6 +55635,8 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _Table = __webpack_require__(/*! material-ui/Table */ 535);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -55643,22 +55645,168 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	var tableStyle = {
+	    width: '800px',
+	    marginLeft: 'auto',
+	    marginRight: 'auto',
+	    background: 'transparent'
+	};
+	
 	var MyBets = function (_React$Component) {
 	    _inherits(MyBets, _React$Component);
 	
-	    function MyBets() {
+	    function MyBets(props) {
 	        _classCallCheck(this, MyBets);
 	
-	        return _possibleConstructorReturn(this, (MyBets.__proto__ || Object.getPrototypeOf(MyBets)).apply(this, arguments));
+	        var _this = _possibleConstructorReturn(this, (MyBets.__proto__ || Object.getPrototypeOf(MyBets)).call(this, props));
+	
+	        _this.state = {
+	            bets: [],
+	            matches: []
+	        };
+	        return _this;
 	    }
 	
 	    _createClass(MyBets, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+	
+	            var matchIds = '';
+	            fetch(window.backendHost + '/api/bets/search/findByUserId?userId=' + window.account.id).then(function (response) {
+	                return response.json();
+	            }).then(function (json) {
+	                _this2.setState({ bets: json._embedded.bets });
+	
+	                for (var i = 0; i < json._embedded.bets.length; i++) {
+	                    if (i == json._embedded.bets.length - 1) {
+	                        matchIds += json._embedded.bets[i].matchId;
+	                    } else {
+	                        matchIds += json._embedded.bets[i].matchId + ',';
+	                    }
+	                }
+	            });
+	
+	            fetch(window.backendHost + '/api/matches/search/findByIdIn?ids=' + matchIds).then(function (response) {
+	                return response.json();
+	            }).then(function (json) {
+	                _this2.setState({ matches: json._embedded.matches });
+	            });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var betGainedPoints = [];
+	            var bets = this.state.bets.map(function (bet) {
+	                betGainedPoints.push(bet.gainedPoints);
+	                return bet.homeTeamGoals + ' - ' + bet.awayTeamGoals;
+	            });
+	
+	            var matchNodes = this.state.matches.map(function (match, i) {
+	                var homeTeamName = match.homeTeamName;
+	
+	                return _react2.default.createElement(
+	                    _Table.TableRow,
+	                    { key: i, style: { color: 'white' } },
+	                    _react2.default.createElement(
+	                        _Table.TableRowColumn,
+	                        null,
+	                        ' ',
+	                        i + 1,
+	                        ' '
+	                    ),
+	                    _react2.default.createElement(
+	                        _Table.TableRowColumn,
+	                        null,
+	                        ' ',
+	                        match.homeTeamName,
+	                        ' - ',
+	                        match.awayTeamName,
+	                        ' '
+	                    ),
+	                    _react2.default.createElement(
+	                        _Table.TableRowColumn,
+	                        null,
+	                        ' ',
+	                        match.round,
+	                        ' '
+	                    ),
+	                    _react2.default.createElement(
+	                        _Table.TableRowColumn,
+	                        null,
+	                        ' ',
+	                        bets[i],
+	                        ' '
+	                    ),
+	                    _react2.default.createElement(
+	                        _Table.TableRowColumn,
+	                        null,
+	                        ' ',
+	                        match.homeTeamGoals,
+	                        ' - ',
+	                        match.awayTeamGoals,
+	                        ' '
+	                    ),
+	                    _react2.default.createElement(
+	                        _Table.TableRowColumn,
+	                        null,
+	                        ' ',
+	                        betGainedPoints[i],
+	                        ' '
+	                    )
+	                );
+	            });
+	
 	            return _react2.default.createElement(
 	                'div',
-	                null,
-	                'mybetrsmybetrsmybetrsmybetrsmybetrs'
+	                { style: { marginTop: '50px' } },
+	                _react2.default.createElement(
+	                    _Table.Table,
+	                    { transparent: true, style: tableStyle },
+	                    _react2.default.createElement(
+	                        _Table.TableHeader,
+	                        { displaySelectAll: false, adjustForCheckbox: false },
+	                        _react2.default.createElement(
+	                            _Table.TableRow,
+	                            null,
+	                            _react2.default.createElement(
+	                                _Table.TableHeaderColumn,
+	                                null,
+	                                ' # '
+	                            ),
+	                            _react2.default.createElement(
+	                                _Table.TableHeaderColumn,
+	                                null,
+	                                ' Meccs '
+	                            ),
+	                            _react2.default.createElement(
+	                                _Table.TableHeaderColumn,
+	                                null,
+	                                ' Fordul\xF3 '
+	                            ),
+	                            _react2.default.createElement(
+	                                _Table.TableHeaderColumn,
+	                                null,
+	                                ' Tipp '
+	                            ),
+	                            _react2.default.createElement(
+	                                _Table.TableHeaderColumn,
+	                                null,
+	                                ' Eredm\xE9ny '
+	                            ),
+	                            _react2.default.createElement(
+	                                _Table.TableHeaderColumn,
+	                                null,
+	                                ' Pont '
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        _Table.TableBody,
+	                        { displayRowCheckbox: false },
+	                        matchNodes
+	                    )
+	                )
 	            );
 	        }
 	    }]);
