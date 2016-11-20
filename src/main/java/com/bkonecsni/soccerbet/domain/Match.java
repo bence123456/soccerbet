@@ -12,7 +12,7 @@ import static javax.persistence.EnumType.STRING;
 public class Match {
 
     @Id
-    private Long id;
+    private Long Id;
 
     @ManyToOne(targetEntity = DBTeam.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "home_team_id")
@@ -45,7 +45,7 @@ public class Match {
 
     public Match(Long id, DBTeam homeTeam, DBTeam awayTeam, String homeTeamName, String awayTeamName,
                  Integer homeTeamGoals, Integer awayTeamGoals, String status, int round, Date dateTime) {
-        this.id = id;
+        this.Id = id;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.homeTeamName = homeTeamName;
@@ -77,7 +77,7 @@ public class Match {
     @Override
     public String toString() {
         return "Match{" +
-                "id=" + id +
+                "Id=" + Id +
                 ", homeTeam=" + homeTeam +
                 ", awayTeam=" + awayTeam +
                 ", homeTeamName=" + homeTeamName +
@@ -92,11 +92,11 @@ public class Match {
     }
 
     public Long getId() {
-        return id;
+        return Id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public DBTeam getHomeTeam() {

@@ -7,6 +7,7 @@ import TextField from 'material-ui/TextField';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Tooltip from 'material-ui/internal/Tooltip';
+import Dialog from 'material-ui/Dialog';
 import {Link} from 'react-router'
 
 const leftMarginStyle = {
@@ -31,6 +32,7 @@ class UpcomingMatches extends React.Component {
 		    betButtonDisabled: false,
 		    dateErrorText: 'Sajnos a mérkőzések már elkezdődtek, így a tippelés nem lehetséges!',
 		    showTooltip: false,
+		    dialogOpen: false,
 		    errorText: '',
 		    value: props.value
 		}
@@ -65,6 +67,26 @@ class UpcomingMatches extends React.Component {
     onMouseLeave() {
         this.setState({showTooltip: false});
     }
+
+    onClick() {
+        var saveLink = getSaveLink(this);
+
+        fetch(saveLink).then((response) => { return response.json() }).then( (json) => {
+            if (json.success) {
+                window.location.reload();
+            } else {
+                this.handleOpen();
+            }
+        });
+    }
+
+    handleOpen = () => {
+        this.setState({dialogOpen: true});
+    };
+
+    handleClose = () => {
+        this.setState({dialogOpen: false});
+    };
 
 	componentDidMount() {
         fetch(window.backendHost + '/api/matches/search/findByStatus?status=SCHEDULED')
@@ -136,6 +158,9 @@ class UpcomingMatches extends React.Component {
 
         if (this.state.matches.length >= 0) {
             var saveLink = getSaveLink(this);
+            const actions = [
+                <FlatButton label="Rendben" primary={true} onTouchTap={this.handleClose} />
+            ];
 
             return (
 			    <div style={{display: 'flex', flexWrap: 'wrap', marginLeft: '145px'}}>
@@ -155,7 +180,10 @@ class UpcomingMatches extends React.Component {
                         <CardActions >
                             <Tooltip show={this.state.showTooltip} style={{color: 'white'}} label={this.state.dateErrorText} horizontalPosition="right" verticalPosition="bottom" />
                             <FlatButton label="Tippek mentése" disabled={this.state.betButtonDisabled}  onMouseEnter={this.onMouseEnter.bind(this)}
-                                onMouseLeave={this.onMouseLeave.bind(this)} href={saveLink} />
+                                onMouseLeave={this.onMouseLeave.bind(this)} onClick={this.onClick.bind(this)} />
+                                    <Dialog title="Hiba a mentés során!" actions={actions} modal={false} open={this.state.dialogOpen} onRequestClose={this.handleClose} >
+                                      Hiba történt az adatok lementése során. Kérlek próbálkozz újra!
+                                    </Dialog>
                         </CardActions>
                     </Card>
                     {mobileTearSheets}
@@ -177,9 +205,7 @@ class UpcomingMatches extends React.Component {
 function getSaveLink(page) {
     var matchIds = "";
     for (var i=0; i<page.state.matches.length; i++) {
-        var selfLink = page.state.matches[i]._links.self.href;
-        var lastIndexOfBackslash = selfLink.lastIndexOf('/');
-        matchIds += selfLink.substring(lastIndexOfBackslash + 1) + ",";
+        matchIds += page.state.matches[i].id + ",";
     }
 
     var homeGoals = "";
@@ -192,7 +218,7 @@ function getSaveLink(page) {
         }
     }
 
-    return "http://localhost:8080/bet/create?userId=" + window.account.id + "&matchIds=" + matchIds + "&homeGoals=" + homeGoals + "&awayGoals=" + awayGoals;
+    return window.backendHost + "/bet/create?userId=" + window.account.id + "&matchIds=" + matchIds + "&homeGoals=" + homeGoals + "&awayGoals=" + awayGoals;
 }
 
 export default UpcomingMatches;

@@ -17,7 +17,7 @@ public class SpringSecurityWebAppConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/user/create/**");
-        web.ignoring().antMatchers("/bet/create/**");
+        web.ignoring().antMatchers("/bet/**");
         web.ignoring().antMatchers("/api/**");
     }
 }

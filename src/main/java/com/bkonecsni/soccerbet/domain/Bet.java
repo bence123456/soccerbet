@@ -42,7 +42,7 @@ public class Bet {
         this.gainedPoints = null;
     }
 
-    private MatchResult calculateMatchResult(int homeTeamGoals, int awayTeamGoals) {
+    public MatchResult calculateMatchResult(int homeTeamGoals, int awayTeamGoals) {
         MatchResult matchResult = MatchResult.HOME_TEAM_WINS;
 
         if (homeTeamGoals == awayTeamGoals) {
