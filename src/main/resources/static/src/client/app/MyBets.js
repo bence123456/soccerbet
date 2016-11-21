@@ -29,17 +29,11 @@ class MyBets extends React.Component {
 	}
 
     render() {
-        var betGainedPoints = [];
-        var bets = this.state.bets.map(function(bet) {
-            betGainedPoints.push(bet.gainedPoints);
-            return bet.homeTeamGoals + ' - ' + bet.awayTeamGoals;
-        });
-
         var betNodes = this.state.bets.map(function (bet, i) {
             var match = bet.match;
 
             return (
-                <TableRow key={i} style={{color: 'white'}} >
+                <TableRow key={i} style={{color: 'black'}} >
                     <TableRowColumn> {i + 1} </TableRowColumn>
                     <TableRowColumn> {match.homeTeamName} - {match.awayTeamName} </TableRowColumn>
                     <TableRowColumn> {match.round} </TableRowColumn>

@@ -1,76 +1,50 @@
 import React from 'react';
-import {List, ListItem} from 'material-ui/List';
-import Avatar from 'material-ui/Avatar';
-import Divider from 'material-ui/Divider';
-import MobileTearSheet from './MobileTearSheet';
+import {Tabs, Tab} from 'material-ui/Tabs';
 
-class FinishedMatchResult extends React.Component {
+import MatchResults from './MatchResults';
+
+class FinishedMatchResults extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {matches: []};
+		this.state = {
+		    numberOfFinishedRounds: 0
+	    };
 	}
 
 	componentDidMount() {
-        fetch(window.backendHost + '/api/matches/search/findByStatus?status=FINISHED')
-        .then((response) => { return response.json() })
-        .then( (json) => {this.setState({matches: json._embedded.matches}); });
+        fetch(window.backendHost + '/api/matches/search/findMaxFinishedRound')
+        .then((response) => { return response.text() })
+        .then( (text) => {this.setState({numberOfFinishedRounds: Number(text) }); });
 	}
 
-	render() {
-        var matchNodes = this.state.matches.map(function (match, i) {
-			var homeTeamName = match.homeTeamName;
-			var awayTeamName = match.awayTeamName;
-			var homeTeamLogoSrc = "/images/logos/" + homeTeamName.replace("/", "") + ".png";
-			var awayTeamLogoSrc = "/images/logos/" + awayTeamName + ".png";
-			
-			var homeStyle = {color: 'black'}, awayStyle = {color: 'black'}, wonStyle = {color: 'black', fontWeight: 'bold'};
-			if (match.matchResult === "HOME_TEAM_WINS") {
-				homeStyle = wonStyle;
-			} else if (match.matchResult === "AWAY_TEAM_WINS") {
-				awayStyle = wonStyle;
-			}
-
-            return (
-				<List >
-					<ListItem style = {homeStyle}
-						primaryText = {homeTeamName}
-						rightAvatar = { <Avatar> {match.homeTeamGoals} </Avatar> }
-						leftAvatar = {<Avatar src = {homeTeamLogoSrc} />} />
-					<ListItem style = {awayStyle}
-						primaryText = {awayTeamName}
-						rightAvatar = { <Avatar> {match.awayTeamGoals} </Avatar> }
-						leftAvatar = {<Avatar src = {awayTeamLogoSrc} />} />
-				</List>
-            );
-        });
-		
-		var mobileTearSheets = matchNodes.map(function (matchNode, i) {
-			var sheets = [];
-				if (i % 4 == 0) {
-					const sheet = (
-						<MobileTearSheet key={i}>
-							{matchNodes[i]}
-							<Divider/>
-							{matchNodes[i+1]}
-							<Divider/>
-							{matchNodes[i+2]}
-							<Divider/>
-							{matchNodes[i+3]}
-						</MobileTearSheet>
-					);
-					sheets.push(sheet);
-				}
-			
-			return sheets;
-		});
+    render() {
+        var tabNodes = getTabs(this);
 
         return (
-			<div style={{display: 'flex', flexWrap: 'wrap'}}>
-				{mobileTearSheets}
-			</div>
+            <Tabs inkBarStyle={{background: '#212121'}} >
+                {tabNodes}
+            </Tabs>
         );
-	}
+    }
 }
 
-export default FinishedMatchResult;
+function getTabs(page) {
+    var tabs = [];
+
+    for(var i=0; i<page.state.numberOfFinishedRounds; i++) {
+        var round = i+1;
+        var label = round + '. Forduló';
+
+		const tab = (
+            <Tab label={label} key={i} >
+                <MatchResults round={round.toString()} />;
+            </Tab>
+		);
+        tabs.push(tab);
+    }
+
+    return tabs;
+}
+
+export default FinishedMatchResults;

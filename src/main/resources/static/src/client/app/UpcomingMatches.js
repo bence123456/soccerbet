@@ -157,7 +157,6 @@ class UpcomingMatches extends React.Component {
         });
 
         if (this.state.matches.length >= 0) {
-            var saveLink = getSaveLink(this);
             const actions = [
                 <FlatButton label="Rendben" primary={true} onTouchTap={this.handleClose} />
             ];
