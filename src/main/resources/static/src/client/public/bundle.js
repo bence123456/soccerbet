@@ -89,19 +89,19 @@
 	
 	var _FinishedMatchResults2 = _interopRequireDefault(_FinishedMatchResults);
 	
-	var _UpcomingMatches = __webpack_require__(/*! ./UpcomingMatches */ 527);
+	var _UpcomingMatches = __webpack_require__(/*! ./UpcomingMatches */ 533);
 	
 	var _UpcomingMatches2 = _interopRequireDefault(_UpcomingMatches);
 	
-	var _Ranking = __webpack_require__(/*! ./Ranking */ 539);
+	var _Ranking = __webpack_require__(/*! ./Ranking */ 545);
 	
 	var _Ranking2 = _interopRequireDefault(_Ranking);
 	
-	var _MyBets = __webpack_require__(/*! ./MyBets */ 556);
+	var _MyBets = __webpack_require__(/*! ./MyBets */ 562);
 	
 	var _MyBets2 = _interopRequireDefault(_MyBets);
 	
-	var _NotFound = __webpack_require__(/*! ./NotFound */ 557);
+	var _NotFound = __webpack_require__(/*! ./NotFound */ 563);
 	
 	var _NotFound2 = _interopRequireDefault(_NotFound);
 	
@@ -49796,9 +49796,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Tabs = __webpack_require__(/*! material-ui/Tabs */ 558);
+	var _Tabs = __webpack_require__(/*! material-ui/Tabs */ 515);
 	
-	var _MatchResults = __webpack_require__(/*! ./MatchResults */ 563);
+	var _MatchResults = __webpack_require__(/*! ./MatchResults */ 520);
 	
 	var _MatchResults2 = _interopRequireDefault(_MatchResults);
 	
@@ -49875,6 +49875,877 @@
 /***/ },
 /* 515 */
 /*!*************************************!*\
+  !*** ./~/material-ui/Tabs/index.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = exports.Tabs = exports.Tab = undefined;
+	
+	var _Tab2 = __webpack_require__(/*! ./Tab */ 516);
+	
+	var _Tab3 = _interopRequireDefault(_Tab2);
+	
+	var _Tabs2 = __webpack_require__(/*! ./Tabs */ 517);
+	
+	var _Tabs3 = _interopRequireDefault(_Tabs2);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.Tab = _Tab3.default;
+	exports.Tabs = _Tabs3.default;
+	exports.default = _Tabs3.default;
+
+/***/ },
+/* 516 */
+/*!***********************************!*\
+  !*** ./~/material-ui/Tabs/Tab.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends2 = __webpack_require__(/*! babel-runtime/helpers/extends */ 174);
+	
+	var _extends3 = _interopRequireDefault(_extends2);
+	
+	var _objectWithoutProperties2 = __webpack_require__(/*! babel-runtime/helpers/objectWithoutProperties */ 212);
+	
+	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+	
+	var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ 213);
+	
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+	
+	var _classCallCheck2 = __webpack_require__(/*! babel-runtime/helpers/classCallCheck */ 218);
+	
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+	
+	var _createClass2 = __webpack_require__(/*! babel-runtime/helpers/createClass */ 219);
+	
+	var _createClass3 = _interopRequireDefault(_createClass2);
+	
+	var _possibleConstructorReturn2 = __webpack_require__(/*! babel-runtime/helpers/possibleConstructorReturn */ 223);
+	
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+	
+	var _inherits2 = __webpack_require__(/*! babel-runtime/helpers/inherits */ 258);
+	
+	var _inherits3 = _interopRequireDefault(_inherits2);
+	
+	var _simpleAssign = __webpack_require__(/*! simple-assign */ 266);
+	
+	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _EnhancedButton = __webpack_require__(/*! ../internal/EnhancedButton */ 272);
+	
+	var _EnhancedButton2 = _interopRequireDefault(_EnhancedButton);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function getStyles(props, context) {
+	  var tabs = context.muiTheme.tabs;
+	
+	
+	  return {
+	    root: {
+	      color: props.selected ? tabs.selectedTextColor : tabs.textColor,
+	      fontWeight: 500,
+	      fontSize: 14,
+	      width: props.width,
+	      textTransform: 'uppercase',
+	      padding: 0
+	    },
+	    button: {
+	      display: 'flex',
+	      flexDirection: 'column',
+	      alignItems: 'center',
+	      justifyContent: 'center',
+	      height: props.label && props.icon ? 72 : 48
+	    }
+	  };
+	}
+	
+	var Tab = function (_Component) {
+	  (0, _inherits3.default)(Tab, _Component);
+	
+	  function Tab() {
+	    var _ref;
+	
+	    var _temp, _this, _ret;
+	
+	    (0, _classCallCheck3.default)(this, Tab);
+	
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Tab.__proto__ || (0, _getPrototypeOf2.default)(Tab)).call.apply(_ref, [this].concat(args))), _this), _this.handleTouchTap = function (event) {
+	      if (_this.props.onTouchTap) {
+	        _this.props.onTouchTap(_this.props.value, event, _this);
+	      }
+	    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+	  }
+	
+	  (0, _createClass3.default)(Tab, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var icon = _props.icon;
+	      var index = _props.index;
+	      var onActive = _props.onActive;
+	      var onTouchTap = _props.onTouchTap;
+	      var selected = _props.selected;
+	      var label = _props.label;
+	      var style = _props.style;
+	      var value = _props.value;
+	      var width = _props.width;
+	      var other = (0, _objectWithoutProperties3.default)(_props, ['icon', 'index', 'onActive', 'onTouchTap', 'selected', 'label', 'style', 'value', 'width']);
+	
+	
+	      var styles = getStyles(this.props, this.context);
+	
+	      var iconElement = void 0;
+	      if (icon && _react2.default.isValidElement(icon)) {
+	        var iconProps = {
+	          style: {
+	            fontSize: 24,
+	            color: styles.root.color,
+	            marginBottom: label ? 5 : 0
+	          }
+	        };
+	        // If it's svg icon set color via props
+	        if (icon.type.muiName !== 'FontIcon') {
+	          iconProps.color = styles.root.color;
+	        }
+	        iconElement = _react2.default.cloneElement(icon, iconProps);
+	      }
+	
+	      var rippleOpacity = 0.3;
+	      var rippleColor = this.context.muiTheme.tabs.selectedTextColor;
+	
+	      return _react2.default.createElement(
+	        _EnhancedButton2.default,
+	        (0, _extends3.default)({}, other, {
+	          style: (0, _simpleAssign2.default)(styles.root, style),
+	          focusRippleColor: rippleColor,
+	          touchRippleColor: rippleColor,
+	          focusRippleOpacity: rippleOpacity,
+	          touchRippleOpacity: rippleOpacity,
+	          onTouchTap: this.handleTouchTap
+	        }),
+	        _react2.default.createElement(
+	          'div',
+	          { style: styles.button },
+	          iconElement,
+	          label
+	        )
+	      );
+	    }
+	  }]);
+	  return Tab;
+	}(_react.Component);
+	
+	Tab.muiName = 'Tab';
+	Tab.contextTypes = {
+	  muiTheme: _react.PropTypes.object.isRequired
+	};
+	process.env.NODE_ENV !== "production" ? Tab.propTypes = {
+	  /**
+	   * The css class name of the root element.
+	   */
+	  className: _react.PropTypes.string,
+	  /**
+	   * Sets the icon of the tab, you can pass `FontIcon` or `SvgIcon` elements.
+	   */
+	  icon: _react.PropTypes.node,
+	  /**
+	   * @ignore
+	   */
+	  index: _react.PropTypes.any,
+	  /**
+	   * Sets the text value of the tab item to the string specified.
+	   */
+	  label: _react.PropTypes.node,
+	  /**
+	   * Fired when the active tab changes by touch or tap.
+	   * Use this event to specify any functionality when an active tab changes.
+	   * For example - we are using this to route to home when the third tab becomes active.
+	   * This function will always recieve the active tab as it\'s first argument.
+	   */
+	  onActive: _react.PropTypes.func,
+	  /**
+	   * @ignore
+	   * This property is overriden by the Tabs component.
+	   */
+	  onTouchTap: _react.PropTypes.func,
+	  /**
+	   * @ignore
+	   * Defines if the current tab is selected or not.
+	   * The Tabs component is responsible for setting this property.
+	   */
+	  selected: _react.PropTypes.bool,
+	  /**
+	   * Override the inline-styles of the root element.
+	   */
+	  style: _react.PropTypes.object,
+	  /**
+	   * If value prop passed to Tabs component, this value prop is also required.
+	   * It assigns a value to the tab so that it can be selected by the Tabs.
+	   */
+	  value: _react.PropTypes.any,
+	  /**
+	   * @ignore
+	   * This property is overriden by the Tabs component.
+	   */
+	  width: _react.PropTypes.string
+	} : void 0;
+	exports.default = Tab;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
+
+/***/ },
+/* 517 */
+/*!************************************!*\
+  !*** ./~/material-ui/Tabs/Tabs.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends2 = __webpack_require__(/*! babel-runtime/helpers/extends */ 174);
+	
+	var _extends3 = _interopRequireDefault(_extends2);
+	
+	var _objectWithoutProperties2 = __webpack_require__(/*! babel-runtime/helpers/objectWithoutProperties */ 212);
+	
+	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+	
+	var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ 213);
+	
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+	
+	var _classCallCheck2 = __webpack_require__(/*! babel-runtime/helpers/classCallCheck */ 218);
+	
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+	
+	var _createClass2 = __webpack_require__(/*! babel-runtime/helpers/createClass */ 219);
+	
+	var _createClass3 = _interopRequireDefault(_createClass2);
+	
+	var _possibleConstructorReturn2 = __webpack_require__(/*! babel-runtime/helpers/possibleConstructorReturn */ 223);
+	
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+	
+	var _inherits2 = __webpack_require__(/*! babel-runtime/helpers/inherits */ 258);
+	
+	var _inherits3 = _interopRequireDefault(_inherits2);
+	
+	var _simpleAssign = __webpack_require__(/*! simple-assign */ 266);
+	
+	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _warning = __webpack_require__(/*! warning */ 338);
+	
+	var _warning2 = _interopRequireDefault(_warning);
+	
+	var _TabTemplate = __webpack_require__(/*! ./TabTemplate */ 518);
+	
+	var _TabTemplate2 = _interopRequireDefault(_TabTemplate);
+	
+	var _InkBar = __webpack_require__(/*! ./InkBar */ 519);
+	
+	var _InkBar2 = _interopRequireDefault(_InkBar);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function getStyles(props, context) {
+	  var tabs = context.muiTheme.tabs;
+	
+	
+	  return {
+	    tabItemContainer: {
+	      width: '100%',
+	      backgroundColor: tabs.backgroundColor,
+	      whiteSpace: 'nowrap'
+	    }
+	  };
+	}
+	
+	var Tabs = function (_Component) {
+	  (0, _inherits3.default)(Tabs, _Component);
+	
+	  function Tabs() {
+	    var _ref;
+	
+	    var _temp, _this, _ret;
+	
+	    (0, _classCallCheck3.default)(this, Tabs);
+	
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Tabs.__proto__ || (0, _getPrototypeOf2.default)(Tabs)).call.apply(_ref, [this].concat(args))), _this), _this.state = { selectedIndex: 0 }, _this.handleTabTouchTap = function (value, event, tab) {
+	      var valueLink = _this.getValueLink(_this.props);
+	      var index = tab.props.index;
+	
+	      if (valueLink.value && valueLink.value !== value || _this.state.selectedIndex !== index) {
+	        valueLink.requestChange(value, event, tab);
+	      }
+	
+	      _this.setState({ selectedIndex: index });
+	
+	      if (tab.props.onActive) {
+	        tab.props.onActive(tab);
+	      }
+	    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+	  }
+	
+	  (0, _createClass3.default)(Tabs, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var valueLink = this.getValueLink(this.props);
+	      var initialIndex = this.props.initialSelectedIndex;
+	
+	      this.setState({
+	        selectedIndex: valueLink.value !== undefined ? this.getSelectedIndex(this.props) : initialIndex < this.getTabCount() ? initialIndex : 0
+	      });
+	    }
+	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(newProps, nextContext) {
+	      var valueLink = this.getValueLink(newProps);
+	      var newState = {
+	        muiTheme: nextContext.muiTheme || this.context.muiTheme
+	      };
+	
+	      if (valueLink.value !== undefined) {
+	        newState.selectedIndex = this.getSelectedIndex(newProps);
+	      }
+	
+	      this.setState(newState);
+	    }
+	  }, {
+	    key: 'getTabs',
+	    value: function getTabs() {
+	      var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props;
+	
+	      var tabs = [];
+	
+	      _react.Children.forEach(props.children, function (tab) {
+	        if ((0, _react.isValidElement)(tab)) {
+	          tabs.push(tab);
+	        }
+	      });
+	
+	      return tabs;
+	    }
+	  }, {
+	    key: 'getTabCount',
+	    value: function getTabCount() {
+	      return this.getTabs().length;
+	    }
+	
+	    // Do not use outside of this component, it will be removed once valueLink is deprecated
+	
+	  }, {
+	    key: 'getValueLink',
+	    value: function getValueLink(props) {
+	      return props.valueLink || {
+	        value: props.value,
+	        requestChange: props.onChange
+	      };
+	    }
+	  }, {
+	    key: 'getSelectedIndex',
+	    value: function getSelectedIndex(props) {
+	      var valueLink = this.getValueLink(props);
+	      var selectedIndex = -1;
+	
+	      this.getTabs(props).forEach(function (tab, index) {
+	        if (valueLink.value === tab.props.value) {
+	          selectedIndex = index;
+	        }
+	      });
+	
+	      return selectedIndex;
+	    }
+	  }, {
+	    key: 'getSelected',
+	    value: function getSelected(tab, index) {
+	      var valueLink = this.getValueLink(this.props);
+	      return valueLink.value ? valueLink.value === tab.props.value : this.state.selectedIndex === index;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+	
+	      var _props = this.props;
+	      var contentContainerClassName = _props.contentContainerClassName;
+	      var contentContainerStyle = _props.contentContainerStyle;
+	      var initialSelectedIndex = _props.initialSelectedIndex;
+	      var inkBarStyle = _props.inkBarStyle;
+	      var onChange = _props.onChange;
+	      var style = _props.style;
+	      var tabItemContainerStyle = _props.tabItemContainerStyle;
+	      var tabTemplate = _props.tabTemplate;
+	      var tabTemplateStyle = _props.tabTemplateStyle;
+	      var other = (0, _objectWithoutProperties3.default)(_props, ['contentContainerClassName', 'contentContainerStyle', 'initialSelectedIndex', 'inkBarStyle', 'onChange', 'style', 'tabItemContainerStyle', 'tabTemplate', 'tabTemplateStyle']);
+	      var prepareStyles = this.context.muiTheme.prepareStyles;
+	
+	      var styles = getStyles(this.props, this.context);
+	      var valueLink = this.getValueLink(this.props);
+	      var tabValue = valueLink.value;
+	      var tabContent = [];
+	      var width = 100 / this.getTabCount();
+	
+	      var tabs = this.getTabs().map(function (tab, index) {
+	        process.env.NODE_ENV !== "production" ? (0, _warning2.default)(tab.type && tab.type.muiName === 'Tab', 'Tabs only accepts Tab Components as children.\n        Found ' + (tab.type.muiName || tab.type) + ' as child number ' + (index + 1) + ' of Tabs') : void 0;
+	
+	        process.env.NODE_ENV !== "production" ? (0, _warning2.default)(!tabValue || tab.props.value !== undefined, 'Tabs value prop has been passed, but Tab ' + index + '\n        does not have a value prop. Needs value if Tabs is going\n        to be a controlled component.') : void 0;
+	
+	        tabContent.push(tab.props.children ? (0, _react.createElement)(tabTemplate || _TabTemplate2.default, {
+	          key: index,
+	          selected: _this2.getSelected(tab, index),
+	          style: tabTemplateStyle
+	        }, tab.props.children) : undefined);
+	
+	        return (0, _react.cloneElement)(tab, {
+	          key: index,
+	          index: index,
+	          selected: _this2.getSelected(tab, index),
+	          width: width + '%',
+	          onTouchTap: _this2.handleTabTouchTap
+	        });
+	      });
+	
+	      var inkBar = this.state.selectedIndex !== -1 ? _react2.default.createElement(_InkBar2.default, {
+	        left: width * this.state.selectedIndex + '%',
+	        width: width + '%',
+	        style: inkBarStyle
+	      }) : null;
+	
+	      var inkBarContainerWidth = tabItemContainerStyle ? tabItemContainerStyle.width : '100%';
+	
+	      return _react2.default.createElement(
+	        'div',
+	        (0, _extends3.default)({
+	          style: prepareStyles((0, _simpleAssign2.default)({}, style))
+	        }, other),
+	        _react2.default.createElement(
+	          'div',
+	          { style: prepareStyles((0, _simpleAssign2.default)(styles.tabItemContainer, tabItemContainerStyle)) },
+	          tabs
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { style: { width: inkBarContainerWidth } },
+	          inkBar
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          {
+	            style: prepareStyles((0, _simpleAssign2.default)({}, contentContainerStyle)),
+	            className: contentContainerClassName
+	          },
+	          tabContent
+	        )
+	      );
+	    }
+	  }]);
+	  return Tabs;
+	}(_react.Component);
+	
+	Tabs.defaultProps = {
+	  initialSelectedIndex: 0,
+	  onChange: function onChange() {}
+	};
+	Tabs.contextTypes = {
+	  muiTheme: _react.PropTypes.object.isRequired
+	};
+	process.env.NODE_ENV !== "production" ? Tabs.propTypes = {
+	  /**
+	   * Should be used to pass `Tab` components.
+	   */
+	  children: _react.PropTypes.node,
+	  /**
+	   * The css class name of the root element.
+	   */
+	  className: _react.PropTypes.string,
+	  /**
+	   * The css class name of the content's container.
+	   */
+	  contentContainerClassName: _react.PropTypes.string,
+	  /**
+	   * Override the inline-styles of the content's container.
+	   */
+	  contentContainerStyle: _react.PropTypes.object,
+	  /**
+	   * Specify initial visible tab index.
+	   * If `initialSelectedIndex` is set but larger than the total amount of specified tabs,
+	   * `initialSelectedIndex` will revert back to default.
+	   * If `initialSlectedIndex` is set to any negative value, no tab will be selected intially.
+	   */
+	  initialSelectedIndex: _react.PropTypes.number,
+	  /**
+	   * Override the inline-styles of the InkBar.
+	   */
+	  inkBarStyle: _react.PropTypes.object,
+	  /**
+	   * Called when the selected value change.
+	   */
+	  onChange: _react.PropTypes.func,
+	  /**
+	   * Override the inline-styles of the root element.
+	   */
+	  style: _react.PropTypes.object,
+	  /**
+	   * Override the inline-styles of the tab-labels container.
+	   */
+	  tabItemContainerStyle: _react.PropTypes.object,
+	  /**
+	   * Override the default tab template used to wrap the content of each tab element.
+	   */
+	  tabTemplate: _react.PropTypes.func,
+	  /**
+	   * Override the inline-styles of the tab template.
+	   */
+	  tabTemplateStyle: _react.PropTypes.object,
+	  /**
+	   * Makes Tabs controllable and selects the tab whose value prop matches this prop.
+	   */
+	  value: _react.PropTypes.any
+	} : void 0;
+	exports.default = Tabs;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
+
+/***/ },
+/* 518 */
+/*!*******************************************!*\
+  !*** ./~/material-ui/Tabs/TabTemplate.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _simpleAssign = __webpack_require__(/*! simple-assign */ 266);
+	
+	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var styles = {
+	  width: '100%',
+	  position: 'relative',
+	  textAlign: 'initial'
+	};
+	
+	var TabTemplate = function TabTemplate(_ref) {
+	  var children = _ref.children;
+	  var selected = _ref.selected;
+	  var style = _ref.style;
+	
+	  var templateStyle = (0, _simpleAssign2.default)({}, styles, style);
+	  if (!selected) {
+	    templateStyle.height = 0;
+	    templateStyle.overflow = 'hidden';
+	  }
+	
+	  return _react2.default.createElement(
+	    'div',
+	    { style: templateStyle },
+	    children
+	  );
+	};
+	
+	process.env.NODE_ENV !== "production" ? TabTemplate.propTypes = {
+	  children: _react.PropTypes.node,
+	  selected: _react.PropTypes.bool,
+	  style: _react.PropTypes.object
+	} : void 0;
+	
+	exports.default = TabTemplate;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
+
+/***/ },
+/* 519 */
+/*!**************************************!*\
+  !*** ./~/material-ui/Tabs/InkBar.js ***!
+  \**************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ 213);
+	
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+	
+	var _classCallCheck2 = __webpack_require__(/*! babel-runtime/helpers/classCallCheck */ 218);
+	
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+	
+	var _createClass2 = __webpack_require__(/*! babel-runtime/helpers/createClass */ 219);
+	
+	var _createClass3 = _interopRequireDefault(_createClass2);
+	
+	var _possibleConstructorReturn2 = __webpack_require__(/*! babel-runtime/helpers/possibleConstructorReturn */ 223);
+	
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+	
+	var _inherits2 = __webpack_require__(/*! babel-runtime/helpers/inherits */ 258);
+	
+	var _inherits3 = _interopRequireDefault(_inherits2);
+	
+	var _simpleAssign = __webpack_require__(/*! simple-assign */ 266);
+	
+	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _transitions = __webpack_require__(/*! ../styles/transitions */ 267);
+	
+	var _transitions2 = _interopRequireDefault(_transitions);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function getStyles(props, context) {
+	  var inkBar = context.muiTheme.inkBar;
+	
+	
+	  return {
+	    root: {
+	      left: props.left,
+	      width: props.width,
+	      bottom: 0,
+	      display: 'block',
+	      backgroundColor: props.color || inkBar.backgroundColor,
+	      height: 2,
+	      marginTop: -2,
+	      position: 'relative',
+	      transition: _transitions2.default.easeOut('1s', 'left')
+	    }
+	  };
+	}
+	
+	var InkBar = function (_Component) {
+	  (0, _inherits3.default)(InkBar, _Component);
+	
+	  function InkBar() {
+	    (0, _classCallCheck3.default)(this, InkBar);
+	    return (0, _possibleConstructorReturn3.default)(this, (InkBar.__proto__ || (0, _getPrototypeOf2.default)(InkBar)).apply(this, arguments));
+	  }
+	
+	  (0, _createClass3.default)(InkBar, [{
+	    key: 'render',
+	    value: function render() {
+	      var style = this.props.style;
+	      var prepareStyles = this.context.muiTheme.prepareStyles;
+	
+	      var styles = getStyles(this.props, this.context);
+	
+	      return _react2.default.createElement('div', { style: prepareStyles((0, _simpleAssign2.default)(styles.root, style)) });
+	    }
+	  }]);
+	  return InkBar;
+	}(_react.Component);
+	
+	InkBar.contextTypes = {
+	  muiTheme: _react.PropTypes.object.isRequired
+	};
+	process.env.NODE_ENV !== "production" ? InkBar.propTypes = {
+	  color: _react.PropTypes.string,
+	  left: _react.PropTypes.string.isRequired,
+	  /**
+	   * Override the inline-styles of the root element.
+	   */
+	  style: _react.PropTypes.object,
+	  width: _react.PropTypes.string.isRequired
+	} : void 0;
+	exports.default = InkBar;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
+
+/***/ },
+/* 520 */
+/*!****************************************!*\
+  !*** ./src/client/app/MatchResults.js ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _List = __webpack_require__(/*! material-ui/List */ 521);
+	
+	var _Avatar = __webpack_require__(/*! material-ui/Avatar */ 500);
+	
+	var _Avatar2 = _interopRequireDefault(_Avatar);
+	
+	var _Divider = __webpack_require__(/*! material-ui/Divider */ 530);
+	
+	var _Divider2 = _interopRequireDefault(_Divider);
+	
+	var _MobileTearSheet = __webpack_require__(/*! ./MobileTearSheet */ 532);
+	
+	var _MobileTearSheet2 = _interopRequireDefault(_MobileTearSheet);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var MatchResult = function (_React$Component) {
+		_inherits(MatchResult, _React$Component);
+	
+		function MatchResult(props) {
+			_classCallCheck(this, MatchResult);
+	
+			var _this = _possibleConstructorReturn(this, (MatchResult.__proto__ || Object.getPrototypeOf(MatchResult)).call(this, props));
+	
+			_this.state = {
+				matches: [],
+				actualRound: Number(props.round)
+			};
+			return _this;
+		}
+	
+		_createClass(MatchResult, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				var _this2 = this;
+	
+				fetch(window.backendHost + '/api/matches/search/findByRound?round=' + this.state.actualRound).then(function (response) {
+					return response.json();
+				}).then(function (json) {
+					_this2.setState({ matches: json._embedded.matches });
+				});
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				var matchNodes = this.state.matches.map(function (match, i) {
+					var homeTeamName = match.homeTeamName;
+					var awayTeamName = match.awayTeamName;
+					var homeTeamLogoSrc = "/images/logos/" + homeTeamName.replace("/", "") + ".png";
+					var awayTeamLogoSrc = "/images/logos/" + awayTeamName + ".png";
+	
+					var homeStyle = { color: 'black' },
+					    awayStyle = { color: 'black' },
+					    wonStyle = { color: 'black', fontWeight: 'bold' };
+					if (match.matchResult === "HOME_TEAM_WINS") {
+						homeStyle = wonStyle;
+					} else if (match.matchResult === "AWAY_TEAM_WINS") {
+						awayStyle = wonStyle;
+					}
+	
+					return _react2.default.createElement(
+						_List.List,
+						null,
+						_react2.default.createElement(_List.ListItem, { style: homeStyle,
+							primaryText: homeTeamName,
+							rightAvatar: _react2.default.createElement(
+								_Avatar2.default,
+								null,
+								' ',
+								match.homeTeamGoals,
+								' '
+							),
+							leftAvatar: _react2.default.createElement(_Avatar2.default, { src: homeTeamLogoSrc }) }),
+						_react2.default.createElement(_List.ListItem, { style: awayStyle,
+							primaryText: awayTeamName,
+							rightAvatar: _react2.default.createElement(
+								_Avatar2.default,
+								null,
+								' ',
+								match.awayTeamGoals,
+								' '
+							),
+							leftAvatar: _react2.default.createElement(_Avatar2.default, { src: awayTeamLogoSrc }) })
+					);
+				});
+	
+				var mobileTearSheets = matchNodes.map(function (matchNode, i) {
+					var sheets = [];
+					if (i % 4 == 0) {
+						var sheet = _react2.default.createElement(
+							_MobileTearSheet2.default,
+							{ key: i },
+							matchNodes[i],
+							_react2.default.createElement(_Divider2.default, null),
+							matchNodes[i + 1],
+							_react2.default.createElement(_Divider2.default, null),
+							matchNodes[i + 2],
+							_react2.default.createElement(_Divider2.default, null),
+							matchNodes[i + 3]
+						);
+						sheets.push(sheet);
+					}
+	
+					return sheets;
+				});
+	
+				return _react2.default.createElement(
+					'div',
+					{ style: { display: 'flex', flexWrap: 'wrap' } },
+					mobileTearSheets
+				);
+			}
+		}]);
+	
+		return MatchResult;
+	}(_react2.default.Component);
+	
+	exports.default = MatchResult;
+
+/***/ },
+/* 521 */
+/*!*************************************!*\
   !*** ./~/material-ui/List/index.js ***!
   \*************************************/
 /***/ function(module, exports, __webpack_require__) {
@@ -49886,15 +50757,15 @@
 	});
 	exports.default = exports.makeSelectable = exports.ListItem = exports.List = undefined;
 	
-	var _List2 = __webpack_require__(/*! ./List */ 516);
+	var _List2 = __webpack_require__(/*! ./List */ 522);
 	
 	var _List3 = _interopRequireDefault(_List2);
 	
-	var _ListItem2 = __webpack_require__(/*! ./ListItem */ 519);
+	var _ListItem2 = __webpack_require__(/*! ./ListItem */ 525);
 	
 	var _ListItem3 = _interopRequireDefault(_ListItem2);
 	
-	var _makeSelectable2 = __webpack_require__(/*! ./makeSelectable */ 523);
+	var _makeSelectable2 = __webpack_require__(/*! ./makeSelectable */ 529);
 	
 	var _makeSelectable3 = _interopRequireDefault(_makeSelectable2);
 	
@@ -49906,7 +50777,7 @@
 	exports.default = _List3.default;
 
 /***/ },
-/* 516 */
+/* 522 */
 /*!************************************!*\
   !*** ./~/material-ui/List/List.js ***!
   \************************************/
@@ -49954,7 +50825,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Subheader = __webpack_require__(/*! ../Subheader */ 517);
+	var _Subheader = __webpack_require__(/*! ../Subheader */ 523);
 	
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 	
@@ -50021,7 +50892,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 517 */
+/* 523 */
 /*!******************************************!*\
   !*** ./~/material-ui/Subheader/index.js ***!
   \******************************************/
@@ -50034,7 +50905,7 @@
 	});
 	exports.default = undefined;
 	
-	var _Subheader = __webpack_require__(/*! ./Subheader */ 518);
+	var _Subheader = __webpack_require__(/*! ./Subheader */ 524);
 	
 	var _Subheader2 = _interopRequireDefault(_Subheader);
 	
@@ -50043,7 +50914,7 @@
 	exports.default = _Subheader2.default;
 
 /***/ },
-/* 518 */
+/* 524 */
 /*!**********************************************!*\
   !*** ./~/material-ui/Subheader/Subheader.js ***!
   \**********************************************/
@@ -50131,7 +51002,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 519 */
+/* 525 */
 /*!****************************************!*\
   !*** ./~/material-ui/List/ListItem.js ***!
   \****************************************/
@@ -50201,15 +51072,15 @@
 	
 	var _IconButton2 = _interopRequireDefault(_IconButton);
 	
-	var _expandLess = __webpack_require__(/*! ../svg-icons/navigation/expand-less */ 520);
+	var _expandLess = __webpack_require__(/*! ../svg-icons/navigation/expand-less */ 526);
 	
 	var _expandLess2 = _interopRequireDefault(_expandLess);
 	
-	var _expandMore = __webpack_require__(/*! ../svg-icons/navigation/expand-more */ 521);
+	var _expandMore = __webpack_require__(/*! ../svg-icons/navigation/expand-more */ 527);
 	
 	var _expandMore2 = _interopRequireDefault(_expandMore);
 	
-	var _NestedList = __webpack_require__(/*! ./NestedList */ 522);
+	var _NestedList = __webpack_require__(/*! ./NestedList */ 528);
 	
 	var _NestedList2 = _interopRequireDefault(_NestedList);
 	
@@ -50828,7 +51699,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 520 */
+/* 526 */
 /*!***********************************************************!*\
   !*** ./~/material-ui/svg-icons/navigation/expand-less.js ***!
   \***********************************************************/
@@ -50868,7 +51739,7 @@
 	exports.default = NavigationExpandLess;
 
 /***/ },
-/* 521 */
+/* 527 */
 /*!***********************************************************!*\
   !*** ./~/material-ui/svg-icons/navigation/expand-more.js ***!
   \***********************************************************/
@@ -50908,7 +51779,7 @@
 	exports.default = NavigationExpandMore;
 
 /***/ },
-/* 522 */
+/* 528 */
 /*!******************************************!*\
   !*** ./~/material-ui/List/NestedList.js ***!
   \******************************************/
@@ -50924,7 +51795,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _List = __webpack_require__(/*! ./List */ 516);
+	var _List = __webpack_require__(/*! ./List */ 522);
 	
 	var _List2 = _interopRequireDefault(_List);
 	
@@ -50966,7 +51837,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 523 */
+/* 529 */
 /*!**********************************************!*\
   !*** ./~/material-ui/List/makeSelectable.js ***!
   \**********************************************/
@@ -51139,7 +52010,7 @@
 	exports.default = makeSelectable;
 
 /***/ },
-/* 524 */
+/* 530 */
 /*!****************************************!*\
   !*** ./~/material-ui/Divider/index.js ***!
   \****************************************/
@@ -51152,7 +52023,7 @@
 	});
 	exports.default = undefined;
 	
-	var _Divider = __webpack_require__(/*! ./Divider */ 525);
+	var _Divider = __webpack_require__(/*! ./Divider */ 531);
 	
 	var _Divider2 = _interopRequireDefault(_Divider);
 	
@@ -51161,7 +52032,7 @@
 	exports.default = _Divider2.default;
 
 /***/ },
-/* 525 */
+/* 531 */
 /*!******************************************!*\
   !*** ./~/material-ui/Divider/Divider.js ***!
   \******************************************/
@@ -51239,7 +52110,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 526 */
+/* 532 */
 /*!*******************************************!*\
   !*** ./src/client/app/MobileTearSheet.js ***!
   \*******************************************/
@@ -51330,7 +52201,7 @@
 	exports.default = MobileTearSheet;
 
 /***/ },
-/* 527 */
+/* 533 */
 /*!*******************************************!*\
   !*** ./src/client/app/UpcomingMatches.js ***!
   \*******************************************/
@@ -51348,21 +52219,21 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _List = __webpack_require__(/*! material-ui/List */ 515);
+	var _List = __webpack_require__(/*! material-ui/List */ 521);
 	
 	var _Avatar = __webpack_require__(/*! material-ui/Avatar */ 500);
 	
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 	
-	var _Divider = __webpack_require__(/*! material-ui/Divider */ 524);
+	var _Divider = __webpack_require__(/*! material-ui/Divider */ 530);
 	
 	var _Divider2 = _interopRequireDefault(_Divider);
 	
-	var _MobileTearSheet = __webpack_require__(/*! ./MobileTearSheet */ 526);
+	var _MobileTearSheet = __webpack_require__(/*! ./MobileTearSheet */ 532);
 	
 	var _MobileTearSheet2 = _interopRequireDefault(_MobileTearSheet);
 	
-	var _TextField = __webpack_require__(/*! material-ui/TextField */ 528);
+	var _TextField = __webpack_require__(/*! material-ui/TextField */ 534);
 	
 	var _TextField2 = _interopRequireDefault(_TextField);
 	
@@ -51376,7 +52247,7 @@
 	
 	var _Tooltip2 = _interopRequireDefault(_Tooltip);
 	
-	var _Dialog = __webpack_require__(/*! material-ui/Dialog */ 534);
+	var _Dialog = __webpack_require__(/*! material-ui/Dialog */ 540);
 	
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 	
@@ -51660,7 +52531,7 @@
 	exports.default = UpcomingMatches;
 
 /***/ },
-/* 528 */
+/* 534 */
 /*!******************************************!*\
   !*** ./~/material-ui/TextField/index.js ***!
   \******************************************/
@@ -51673,7 +52544,7 @@
 	});
 	exports.default = undefined;
 	
-	var _TextField = __webpack_require__(/*! ./TextField */ 529);
+	var _TextField = __webpack_require__(/*! ./TextField */ 535);
 	
 	var _TextField2 = _interopRequireDefault(_TextField);
 	
@@ -51682,7 +52553,7 @@
 	exports.default = _TextField2.default;
 
 /***/ },
-/* 529 */
+/* 535 */
 /*!**********************************************!*\
   !*** ./~/material-ui/TextField/TextField.js ***!
   \**********************************************/
@@ -51744,19 +52615,19 @@
 	
 	var _transitions2 = _interopRequireDefault(_transitions);
 	
-	var _EnhancedTextarea = __webpack_require__(/*! ./EnhancedTextarea */ 530);
+	var _EnhancedTextarea = __webpack_require__(/*! ./EnhancedTextarea */ 536);
 	
 	var _EnhancedTextarea2 = _interopRequireDefault(_EnhancedTextarea);
 	
-	var _TextFieldHint = __webpack_require__(/*! ./TextFieldHint */ 531);
+	var _TextFieldHint = __webpack_require__(/*! ./TextFieldHint */ 537);
 	
 	var _TextFieldHint2 = _interopRequireDefault(_TextFieldHint);
 	
-	var _TextFieldLabel = __webpack_require__(/*! ./TextFieldLabel */ 532);
+	var _TextFieldLabel = __webpack_require__(/*! ./TextFieldLabel */ 538);
 	
 	var _TextFieldLabel2 = _interopRequireDefault(_TextFieldLabel);
 	
-	var _TextFieldUnderline = __webpack_require__(/*! ./TextFieldUnderline */ 533);
+	var _TextFieldUnderline = __webpack_require__(/*! ./TextFieldUnderline */ 539);
 	
 	var _TextFieldUnderline2 = _interopRequireDefault(_TextFieldUnderline);
 	
@@ -52255,7 +53126,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 530 */
+/* 536 */
 /*!*****************************************************!*\
   !*** ./~/material-ui/TextField/EnhancedTextarea.js ***!
   \*****************************************************/
@@ -52505,7 +53376,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 531 */
+/* 537 */
 /*!**************************************************!*\
   !*** ./~/material-ui/TextField/TextFieldHint.js ***!
   \**************************************************/
@@ -52590,7 +53461,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 532 */
+/* 538 */
 /*!***************************************************!*\
   !*** ./~/material-ui/TextField/TextFieldLabel.js ***!
   \***************************************************/
@@ -52711,7 +53582,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 533 */
+/* 539 */
 /*!*******************************************************!*\
   !*** ./~/material-ui/TextField/TextFieldUnderline.js ***!
   \*******************************************************/
@@ -52851,7 +53722,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 534 */
+/* 540 */
 /*!***************************************!*\
   !*** ./~/material-ui/Dialog/index.js ***!
   \***************************************/
@@ -52864,7 +53735,7 @@
 	});
 	exports.default = undefined;
 	
-	var _Dialog = __webpack_require__(/*! ./Dialog */ 535);
+	var _Dialog = __webpack_require__(/*! ./Dialog */ 541);
 	
 	var _Dialog2 = _interopRequireDefault(_Dialog);
 	
@@ -52873,7 +53744,7 @@
 	exports.default = _Dialog2.default;
 
 /***/ },
-/* 535 */
+/* 541 */
 /*!****************************************!*\
   !*** ./~/material-ui/Dialog/Dialog.js ***!
   \****************************************/
@@ -52937,11 +53808,11 @@
 	
 	var _transitions2 = _interopRequireDefault(_transitions);
 	
-	var _Overlay = __webpack_require__(/*! ../internal/Overlay */ 536);
+	var _Overlay = __webpack_require__(/*! ../internal/Overlay */ 542);
 	
 	var _Overlay2 = _interopRequireDefault(_Overlay);
 	
-	var _RenderToLayer = __webpack_require__(/*! ../internal/RenderToLayer */ 538);
+	var _RenderToLayer = __webpack_require__(/*! ../internal/RenderToLayer */ 544);
 	
 	var _RenderToLayer2 = _interopRequireDefault(_RenderToLayer);
 	
@@ -53469,7 +54340,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 536 */
+/* 542 */
 /*!*******************************************!*\
   !*** ./~/material-ui/internal/Overlay.js ***!
   \*******************************************/
@@ -53521,7 +54392,7 @@
 	
 	var _transitions2 = _interopRequireDefault(_transitions);
 	
-	var _AutoLockScrolling = __webpack_require__(/*! ./AutoLockScrolling */ 537);
+	var _AutoLockScrolling = __webpack_require__(/*! ./AutoLockScrolling */ 543);
 	
 	var _AutoLockScrolling2 = _interopRequireDefault(_AutoLockScrolling);
 	
@@ -53618,7 +54489,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 537 */
+/* 543 */
 /*!*****************************************************!*\
   !*** ./~/material-ui/internal/AutoLockScrolling.js ***!
   \*****************************************************/
@@ -53747,7 +54618,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 538 */
+/* 544 */
 /*!*************************************************!*\
   !*** ./~/material-ui/internal/RenderToLayer.js ***!
   \*************************************************/
@@ -53935,7 +54806,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 539 */
+/* 545 */
 /*!***********************************!*\
   !*** ./src/client/app/Ranking.js ***!
   \***********************************/
@@ -53953,7 +54824,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Table = __webpack_require__(/*! material-ui/Table */ 540);
+	var _Table = __webpack_require__(/*! material-ui/Table */ 546);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -54072,7 +54943,7 @@
 	exports.default = Ranking;
 
 /***/ },
-/* 540 */
+/* 546 */
 /*!**************************************!*\
   !*** ./~/material-ui/Table/index.js ***!
   \**************************************/
@@ -54085,31 +54956,31 @@
 	});
 	exports.default = exports.TableRowColumn = exports.TableRow = exports.TableHeaderColumn = exports.TableHeader = exports.TableFooter = exports.TableBody = exports.Table = undefined;
 	
-	var _Table2 = __webpack_require__(/*! ./Table */ 541);
+	var _Table2 = __webpack_require__(/*! ./Table */ 547);
 	
 	var _Table3 = _interopRequireDefault(_Table2);
 	
-	var _TableBody2 = __webpack_require__(/*! ./TableBody */ 542);
+	var _TableBody2 = __webpack_require__(/*! ./TableBody */ 548);
 	
 	var _TableBody3 = _interopRequireDefault(_TableBody2);
 	
-	var _TableFooter2 = __webpack_require__(/*! ./TableFooter */ 552);
+	var _TableFooter2 = __webpack_require__(/*! ./TableFooter */ 558);
 	
 	var _TableFooter3 = _interopRequireDefault(_TableFooter2);
 	
-	var _TableHeader2 = __webpack_require__(/*! ./TableHeader */ 553);
+	var _TableHeader2 = __webpack_require__(/*! ./TableHeader */ 559);
 	
 	var _TableHeader3 = _interopRequireDefault(_TableHeader2);
 	
-	var _TableHeaderColumn2 = __webpack_require__(/*! ./TableHeaderColumn */ 554);
+	var _TableHeaderColumn2 = __webpack_require__(/*! ./TableHeaderColumn */ 560);
 	
 	var _TableHeaderColumn3 = _interopRequireDefault(_TableHeaderColumn2);
 	
-	var _TableRow2 = __webpack_require__(/*! ./TableRow */ 555);
+	var _TableRow2 = __webpack_require__(/*! ./TableRow */ 561);
 	
 	var _TableRow3 = _interopRequireDefault(_TableRow2);
 	
-	var _TableRowColumn2 = __webpack_require__(/*! ./TableRowColumn */ 550);
+	var _TableRowColumn2 = __webpack_require__(/*! ./TableRowColumn */ 556);
 	
 	var _TableRowColumn3 = _interopRequireDefault(_TableRowColumn2);
 	
@@ -54125,7 +54996,7 @@
 	exports.default = _Table3.default;
 
 /***/ },
-/* 541 */
+/* 547 */
 /*!**************************************!*\
   !*** ./~/material-ui/Table/Table.js ***!
   \**************************************/
@@ -54490,7 +55361,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 542 */
+/* 548 */
 /*!******************************************!*\
   !*** ./~/material-ui/Table/TableBody.js ***!
   \******************************************/
@@ -54502,7 +55373,7 @@
 	  value: true
 	});
 	
-	var _getIterator2 = __webpack_require__(/*! babel-runtime/core-js/get-iterator */ 543);
+	var _getIterator2 = __webpack_require__(/*! babel-runtime/core-js/get-iterator */ 549);
 	
 	var _getIterator3 = _interopRequireDefault(_getIterator2);
 	
@@ -54546,15 +55417,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Checkbox = __webpack_require__(/*! ../Checkbox */ 546);
+	var _Checkbox = __webpack_require__(/*! ../Checkbox */ 552);
 	
 	var _Checkbox2 = _interopRequireDefault(_Checkbox);
 	
-	var _TableRowColumn = __webpack_require__(/*! ./TableRowColumn */ 550);
+	var _TableRowColumn = __webpack_require__(/*! ./TableRowColumn */ 556);
 	
 	var _TableRowColumn2 = _interopRequireDefault(_TableRowColumn);
 	
-	var _ClickAwayListener = __webpack_require__(/*! ../internal/ClickAwayListener */ 551);
+	var _ClickAwayListener = __webpack_require__(/*! ../internal/ClickAwayListener */ 557);
 	
 	var _ClickAwayListener2 = _interopRequireDefault(_ClickAwayListener);
 	
@@ -55024,16 +55895,16 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 543 */
+/* 549 */
 /*!***************************************************************!*\
   !*** ./~/material-ui/~/babel-runtime/core-js/get-iterator.js ***!
   \***************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/get-iterator */ 544), __esModule: true };
+	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/get-iterator */ 550), __esModule: true };
 
 /***/ },
-/* 544 */
+/* 550 */
 /*!****************************************************************************!*\
   !*** ./~/material-ui/~/babel-runtime/~/core-js/library/fn/get-iterator.js ***!
   \****************************************************************************/
@@ -55041,10 +55912,10 @@
 
 	__webpack_require__(/*! ../modules/web.dom.iterable */ 239);
 	__webpack_require__(/*! ../modules/es6.string.iterator */ 227);
-	module.exports = __webpack_require__(/*! ../modules/core.get-iterator */ 545);
+	module.exports = __webpack_require__(/*! ../modules/core.get-iterator */ 551);
 
 /***/ },
-/* 545 */
+/* 551 */
 /*!**************************************************************************************!*\
   !*** ./~/material-ui/~/babel-runtime/~/core-js/library/modules/core.get-iterator.js ***!
   \**************************************************************************************/
@@ -55059,7 +55930,7 @@
 	};
 
 /***/ },
-/* 546 */
+/* 552 */
 /*!*****************************************!*\
   !*** ./~/material-ui/Checkbox/index.js ***!
   \*****************************************/
@@ -55072,7 +55943,7 @@
 	});
 	exports.default = undefined;
 	
-	var _Checkbox = __webpack_require__(/*! ./Checkbox */ 547);
+	var _Checkbox = __webpack_require__(/*! ./Checkbox */ 553);
 	
 	var _Checkbox2 = _interopRequireDefault(_Checkbox);
 	
@@ -55081,7 +55952,7 @@
 	exports.default = _Checkbox2.default;
 
 /***/ },
-/* 547 */
+/* 553 */
 /*!********************************************!*\
   !*** ./~/material-ui/Checkbox/Checkbox.js ***!
   \********************************************/
@@ -55137,11 +56008,11 @@
 	
 	var _transitions2 = _interopRequireDefault(_transitions);
 	
-	var _checkBoxOutlineBlank = __webpack_require__(/*! ../svg-icons/toggle/check-box-outline-blank */ 548);
+	var _checkBoxOutlineBlank = __webpack_require__(/*! ../svg-icons/toggle/check-box-outline-blank */ 554);
 	
 	var _checkBoxOutlineBlank2 = _interopRequireDefault(_checkBoxOutlineBlank);
 	
-	var _checkBox = __webpack_require__(/*! ../svg-icons/toggle/check-box */ 549);
+	var _checkBox = __webpack_require__(/*! ../svg-icons/toggle/check-box */ 555);
 	
 	var _checkBox2 = _interopRequireDefault(_checkBox);
 	
@@ -55382,7 +56253,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 548 */
+/* 554 */
 /*!*******************************************************************!*\
   !*** ./~/material-ui/svg-icons/toggle/check-box-outline-blank.js ***!
   \*******************************************************************/
@@ -55422,7 +56293,7 @@
 	exports.default = ToggleCheckBoxOutlineBlank;
 
 /***/ },
-/* 549 */
+/* 555 */
 /*!*****************************************************!*\
   !*** ./~/material-ui/svg-icons/toggle/check-box.js ***!
   \*****************************************************/
@@ -55462,7 +56333,7 @@
 	exports.default = ToggleCheckBox;
 
 /***/ },
-/* 550 */
+/* 556 */
 /*!***********************************************!*\
   !*** ./~/material-ui/Table/TableRowColumn.js ***!
   \***********************************************/
@@ -55650,7 +56521,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 551 */
+/* 557 */
 /*!*****************************************************!*\
   !*** ./~/material-ui/internal/ClickAwayListener.js ***!
   \*****************************************************/
@@ -55784,7 +56655,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 552 */
+/* 558 */
 /*!********************************************!*\
   !*** ./~/material-ui/Table/TableFooter.js ***!
   \********************************************/
@@ -55836,7 +56707,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _TableRowColumn = __webpack_require__(/*! ./TableRowColumn */ 550);
+	var _TableRowColumn = __webpack_require__(/*! ./TableRowColumn */ 556);
 	
 	var _TableRowColumn2 = _interopRequireDefault(_TableRowColumn);
 	
@@ -55943,7 +56814,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 553 */
+/* 559 */
 /*!********************************************!*\
   !*** ./~/material-ui/Table/TableHeader.js ***!
   \********************************************/
@@ -55983,11 +56854,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Checkbox = __webpack_require__(/*! ../Checkbox */ 546);
+	var _Checkbox = __webpack_require__(/*! ../Checkbox */ 552);
 	
 	var _Checkbox2 = _interopRequireDefault(_Checkbox);
 	
-	var _TableHeaderColumn = __webpack_require__(/*! ./TableHeaderColumn */ 554);
+	var _TableHeaderColumn = __webpack_require__(/*! ./TableHeaderColumn */ 560);
 	
 	var _TableHeaderColumn2 = _interopRequireDefault(_TableHeaderColumn);
 	
@@ -56198,7 +57069,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 554 */
+/* 560 */
 /*!**************************************************!*\
   !*** ./~/material-ui/Table/TableHeaderColumn.js ***!
   \**************************************************/
@@ -56405,7 +57276,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 555 */
+/* 561 */
 /*!*****************************************!*\
   !*** ./~/material-ui/Table/TableRow.js ***!
   \*****************************************/
@@ -56688,7 +57559,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
 
 /***/ },
-/* 556 */
+/* 562 */
 /*!**********************************!*\
   !*** ./src/client/app/MyBets.js ***!
   \**********************************/
@@ -56706,7 +57577,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Table = __webpack_require__(/*! material-ui/Table */ 540);
+	var _Table = __webpack_require__(/*! material-ui/Table */ 546);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -56873,7 +57744,7 @@
 	exports.default = MyBets;
 
 /***/ },
-/* 557 */
+/* 563 */
 /*!************************************!*\
   !*** ./src/client/app/NotFound.js ***!
   \************************************/
@@ -56940,877 +57811,6 @@
 	}(_react2.default.Component);
 	
 	exports.default = NotFound;
-
-/***/ },
-/* 558 */
-/*!*************************************!*\
-  !*** ./~/material-ui/Tabs/index.js ***!
-  \*************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = exports.Tabs = exports.Tab = undefined;
-	
-	var _Tab2 = __webpack_require__(/*! ./Tab */ 559);
-	
-	var _Tab3 = _interopRequireDefault(_Tab2);
-	
-	var _Tabs2 = __webpack_require__(/*! ./Tabs */ 560);
-	
-	var _Tabs3 = _interopRequireDefault(_Tabs2);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.Tab = _Tab3.default;
-	exports.Tabs = _Tabs3.default;
-	exports.default = _Tabs3.default;
-
-/***/ },
-/* 559 */
-/*!***********************************!*\
-  !*** ./~/material-ui/Tabs/Tab.js ***!
-  \***********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _extends2 = __webpack_require__(/*! babel-runtime/helpers/extends */ 174);
-	
-	var _extends3 = _interopRequireDefault(_extends2);
-	
-	var _objectWithoutProperties2 = __webpack_require__(/*! babel-runtime/helpers/objectWithoutProperties */ 212);
-	
-	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-	
-	var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ 213);
-	
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-	
-	var _classCallCheck2 = __webpack_require__(/*! babel-runtime/helpers/classCallCheck */ 218);
-	
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-	
-	var _createClass2 = __webpack_require__(/*! babel-runtime/helpers/createClass */ 219);
-	
-	var _createClass3 = _interopRequireDefault(_createClass2);
-	
-	var _possibleConstructorReturn2 = __webpack_require__(/*! babel-runtime/helpers/possibleConstructorReturn */ 223);
-	
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-	
-	var _inherits2 = __webpack_require__(/*! babel-runtime/helpers/inherits */ 258);
-	
-	var _inherits3 = _interopRequireDefault(_inherits2);
-	
-	var _simpleAssign = __webpack_require__(/*! simple-assign */ 266);
-	
-	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _EnhancedButton = __webpack_require__(/*! ../internal/EnhancedButton */ 272);
-	
-	var _EnhancedButton2 = _interopRequireDefault(_EnhancedButton);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function getStyles(props, context) {
-	  var tabs = context.muiTheme.tabs;
-	
-	
-	  return {
-	    root: {
-	      color: props.selected ? tabs.selectedTextColor : tabs.textColor,
-	      fontWeight: 500,
-	      fontSize: 14,
-	      width: props.width,
-	      textTransform: 'uppercase',
-	      padding: 0
-	    },
-	    button: {
-	      display: 'flex',
-	      flexDirection: 'column',
-	      alignItems: 'center',
-	      justifyContent: 'center',
-	      height: props.label && props.icon ? 72 : 48
-	    }
-	  };
-	}
-	
-	var Tab = function (_Component) {
-	  (0, _inherits3.default)(Tab, _Component);
-	
-	  function Tab() {
-	    var _ref;
-	
-	    var _temp, _this, _ret;
-	
-	    (0, _classCallCheck3.default)(this, Tab);
-	
-	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	      args[_key] = arguments[_key];
-	    }
-	
-	    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Tab.__proto__ || (0, _getPrototypeOf2.default)(Tab)).call.apply(_ref, [this].concat(args))), _this), _this.handleTouchTap = function (event) {
-	      if (_this.props.onTouchTap) {
-	        _this.props.onTouchTap(_this.props.value, event, _this);
-	      }
-	    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
-	  }
-	
-	  (0, _createClass3.default)(Tab, [{
-	    key: 'render',
-	    value: function render() {
-	      var _props = this.props;
-	      var icon = _props.icon;
-	      var index = _props.index;
-	      var onActive = _props.onActive;
-	      var onTouchTap = _props.onTouchTap;
-	      var selected = _props.selected;
-	      var label = _props.label;
-	      var style = _props.style;
-	      var value = _props.value;
-	      var width = _props.width;
-	      var other = (0, _objectWithoutProperties3.default)(_props, ['icon', 'index', 'onActive', 'onTouchTap', 'selected', 'label', 'style', 'value', 'width']);
-	
-	
-	      var styles = getStyles(this.props, this.context);
-	
-	      var iconElement = void 0;
-	      if (icon && _react2.default.isValidElement(icon)) {
-	        var iconProps = {
-	          style: {
-	            fontSize: 24,
-	            color: styles.root.color,
-	            marginBottom: label ? 5 : 0
-	          }
-	        };
-	        // If it's svg icon set color via props
-	        if (icon.type.muiName !== 'FontIcon') {
-	          iconProps.color = styles.root.color;
-	        }
-	        iconElement = _react2.default.cloneElement(icon, iconProps);
-	      }
-	
-	      var rippleOpacity = 0.3;
-	      var rippleColor = this.context.muiTheme.tabs.selectedTextColor;
-	
-	      return _react2.default.createElement(
-	        _EnhancedButton2.default,
-	        (0, _extends3.default)({}, other, {
-	          style: (0, _simpleAssign2.default)(styles.root, style),
-	          focusRippleColor: rippleColor,
-	          touchRippleColor: rippleColor,
-	          focusRippleOpacity: rippleOpacity,
-	          touchRippleOpacity: rippleOpacity,
-	          onTouchTap: this.handleTouchTap
-	        }),
-	        _react2.default.createElement(
-	          'div',
-	          { style: styles.button },
-	          iconElement,
-	          label
-	        )
-	      );
-	    }
-	  }]);
-	  return Tab;
-	}(_react.Component);
-	
-	Tab.muiName = 'Tab';
-	Tab.contextTypes = {
-	  muiTheme: _react.PropTypes.object.isRequired
-	};
-	process.env.NODE_ENV !== "production" ? Tab.propTypes = {
-	  /**
-	   * The css class name of the root element.
-	   */
-	  className: _react.PropTypes.string,
-	  /**
-	   * Sets the icon of the tab, you can pass `FontIcon` or `SvgIcon` elements.
-	   */
-	  icon: _react.PropTypes.node,
-	  /**
-	   * @ignore
-	   */
-	  index: _react.PropTypes.any,
-	  /**
-	   * Sets the text value of the tab item to the string specified.
-	   */
-	  label: _react.PropTypes.node,
-	  /**
-	   * Fired when the active tab changes by touch or tap.
-	   * Use this event to specify any functionality when an active tab changes.
-	   * For example - we are using this to route to home when the third tab becomes active.
-	   * This function will always recieve the active tab as it\'s first argument.
-	   */
-	  onActive: _react.PropTypes.func,
-	  /**
-	   * @ignore
-	   * This property is overriden by the Tabs component.
-	   */
-	  onTouchTap: _react.PropTypes.func,
-	  /**
-	   * @ignore
-	   * Defines if the current tab is selected or not.
-	   * The Tabs component is responsible for setting this property.
-	   */
-	  selected: _react.PropTypes.bool,
-	  /**
-	   * Override the inline-styles of the root element.
-	   */
-	  style: _react.PropTypes.object,
-	  /**
-	   * If value prop passed to Tabs component, this value prop is also required.
-	   * It assigns a value to the tab so that it can be selected by the Tabs.
-	   */
-	  value: _react.PropTypes.any,
-	  /**
-	   * @ignore
-	   * This property is overriden by the Tabs component.
-	   */
-	  width: _react.PropTypes.string
-	} : void 0;
-	exports.default = Tab;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
-
-/***/ },
-/* 560 */
-/*!************************************!*\
-  !*** ./~/material-ui/Tabs/Tabs.js ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _extends2 = __webpack_require__(/*! babel-runtime/helpers/extends */ 174);
-	
-	var _extends3 = _interopRequireDefault(_extends2);
-	
-	var _objectWithoutProperties2 = __webpack_require__(/*! babel-runtime/helpers/objectWithoutProperties */ 212);
-	
-	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-	
-	var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ 213);
-	
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-	
-	var _classCallCheck2 = __webpack_require__(/*! babel-runtime/helpers/classCallCheck */ 218);
-	
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-	
-	var _createClass2 = __webpack_require__(/*! babel-runtime/helpers/createClass */ 219);
-	
-	var _createClass3 = _interopRequireDefault(_createClass2);
-	
-	var _possibleConstructorReturn2 = __webpack_require__(/*! babel-runtime/helpers/possibleConstructorReturn */ 223);
-	
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-	
-	var _inherits2 = __webpack_require__(/*! babel-runtime/helpers/inherits */ 258);
-	
-	var _inherits3 = _interopRequireDefault(_inherits2);
-	
-	var _simpleAssign = __webpack_require__(/*! simple-assign */ 266);
-	
-	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _warning = __webpack_require__(/*! warning */ 338);
-	
-	var _warning2 = _interopRequireDefault(_warning);
-	
-	var _TabTemplate = __webpack_require__(/*! ./TabTemplate */ 561);
-	
-	var _TabTemplate2 = _interopRequireDefault(_TabTemplate);
-	
-	var _InkBar = __webpack_require__(/*! ./InkBar */ 562);
-	
-	var _InkBar2 = _interopRequireDefault(_InkBar);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function getStyles(props, context) {
-	  var tabs = context.muiTheme.tabs;
-	
-	
-	  return {
-	    tabItemContainer: {
-	      width: '100%',
-	      backgroundColor: tabs.backgroundColor,
-	      whiteSpace: 'nowrap'
-	    }
-	  };
-	}
-	
-	var Tabs = function (_Component) {
-	  (0, _inherits3.default)(Tabs, _Component);
-	
-	  function Tabs() {
-	    var _ref;
-	
-	    var _temp, _this, _ret;
-	
-	    (0, _classCallCheck3.default)(this, Tabs);
-	
-	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	      args[_key] = arguments[_key];
-	    }
-	
-	    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Tabs.__proto__ || (0, _getPrototypeOf2.default)(Tabs)).call.apply(_ref, [this].concat(args))), _this), _this.state = { selectedIndex: 0 }, _this.handleTabTouchTap = function (value, event, tab) {
-	      var valueLink = _this.getValueLink(_this.props);
-	      var index = tab.props.index;
-	
-	      if (valueLink.value && valueLink.value !== value || _this.state.selectedIndex !== index) {
-	        valueLink.requestChange(value, event, tab);
-	      }
-	
-	      _this.setState({ selectedIndex: index });
-	
-	      if (tab.props.onActive) {
-	        tab.props.onActive(tab);
-	      }
-	    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
-	  }
-	
-	  (0, _createClass3.default)(Tabs, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      var valueLink = this.getValueLink(this.props);
-	      var initialIndex = this.props.initialSelectedIndex;
-	
-	      this.setState({
-	        selectedIndex: valueLink.value !== undefined ? this.getSelectedIndex(this.props) : initialIndex < this.getTabCount() ? initialIndex : 0
-	      });
-	    }
-	  }, {
-	    key: 'componentWillReceiveProps',
-	    value: function componentWillReceiveProps(newProps, nextContext) {
-	      var valueLink = this.getValueLink(newProps);
-	      var newState = {
-	        muiTheme: nextContext.muiTheme || this.context.muiTheme
-	      };
-	
-	      if (valueLink.value !== undefined) {
-	        newState.selectedIndex = this.getSelectedIndex(newProps);
-	      }
-	
-	      this.setState(newState);
-	    }
-	  }, {
-	    key: 'getTabs',
-	    value: function getTabs() {
-	      var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props;
-	
-	      var tabs = [];
-	
-	      _react.Children.forEach(props.children, function (tab) {
-	        if ((0, _react.isValidElement)(tab)) {
-	          tabs.push(tab);
-	        }
-	      });
-	
-	      return tabs;
-	    }
-	  }, {
-	    key: 'getTabCount',
-	    value: function getTabCount() {
-	      return this.getTabs().length;
-	    }
-	
-	    // Do not use outside of this component, it will be removed once valueLink is deprecated
-	
-	  }, {
-	    key: 'getValueLink',
-	    value: function getValueLink(props) {
-	      return props.valueLink || {
-	        value: props.value,
-	        requestChange: props.onChange
-	      };
-	    }
-	  }, {
-	    key: 'getSelectedIndex',
-	    value: function getSelectedIndex(props) {
-	      var valueLink = this.getValueLink(props);
-	      var selectedIndex = -1;
-	
-	      this.getTabs(props).forEach(function (tab, index) {
-	        if (valueLink.value === tab.props.value) {
-	          selectedIndex = index;
-	        }
-	      });
-	
-	      return selectedIndex;
-	    }
-	  }, {
-	    key: 'getSelected',
-	    value: function getSelected(tab, index) {
-	      var valueLink = this.getValueLink(this.props);
-	      return valueLink.value ? valueLink.value === tab.props.value : this.state.selectedIndex === index;
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this2 = this;
-	
-	      var _props = this.props;
-	      var contentContainerClassName = _props.contentContainerClassName;
-	      var contentContainerStyle = _props.contentContainerStyle;
-	      var initialSelectedIndex = _props.initialSelectedIndex;
-	      var inkBarStyle = _props.inkBarStyle;
-	      var onChange = _props.onChange;
-	      var style = _props.style;
-	      var tabItemContainerStyle = _props.tabItemContainerStyle;
-	      var tabTemplate = _props.tabTemplate;
-	      var tabTemplateStyle = _props.tabTemplateStyle;
-	      var other = (0, _objectWithoutProperties3.default)(_props, ['contentContainerClassName', 'contentContainerStyle', 'initialSelectedIndex', 'inkBarStyle', 'onChange', 'style', 'tabItemContainerStyle', 'tabTemplate', 'tabTemplateStyle']);
-	      var prepareStyles = this.context.muiTheme.prepareStyles;
-	
-	      var styles = getStyles(this.props, this.context);
-	      var valueLink = this.getValueLink(this.props);
-	      var tabValue = valueLink.value;
-	      var tabContent = [];
-	      var width = 100 / this.getTabCount();
-	
-	      var tabs = this.getTabs().map(function (tab, index) {
-	        process.env.NODE_ENV !== "production" ? (0, _warning2.default)(tab.type && tab.type.muiName === 'Tab', 'Tabs only accepts Tab Components as children.\n        Found ' + (tab.type.muiName || tab.type) + ' as child number ' + (index + 1) + ' of Tabs') : void 0;
-	
-	        process.env.NODE_ENV !== "production" ? (0, _warning2.default)(!tabValue || tab.props.value !== undefined, 'Tabs value prop has been passed, but Tab ' + index + '\n        does not have a value prop. Needs value if Tabs is going\n        to be a controlled component.') : void 0;
-	
-	        tabContent.push(tab.props.children ? (0, _react.createElement)(tabTemplate || _TabTemplate2.default, {
-	          key: index,
-	          selected: _this2.getSelected(tab, index),
-	          style: tabTemplateStyle
-	        }, tab.props.children) : undefined);
-	
-	        return (0, _react.cloneElement)(tab, {
-	          key: index,
-	          index: index,
-	          selected: _this2.getSelected(tab, index),
-	          width: width + '%',
-	          onTouchTap: _this2.handleTabTouchTap
-	        });
-	      });
-	
-	      var inkBar = this.state.selectedIndex !== -1 ? _react2.default.createElement(_InkBar2.default, {
-	        left: width * this.state.selectedIndex + '%',
-	        width: width + '%',
-	        style: inkBarStyle
-	      }) : null;
-	
-	      var inkBarContainerWidth = tabItemContainerStyle ? tabItemContainerStyle.width : '100%';
-	
-	      return _react2.default.createElement(
-	        'div',
-	        (0, _extends3.default)({
-	          style: prepareStyles((0, _simpleAssign2.default)({}, style))
-	        }, other),
-	        _react2.default.createElement(
-	          'div',
-	          { style: prepareStyles((0, _simpleAssign2.default)(styles.tabItemContainer, tabItemContainerStyle)) },
-	          tabs
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { style: { width: inkBarContainerWidth } },
-	          inkBar
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          {
-	            style: prepareStyles((0, _simpleAssign2.default)({}, contentContainerStyle)),
-	            className: contentContainerClassName
-	          },
-	          tabContent
-	        )
-	      );
-	    }
-	  }]);
-	  return Tabs;
-	}(_react.Component);
-	
-	Tabs.defaultProps = {
-	  initialSelectedIndex: 0,
-	  onChange: function onChange() {}
-	};
-	Tabs.contextTypes = {
-	  muiTheme: _react.PropTypes.object.isRequired
-	};
-	process.env.NODE_ENV !== "production" ? Tabs.propTypes = {
-	  /**
-	   * Should be used to pass `Tab` components.
-	   */
-	  children: _react.PropTypes.node,
-	  /**
-	   * The css class name of the root element.
-	   */
-	  className: _react.PropTypes.string,
-	  /**
-	   * The css class name of the content's container.
-	   */
-	  contentContainerClassName: _react.PropTypes.string,
-	  /**
-	   * Override the inline-styles of the content's container.
-	   */
-	  contentContainerStyle: _react.PropTypes.object,
-	  /**
-	   * Specify initial visible tab index.
-	   * If `initialSelectedIndex` is set but larger than the total amount of specified tabs,
-	   * `initialSelectedIndex` will revert back to default.
-	   * If `initialSlectedIndex` is set to any negative value, no tab will be selected intially.
-	   */
-	  initialSelectedIndex: _react.PropTypes.number,
-	  /**
-	   * Override the inline-styles of the InkBar.
-	   */
-	  inkBarStyle: _react.PropTypes.object,
-	  /**
-	   * Called when the selected value change.
-	   */
-	  onChange: _react.PropTypes.func,
-	  /**
-	   * Override the inline-styles of the root element.
-	   */
-	  style: _react.PropTypes.object,
-	  /**
-	   * Override the inline-styles of the tab-labels container.
-	   */
-	  tabItemContainerStyle: _react.PropTypes.object,
-	  /**
-	   * Override the default tab template used to wrap the content of each tab element.
-	   */
-	  tabTemplate: _react.PropTypes.func,
-	  /**
-	   * Override the inline-styles of the tab template.
-	   */
-	  tabTemplateStyle: _react.PropTypes.object,
-	  /**
-	   * Makes Tabs controllable and selects the tab whose value prop matches this prop.
-	   */
-	  value: _react.PropTypes.any
-	} : void 0;
-	exports.default = Tabs;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
-
-/***/ },
-/* 561 */
-/*!*******************************************!*\
-  !*** ./~/material-ui/Tabs/TabTemplate.js ***!
-  \*******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _simpleAssign = __webpack_require__(/*! simple-assign */ 266);
-	
-	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var styles = {
-	  width: '100%',
-	  position: 'relative',
-	  textAlign: 'initial'
-	};
-	
-	var TabTemplate = function TabTemplate(_ref) {
-	  var children = _ref.children;
-	  var selected = _ref.selected;
-	  var style = _ref.style;
-	
-	  var templateStyle = (0, _simpleAssign2.default)({}, styles, style);
-	  if (!selected) {
-	    templateStyle.height = 0;
-	    templateStyle.overflow = 'hidden';
-	  }
-	
-	  return _react2.default.createElement(
-	    'div',
-	    { style: templateStyle },
-	    children
-	  );
-	};
-	
-	process.env.NODE_ENV !== "production" ? TabTemplate.propTypes = {
-	  children: _react.PropTypes.node,
-	  selected: _react.PropTypes.bool,
-	  style: _react.PropTypes.object
-	} : void 0;
-	
-	exports.default = TabTemplate;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
-
-/***/ },
-/* 562 */
-/*!**************************************!*\
-  !*** ./~/material-ui/Tabs/InkBar.js ***!
-  \**************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ 213);
-	
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-	
-	var _classCallCheck2 = __webpack_require__(/*! babel-runtime/helpers/classCallCheck */ 218);
-	
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-	
-	var _createClass2 = __webpack_require__(/*! babel-runtime/helpers/createClass */ 219);
-	
-	var _createClass3 = _interopRequireDefault(_createClass2);
-	
-	var _possibleConstructorReturn2 = __webpack_require__(/*! babel-runtime/helpers/possibleConstructorReturn */ 223);
-	
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-	
-	var _inherits2 = __webpack_require__(/*! babel-runtime/helpers/inherits */ 258);
-	
-	var _inherits3 = _interopRequireDefault(_inherits2);
-	
-	var _simpleAssign = __webpack_require__(/*! simple-assign */ 266);
-	
-	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _transitions = __webpack_require__(/*! ../styles/transitions */ 267);
-	
-	var _transitions2 = _interopRequireDefault(_transitions);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function getStyles(props, context) {
-	  var inkBar = context.muiTheme.inkBar;
-	
-	
-	  return {
-	    root: {
-	      left: props.left,
-	      width: props.width,
-	      bottom: 0,
-	      display: 'block',
-	      backgroundColor: props.color || inkBar.backgroundColor,
-	      height: 2,
-	      marginTop: -2,
-	      position: 'relative',
-	      transition: _transitions2.default.easeOut('1s', 'left')
-	    }
-	  };
-	}
-	
-	var InkBar = function (_Component) {
-	  (0, _inherits3.default)(InkBar, _Component);
-	
-	  function InkBar() {
-	    (0, _classCallCheck3.default)(this, InkBar);
-	    return (0, _possibleConstructorReturn3.default)(this, (InkBar.__proto__ || (0, _getPrototypeOf2.default)(InkBar)).apply(this, arguments));
-	  }
-	
-	  (0, _createClass3.default)(InkBar, [{
-	    key: 'render',
-	    value: function render() {
-	      var style = this.props.style;
-	      var prepareStyles = this.context.muiTheme.prepareStyles;
-	
-	      var styles = getStyles(this.props, this.context);
-	
-	      return _react2.default.createElement('div', { style: prepareStyles((0, _simpleAssign2.default)(styles.root, style)) });
-	    }
-	  }]);
-	  return InkBar;
-	}(_react.Component);
-	
-	InkBar.contextTypes = {
-	  muiTheme: _react.PropTypes.object.isRequired
-	};
-	process.env.NODE_ENV !== "production" ? InkBar.propTypes = {
-	  color: _react.PropTypes.string,
-	  left: _react.PropTypes.string.isRequired,
-	  /**
-	   * Override the inline-styles of the root element.
-	   */
-	  style: _react.PropTypes.object,
-	  width: _react.PropTypes.string.isRequired
-	} : void 0;
-	exports.default = InkBar;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! (webpack)/~/node-libs-browser/~/process/browser.js */ 3)))
-
-/***/ },
-/* 563 */
-/*!****************************************!*\
-  !*** ./src/client/app/MatchResults.js ***!
-  \****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _List = __webpack_require__(/*! material-ui/List */ 515);
-	
-	var _Avatar = __webpack_require__(/*! material-ui/Avatar */ 500);
-	
-	var _Avatar2 = _interopRequireDefault(_Avatar);
-	
-	var _Divider = __webpack_require__(/*! material-ui/Divider */ 524);
-	
-	var _Divider2 = _interopRequireDefault(_Divider);
-	
-	var _MobileTearSheet = __webpack_require__(/*! ./MobileTearSheet */ 526);
-	
-	var _MobileTearSheet2 = _interopRequireDefault(_MobileTearSheet);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var MatchResult = function (_React$Component) {
-		_inherits(MatchResult, _React$Component);
-	
-		function MatchResult(props) {
-			_classCallCheck(this, MatchResult);
-	
-			var _this = _possibleConstructorReturn(this, (MatchResult.__proto__ || Object.getPrototypeOf(MatchResult)).call(this, props));
-	
-			_this.state = {
-				matches: [],
-				actualRound: Number(props.round)
-			};
-			return _this;
-		}
-	
-		_createClass(MatchResult, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {
-				var _this2 = this;
-	
-				fetch(window.backendHost + '/api/matches/search/findByRound?round=' + this.state.actualRound).then(function (response) {
-					return response.json();
-				}).then(function (json) {
-					_this2.setState({ matches: json._embedded.matches });
-				});
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				var matchNodes = this.state.matches.map(function (match, i) {
-					var homeTeamName = match.homeTeamName;
-					var awayTeamName = match.awayTeamName;
-					var homeTeamLogoSrc = "/images/logos/" + homeTeamName.replace("/", "") + ".png";
-					var awayTeamLogoSrc = "/images/logos/" + awayTeamName + ".png";
-	
-					var homeStyle = { color: 'black' },
-					    awayStyle = { color: 'black' },
-					    wonStyle = { color: 'black', fontWeight: 'bold' };
-					if (match.matchResult === "HOME_TEAM_WINS") {
-						homeStyle = wonStyle;
-					} else if (match.matchResult === "AWAY_TEAM_WINS") {
-						awayStyle = wonStyle;
-					}
-	
-					return _react2.default.createElement(
-						_List.List,
-						null,
-						_react2.default.createElement(_List.ListItem, { style: homeStyle,
-							primaryText: homeTeamName,
-							rightAvatar: _react2.default.createElement(
-								_Avatar2.default,
-								null,
-								' ',
-								match.homeTeamGoals,
-								' '
-							),
-							leftAvatar: _react2.default.createElement(_Avatar2.default, { src: homeTeamLogoSrc }) }),
-						_react2.default.createElement(_List.ListItem, { style: awayStyle,
-							primaryText: awayTeamName,
-							rightAvatar: _react2.default.createElement(
-								_Avatar2.default,
-								null,
-								' ',
-								match.awayTeamGoals,
-								' '
-							),
-							leftAvatar: _react2.default.createElement(_Avatar2.default, { src: awayTeamLogoSrc }) })
-					);
-				});
-	
-				var mobileTearSheets = matchNodes.map(function (matchNode, i) {
-					var sheets = [];
-					if (i % 4 == 0) {
-						var sheet = _react2.default.createElement(
-							_MobileTearSheet2.default,
-							{ key: i },
-							matchNodes[i],
-							_react2.default.createElement(_Divider2.default, null),
-							matchNodes[i + 1],
-							_react2.default.createElement(_Divider2.default, null),
-							matchNodes[i + 2],
-							_react2.default.createElement(_Divider2.default, null),
-							matchNodes[i + 3]
-						);
-						sheets.push(sheet);
-					}
-	
-					return sheets;
-				});
-	
-				return _react2.default.createElement(
-					'div',
-					{ style: { display: 'flex', flexWrap: 'wrap' } },
-					mobileTearSheets
-				);
-			}
-		}]);
-	
-		return MatchResult;
-	}(_react2.default.Component);
-	
-	exports.default = MatchResult;
 
 /***/ }
 /******/ ]);
