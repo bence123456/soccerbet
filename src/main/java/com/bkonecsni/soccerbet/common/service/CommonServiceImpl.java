@@ -98,4 +98,12 @@ public class CommonServiceImpl implements CommonService{
 
         return retrofit.create(FootballDataService.class);
     }
+
+    public void setBetRepository(BetRepository betRepository) {
+        this.betRepository = betRepository;
+    }
+
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 }
