@@ -33,7 +33,7 @@ class MyBets extends React.Component {
             var match = bet.match;
 
             return (
-                <TableRow key={i} style={{color: 'black'}} >
+                <TableRow key={i} style={{color: 'white'}} >
                     <TableRowColumn> {i + 1} </TableRowColumn>
                     <TableRowColumn> {match.homeTeamName} - {match.awayTeamName} </TableRowColumn>
                     <TableRowColumn> {match.round} </TableRowColumn>

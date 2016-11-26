@@ -79,8 +79,6 @@
 	
 	var _Layout = __webpack_require__(/*! react-mdl/lib/Layout */ 408);
 	
-	var _Footer = __webpack_require__(/*! react-mdl/lib/Footer */ 423);
-	
 	var _Home = __webpack_require__(/*! ./Home */ 428);
 	
 	var _Home2 = _interopRequireDefault(_Home);
@@ -193,36 +191,36 @@
 	var Container = function Container(props) {
 	    return _react2.default.createElement(
 	        'div',
-	        { style: { height: '1560px', position: 'relative' } },
+	        null,
 	        _react2.default.createElement(
-	            _Layout.Layout,
-	            { style: { background: 'url(/images/4.jpg) center / cover' } },
+	            'div',
+	            { style: { height: '700px', position: 'relative' } },
 	            _react2.default.createElement(
-	                _Layout.Header,
-	                { transparent: true, title: _react2.default.createElement(_FlatButton2.default, { label: 'DFB-Pokal Tippj\xE1t\xE9k', containerElement: _react2.default.createElement(_reactRouter.Link, { to: '/' }), style: { color: 'green' } }), style: { color: 'green' } },
+	                _Layout.Layout,
+	                { style: { background: 'url(/images/4.jpg) center / cover' } },
 	                _react2.default.createElement(
-	                    _Layout.Navigation,
-	                    null,
-	                    _react2.default.createElement(Nav, null)
-	                )
-	            ),
-	            _react2.default.createElement(
-	                _Layout.Content,
-	                null,
-	                props.children
-	            ),
-	            _react2.default.createElement(
-	                _Footer.Footer,
-	                { size: 'mini' },
-	                _react2.default.createElement(
-	                    _Footer.FooterSection,
-	                    { type: 'middle' },
+	                    _Layout.Header,
+	                    { transparent: true, title: _react2.default.createElement(_FlatButton2.default, { label: 'DFB-Pokal Tippj\xE1t\xE9k', containerElement: _react2.default.createElement(_reactRouter.Link, { to: '/' }), style: { color: 'green' } }) },
 	                    _react2.default.createElement(
-	                        _Footer.FooterLinkList,
+	                        _Layout.Navigation,
 	                        null,
-	                        _react2.default.createElement(FooterLinks, null)
+	                        _react2.default.createElement(Nav, null)
 	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _Layout.Content,
+	                    null,
+	                    props.children
 	                )
+	            )
+	        ),
+	        _react2.default.createElement(
+	            'div',
+	            { style: { height: '89px', backgroundColor: 'grey' } },
+	            _react2.default.createElement(
+	                'footer',
+	                null,
+	                _react2.default.createElement(FooterLinks, null)
 	            )
 	        )
 	    );
@@ -243,7 +241,7 @@
 	                    null,
 	                    _react2.default.createElement(
 	                        'a',
-	                        { href: 'http://www.dfb.de/dfb-pokal/start/' },
+	                        { href: 'http://www.dfb.de/dfb-pokal/start/', style: { color: 'black' } },
 	                        _react2.default.createElement('img', { src: '/images/dfb-pokal.png', alt: 'DFB-Pokal', width: '30', height: '30' }),
 	                        _react2.default.createElement('br', null),
 	                        ' A DFB-Pokal Hivatalos oldala'
@@ -254,7 +252,7 @@
 	                    null,
 	                    _react2.default.createElement(
 	                        'a',
-	                        { href: 'https://github.com/bence123456/soccerbet' },
+	                        { href: 'https://github.com/bence123456/soccerbet', style: { color: 'black' } },
 	                        _react2.default.createElement('img', { src: '/images/github.png', alt: 'GitHub', width: '60', height: '30' }),
 	                        _react2.default.createElement('br', null),
 	                        ' GitHub Link'
@@ -28031,9 +28029,10 @@
 	      borderColor: palette.borderColor
 	    },
 	    tableHeaderColumn: {
-	      textColor: palette.accent3Color,
+	      textColor: 'black',
 	      height: 56,
-	      spacing: 24
+	      spacing: 24,
+	      textWeight: 'bold'
 	    },
 	    tableRow: {
 	      hoverColor: palette.accent2Color,
@@ -57632,7 +57631,7 @@
 	
 	                return _react2.default.createElement(
 	                    _Table.TableRow,
-	                    { key: i, style: { color: 'black' } },
+	                    { key: i, style: { color: 'white' } },
 	                    _react2.default.createElement(
 	                        _Table.TableRowColumn,
 	                        null,

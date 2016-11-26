@@ -8,7 +8,6 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 import { Router, Route, Link, IndexRoute, hashHistory } from 'react-router'
 import { Header, Content, Navigation, Layout } from 'react-mdl/lib/Layout';
-import { Footer, FooterLinkList, FooterSection } from 'react-mdl/lib/Footer';
 
 import Home from './Home';
 import FinishedMatchResults from './FinishedMatchResults';
@@ -55,9 +54,10 @@ const Nav = () => (
 )
 
 const Container = (props) => (
-    <div style={{height: '1560px', position: 'relative'}}>
-        <Layout style={{background: 'url(/images/4.jpg) center / cover'}}>
-            <Header transparent title={<FlatButton label="DFB-Pokal Tippjáték" containerElement={<Link to="/"/>} style={{color: 'green'}} />} style={{color: 'green'}}>
+<div>
+    <div style={{height: '700px', position: 'relative'}}>
+        <Layout style={{ background: 'url(/images/4.jpg) center / cover'}}>
+            <Header transparent title={<FlatButton label="DFB-Pokal Tippjáték" containerElement={<Link to="/"/>} style={{color: 'green'}} />} >
                 <Navigation>
                     <Nav />
                 </Navigation>
@@ -65,15 +65,14 @@ const Container = (props) => (
             <Content>
                 {props.children}
             </Content>
-            <Footer size="mini">
-                <FooterSection type="middle">
-                    <FooterLinkList>
-                        <FooterLinks />
-                    </FooterLinkList>
-                </FooterSection>
-            </Footer>
         </Layout>
     </div>
+    <div style={{height: '89px', backgroundColor: 'grey'}} >
+        <footer>
+            <FooterLinks />
+        </footer>
+    </div>
+</div>
 )
 
 const FooterLinks = () => (
@@ -81,13 +80,13 @@ const FooterLinks = () => (
         <tbody>
             <tr>
                 <td>
-                    <a href="http://www.dfb.de/dfb-pokal/start/">
+                    <a href="http://www.dfb.de/dfb-pokal/start/" style={{color: 'black' }} >
                         <img src="/images/dfb-pokal.png" alt="DFB-Pokal" width="30" height="30" />
                         <br/> A DFB-Pokal Hivatalos oldala
                     </a>
                 </td>
                 <td>
-                    <a href="https://github.com/bence123456/soccerbet">
+                    <a href="https://github.com/bence123456/soccerbet" style={{color: 'black' }}>
                         <img src="/images/github.png" alt="GitHub" width="60" height="30" />
                         <br/> GitHub Link
                     </a>
