@@ -156,7 +156,7 @@ class UpcomingMatches extends React.Component {
             }
         });
 
-        if (this.state.matches.length >= 0) {
+        if (this.state.matches.length > 0) {
             const actions = [
                 <FlatButton label="Rendben" primary={true} onTouchTap={this.handleClose} />
             ];

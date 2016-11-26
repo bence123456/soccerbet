@@ -28031,8 +28031,7 @@
 	    tableHeaderColumn: {
 	      textColor: 'black',
 	      height: 56,
-	      spacing: 24,
-	      textWeight: 'bold'
+	      spacing: 24
 	    },
 	    tableRow: {
 	      hoverColor: palette.accent2Color,
@@ -52436,7 +52435,7 @@
 	                }
 	            });
 	
-	            if (this.state.matches.length >= 0) {
+	            if (this.state.matches.length > 0) {
 	                var actions = [_react2.default.createElement(_FlatButton2.default, { label: 'Rendben', primary: true, onTouchTap: this.handleClose })];
 	
 	                return _react2.default.createElement(
