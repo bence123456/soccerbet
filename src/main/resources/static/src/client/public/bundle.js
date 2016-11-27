@@ -79,7 +79,7 @@
 	
 	var _Layout = __webpack_require__(/*! react-mdl/lib/Layout */ 408);
 	
-	var _Home = __webpack_require__(/*! ./Home */ 428);
+	var _Home = __webpack_require__(/*! ./Home */ 423);
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
@@ -39253,313 +39253,6 @@
 
 /***/ },
 /* 423 */
-/*!*****************************************!*\
-  !*** ./~/react-mdl/lib/Footer/index.js ***!
-  \*****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _Footer = __webpack_require__(/*! ./Footer */ 424);
-	
-	Object.defineProperty(exports, 'Footer', {
-	  enumerable: true,
-	  get: function get() {
-	    return _interopRequireDefault(_Footer).default;
-	  }
-	});
-	
-	var _Section = __webpack_require__(/*! ./Section */ 425);
-	
-	Object.defineProperty(exports, 'FooterSection', {
-	  enumerable: true,
-	  get: function get() {
-	    return _interopRequireDefault(_Section).default;
-	  }
-	});
-	
-	var _DropDownSection = __webpack_require__(/*! ./DropDownSection */ 426);
-	
-	Object.defineProperty(exports, 'FooterDropDownSection', {
-	  enumerable: true,
-	  get: function get() {
-	    return _interopRequireDefault(_DropDownSection).default;
-	  }
-	});
-	
-	var _LinkList = __webpack_require__(/*! ./LinkList */ 427);
-	
-	Object.defineProperty(exports, 'FooterLinkList', {
-	  enumerable: true,
-	  get: function get() {
-	    return _interopRequireDefault(_LinkList).default;
-	  }
-	});
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/***/ },
-/* 424 */
-/*!******************************************!*\
-  !*** ./~/react-mdl/lib/Footer/Footer.js ***!
-  \******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _classnames = __webpack_require__(/*! classnames */ 410);
-	
-	var _classnames2 = _interopRequireDefault(_classnames);
-	
-	var _cloneChildren = __webpack_require__(/*! ../utils/cloneChildren */ 422);
-	
-	var _cloneChildren2 = _interopRequireDefault(_cloneChildren);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-	
-	var Footer = function Footer(props) {
-	    var className = props.className;
-	    var size = props.size;
-	    var children = props.children;
-	
-	    var otherProps = _objectWithoutProperties(props, ['className', 'size', 'children']);
-	
-	    var classes = (0, _classnames2.default)(_defineProperty({}, 'mdl-' + size + '-footer', true), className);
-	
-	    return _react2.default.createElement(
-	        'footer',
-	        _extends({ className: classes }, otherProps),
-	        (0, _cloneChildren2.default)(children, { size: size })
-	    );
-	};
-	
-	Footer.propTypes = {
-	    className: _react.PropTypes.string,
-	    size: _react.PropTypes.oneOf(['mini', 'mega'])
-	};
-	Footer.defaultProps = {
-	    size: 'mega'
-	};
-	
-	exports.default = Footer;
-
-/***/ },
-/* 425 */
-/*!*******************************************!*\
-  !*** ./~/react-mdl/lib/Footer/Section.js ***!
-  \*******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _classnames = __webpack_require__(/*! classnames */ 410);
-	
-	var _classnames2 = _interopRequireDefault(_classnames);
-	
-	var _cloneChildren = __webpack_require__(/*! ../utils/cloneChildren */ 422);
-	
-	var _cloneChildren2 = _interopRequireDefault(_cloneChildren);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-	
-	var Section = function Section(props) {
-	    var className = props.className;
-	    var logo = props.logo;
-	    var size = props.size;
-	    var type = props.type;
-	    var children = props.children;
-	
-	    var otherProps = _objectWithoutProperties(props, ['className', 'logo', 'size', 'type', 'children']);
-	
-	    var classes = (0, _classnames2.default)(_defineProperty({}, 'mdl-' + size + '-footer__' + type + '-section', true), className);
-	
-	    return _react2.default.createElement(
-	        'div',
-	        _extends({ className: classes }, otherProps),
-	        logo ? _react2.default.createElement(
-	            'div',
-	            { className: 'mdl-logo' },
-	            logo
-	        ) : null,
-	        (0, _cloneChildren2.default)(children, { size: size })
-	    );
-	};
-	
-	Section.propTypes = {
-	    className: _react.PropTypes.string,
-	    logo: _react.PropTypes.node,
-	    size: _react.PropTypes.oneOf(['mini', 'mega']),
-	    type: _react.PropTypes.oneOf(['top', 'middle', 'bottom', 'left', 'right'])
-	};
-	Section.defaultProps = {
-	    size: 'mega',
-	    type: 'left'
-	};
-	
-	exports.default = Section;
-
-/***/ },
-/* 426 */
-/*!***************************************************!*\
-  !*** ./~/react-mdl/lib/Footer/DropDownSection.js ***!
-  \***************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _classnames = __webpack_require__(/*! classnames */ 410);
-	
-	var _classnames2 = _interopRequireDefault(_classnames);
-	
-	var _cloneChildren = __webpack_require__(/*! ../utils/cloneChildren */ 422);
-	
-	var _cloneChildren2 = _interopRequireDefault(_cloneChildren);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-	
-	var DropDownSection = function DropDownSection(props) {
-	    var className = props.className;
-	    var size = props.size;
-	    var title = props.title;
-	    var children = props.children;
-	
-	    var otherProps = _objectWithoutProperties(props, ['className', 'size', 'title', 'children']);
-	
-	    var classes = (0, _classnames2.default)(_defineProperty({}, 'mdl-' + size + '-footer__drop-down-section', true), className);
-	
-	    return _react2.default.createElement(
-	        'div',
-	        _extends({ className: classes }, otherProps),
-	        _react2.default.createElement('input', { className: 'mdl-' + size + '-footer__heading-checkbox', type: 'checkbox', defaultChecked: true }),
-	        _react2.default.createElement(
-	            'h1',
-	            { className: 'mdl-' + size + '-footer__heading' },
-	            title
-	        ),
-	        (0, _cloneChildren2.default)(children, { size: size })
-	    );
-	};
-	
-	DropDownSection.propTypes = {
-	    className: _react.PropTypes.string,
-	    size: _react.PropTypes.oneOf(['mini', 'mega']),
-	    title: _react.PropTypes.node.isRequired
-	};
-	DropDownSection.defaultProps = {
-	    size: 'mega'
-	};
-	
-	exports.default = DropDownSection;
-
-/***/ },
-/* 427 */
-/*!********************************************!*\
-  !*** ./~/react-mdl/lib/Footer/LinkList.js ***!
-  \********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _classnames = __webpack_require__(/*! classnames */ 410);
-	
-	var _classnames2 = _interopRequireDefault(_classnames);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-	
-	var LinkList = function LinkList(props) {
-	    var className = props.className;
-	    var size = props.size;
-	    var children = props.children;
-	
-	    var otherProps = _objectWithoutProperties(props, ['className', 'size', 'children']);
-	
-	    var classes = (0, _classnames2.default)(_defineProperty({}, 'mdl-' + size + '-footer__link-list', true), className);
-	
-	    return _react2.default.createElement(
-	        'ul',
-	        _extends({ className: classes }, otherProps),
-	        _react2.default.Children.map(children, function (child) {
-	            return _react2.default.createElement(
-	                'li',
-	                null,
-	                child
-	            );
-	        })
-	    );
-	};
-	
-	LinkList.propTypes = {
-	    className: _react.PropTypes.string,
-	    size: _react.PropTypes.oneOf(['mini', 'mega'])
-	};
-	LinkList.defaultProps = {
-	    size: 'mega'
-	};
-	
-	exports.default = LinkList;
-
-/***/ },
-/* 428 */
 /*!********************************!*\
   !*** ./src/client/app/Home.js ***!
   \********************************/
@@ -39583,9 +39276,9 @@
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 352);
 	
-	var _Card = __webpack_require__(/*! react-mdl/lib/Card */ 429);
+	var _Card = __webpack_require__(/*! react-mdl/lib/Card */ 424);
 	
-	var _lib = __webpack_require__(/*! react-mdl/lib */ 435);
+	var _lib = __webpack_require__(/*! react-mdl/lib */ 430);
 	
 	var _Grid = __webpack_require__(/*! react-mdl/lib/Grid */ 453);
 	
@@ -39710,7 +39403,7 @@
 	exports.default = Home;
 
 /***/ },
-/* 429 */
+/* 424 */
 /*!***************************************!*\
   !*** ./~/react-mdl/lib/Card/index.js ***!
   \***************************************/
@@ -39723,7 +39416,7 @@
 	});
 	exports.CardMedia = exports.CardActions = exports.CardTitle = exports.CardMenu = exports.CardText = exports.Card = undefined;
 	
-	var _Card = __webpack_require__(/*! ./Card */ 430);
+	var _Card = __webpack_require__(/*! ./Card */ 425);
 	
 	Object.defineProperty(exports, 'Card', {
 	  enumerable: true,
@@ -39732,7 +39425,7 @@
 	  }
 	});
 	
-	var _CardTitle = __webpack_require__(/*! ./CardTitle */ 433);
+	var _CardTitle = __webpack_require__(/*! ./CardTitle */ 428);
 	
 	Object.defineProperty(exports, 'CardTitle', {
 	  enumerable: true,
@@ -39741,7 +39434,7 @@
 	  }
 	});
 	
-	var _CardActions = __webpack_require__(/*! ./CardActions */ 434);
+	var _CardActions = __webpack_require__(/*! ./CardActions */ 429);
 	
 	Object.defineProperty(exports, 'CardActions', {
 	  enumerable: true,
@@ -39761,7 +39454,7 @@
 	var CardMedia = exports.CardMedia = (0, _basicClassCreator2.default)('CardMedia', 'mdl-card__media');
 
 /***/ },
-/* 430 */
+/* 425 */
 /*!**************************************!*\
   !*** ./~/react-mdl/lib/Card/Card.js ***!
   \**************************************/
@@ -39783,11 +39476,11 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _clamp = __webpack_require__(/*! clamp */ 431);
+	var _clamp = __webpack_require__(/*! clamp */ 426);
 	
 	var _clamp2 = _interopRequireDefault(_clamp);
 	
-	var _shadows = __webpack_require__(/*! ../utils/shadows */ 432);
+	var _shadows = __webpack_require__(/*! ../utils/shadows */ 427);
 	
 	var _shadows2 = _interopRequireDefault(_shadows);
 	
@@ -39826,7 +39519,7 @@
 	exports.default = Card;
 
 /***/ },
-/* 431 */
+/* 426 */
 /*!**************************************!*\
   !*** ./~/react-mdl/~/clamp/index.js ***!
   \**************************************/
@@ -39842,7 +39535,7 @@
 
 
 /***/ },
-/* 432 */
+/* 427 */
 /*!******************************************!*\
   !*** ./~/react-mdl/lib/utils/shadows.js ***!
   \******************************************/
@@ -39859,7 +39552,7 @@
 	});
 
 /***/ },
-/* 433 */
+/* 428 */
 /*!*******************************************!*\
   !*** ./~/react-mdl/lib/Card/CardTitle.js ***!
   \*******************************************/
@@ -39919,7 +39612,7 @@
 	exports.default = CardTitle;
 
 /***/ },
-/* 434 */
+/* 429 */
 /*!*********************************************!*\
   !*** ./~/react-mdl/lib/Card/CardActions.js ***!
   \*********************************************/
@@ -39973,7 +39666,7 @@
 	exports.default = CardActions;
 
 /***/ },
-/* 435 */
+/* 430 */
 /*!**********************************!*\
   !*** ./~/react-mdl/lib/index.js ***!
   \**********************************/
@@ -40003,7 +39696,7 @@
 	    }
 	});
 	
-	var _Badge = __webpack_require__(/*! ./Badge */ 436);
+	var _Badge = __webpack_require__(/*! ./Badge */ 431);
 	
 	Object.defineProperty(exports, 'Badge', {
 	    enumerable: true,
@@ -40012,7 +39705,7 @@
 	    }
 	});
 	
-	var _Button = __webpack_require__(/*! ./Button */ 437);
+	var _Button = __webpack_require__(/*! ./Button */ 432);
 	
 	Object.defineProperty(exports, 'Button', {
 	    enumerable: true,
@@ -40021,7 +39714,7 @@
 	    }
 	});
 	
-	var _Card = __webpack_require__(/*! ./Card */ 429);
+	var _Card = __webpack_require__(/*! ./Card */ 424);
 	
 	Object.defineProperty(exports, 'Card', {
 	    enumerable: true,
@@ -40060,7 +39753,7 @@
 	    }
 	});
 	
-	var _Checkbox = __webpack_require__(/*! ./Checkbox */ 438);
+	var _Checkbox = __webpack_require__(/*! ./Checkbox */ 433);
 	
 	Object.defineProperty(exports, 'Checkbox', {
 	    enumerable: true,
@@ -40069,7 +39762,7 @@
 	    }
 	});
 	
-	var _Chip = __webpack_require__(/*! ./Chip */ 439);
+	var _Chip = __webpack_require__(/*! ./Chip */ 434);
 	
 	Object.defineProperty(exports, 'Chip', {
 	    enumerable: true,
@@ -40084,7 +39777,7 @@
 	    }
 	});
 	
-	var _DataTable = __webpack_require__(/*! ./DataTable */ 441);
+	var _DataTable = __webpack_require__(/*! ./DataTable */ 436);
 	
 	Object.defineProperty(exports, 'DataTable', {
 	    enumerable: true,
@@ -40105,7 +39798,7 @@
 	    }
 	});
 	
-	var _Dialog = __webpack_require__(/*! ./Dialog */ 448);
+	var _Dialog = __webpack_require__(/*! ./Dialog */ 443);
 	
 	Object.defineProperty(exports, 'Dialog', {
 	    enumerable: true,
@@ -40132,7 +39825,7 @@
 	    }
 	});
 	
-	var _FABButton = __webpack_require__(/*! ./FABButton */ 452);
+	var _FABButton = __webpack_require__(/*! ./FABButton */ 447);
 	
 	Object.defineProperty(exports, 'FABButton', {
 	    enumerable: true,
@@ -40141,7 +39834,7 @@
 	    }
 	});
 	
-	var _Footer = __webpack_require__(/*! ./Footer */ 423);
+	var _Footer = __webpack_require__(/*! ./Footer */ 448);
 	
 	Object.defineProperty(exports, 'Footer', {
 	    enumerable: true,
@@ -40183,7 +39876,7 @@
 	    }
 	});
 	
-	var _Icon = __webpack_require__(/*! ./Icon */ 440);
+	var _Icon = __webpack_require__(/*! ./Icon */ 435);
 	
 	Object.defineProperty(exports, 'Icon', {
 	    enumerable: true,
@@ -40396,7 +40089,7 @@
 	    }
 	});
 	
-	var _Tooltip = __webpack_require__(/*! ./Tooltip */ 443);
+	var _Tooltip = __webpack_require__(/*! ./Tooltip */ 438);
 	
 	Object.defineProperty(exports, 'Tooltip', {
 	    enumerable: true,
@@ -40408,7 +40101,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 436 */
+/* 431 */
 /*!****************************************!*\
   !*** ./~/react-mdl/lib/Badge/index.js ***!
   \****************************************/
@@ -40473,7 +40166,7 @@
 	exports.default = Badge;
 
 /***/ },
-/* 437 */
+/* 432 */
 /*!***********************************!*\
   !*** ./~/react-mdl/lib/Button.js ***!
   \***********************************/
@@ -40572,7 +40265,7 @@
 	exports.default = (0, _mdlUpgrade2.default)(Button);
 
 /***/ },
-/* 438 */
+/* 433 */
 /*!*************************************!*\
   !*** ./~/react-mdl/lib/Checkbox.js ***!
   \*************************************/
@@ -40680,7 +40373,7 @@
 	exports.default = (0, _mdlUpgrade2.default)(Checkbox);
 
 /***/ },
-/* 439 */
+/* 434 */
 /*!***************************************!*\
   !*** ./~/react-mdl/lib/Chip/index.js ***!
   \***************************************/
@@ -40707,7 +40400,7 @@
 	
 	var _basicClassCreator2 = _interopRequireDefault(_basicClassCreator);
 	
-	var _Icon = __webpack_require__(/*! ../Icon */ 440);
+	var _Icon = __webpack_require__(/*! ../Icon */ 435);
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
@@ -40776,7 +40469,7 @@
 	Chip.propTypes = propTypes;
 
 /***/ },
-/* 440 */
+/* 435 */
 /*!***************************************!*\
   !*** ./~/react-mdl/lib/Icon/index.js ***!
   \***************************************/
@@ -40827,7 +40520,7 @@
 	exports.default = Icon;
 
 /***/ },
-/* 441 */
+/* 436 */
 /*!********************************************!*\
   !*** ./~/react-mdl/lib/DataTable/index.js ***!
   \********************************************/
@@ -40839,7 +40532,7 @@
 	  value: true
 	});
 	
-	var _TableHeader = __webpack_require__(/*! ./TableHeader */ 442);
+	var _TableHeader = __webpack_require__(/*! ./TableHeader */ 437);
 	
 	Object.defineProperty(exports, 'TableHeader', {
 	  enumerable: true,
@@ -40848,7 +40541,7 @@
 	  }
 	});
 	
-	var _Table = __webpack_require__(/*! ./Table */ 444);
+	var _Table = __webpack_require__(/*! ./Table */ 439);
 	
 	Object.defineProperty(exports, 'Table', {
 	  enumerable: true,
@@ -40866,7 +40559,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 442 */
+/* 437 */
 /*!**************************************************!*\
   !*** ./~/react-mdl/lib/DataTable/TableHeader.js ***!
   \**************************************************/
@@ -40888,7 +40581,7 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _Tooltip = __webpack_require__(/*! ../Tooltip */ 443);
+	var _Tooltip = __webpack_require__(/*! ../Tooltip */ 438);
 	
 	var _Tooltip2 = _interopRequireDefault(_Tooltip);
 	
@@ -40949,7 +40642,7 @@
 	exports.default = TableHeader;
 
 /***/ },
-/* 443 */
+/* 438 */
 /*!************************************!*\
   !*** ./~/react-mdl/lib/Tooltip.js ***!
   \************************************/
@@ -41035,7 +40728,7 @@
 	exports.default = Tooltip;
 
 /***/ },
-/* 444 */
+/* 439 */
 /*!********************************************!*\
   !*** ./~/react-mdl/lib/DataTable/Table.js ***!
   \********************************************/
@@ -41060,23 +40753,23 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _clamp = __webpack_require__(/*! clamp */ 431);
+	var _clamp = __webpack_require__(/*! clamp */ 426);
 	
 	var _clamp2 = _interopRequireDefault(_clamp);
 	
-	var _shadows = __webpack_require__(/*! ../utils/shadows */ 432);
+	var _shadows = __webpack_require__(/*! ../utils/shadows */ 427);
 	
 	var _shadows2 = _interopRequireDefault(_shadows);
 	
-	var _TableHeader = __webpack_require__(/*! ./TableHeader */ 442);
+	var _TableHeader = __webpack_require__(/*! ./TableHeader */ 437);
 	
 	var _TableHeader2 = _interopRequireDefault(_TableHeader);
 	
-	var _Selectable = __webpack_require__(/*! ./Selectable */ 445);
+	var _Selectable = __webpack_require__(/*! ./Selectable */ 440);
 	
 	var _Selectable2 = _interopRequireDefault(_Selectable);
 	
-	var _Sortable = __webpack_require__(/*! ./Sortable */ 447);
+	var _Sortable = __webpack_require__(/*! ./Sortable */ 442);
 	
 	var _Sortable2 = _interopRequireDefault(_Sortable);
 	
@@ -41198,7 +40891,7 @@
 	var UndecoratedTable = exports.UndecoratedTable = Table;
 
 /***/ },
-/* 445 */
+/* 440 */
 /*!*************************************************!*\
   !*** ./~/react-mdl/lib/DataTable/Selectable.js ***!
   \*************************************************/
@@ -41222,15 +40915,15 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _lodash = __webpack_require__(/*! lodash.isequal */ 446);
+	var _lodash = __webpack_require__(/*! lodash.isequal */ 441);
 	
 	var _lodash2 = _interopRequireDefault(_lodash);
 	
-	var _TableHeader = __webpack_require__(/*! ./TableHeader */ 442);
+	var _TableHeader = __webpack_require__(/*! ./TableHeader */ 437);
 	
 	var _TableHeader2 = _interopRequireDefault(_TableHeader);
 	
-	var _Checkbox = __webpack_require__(/*! ../Checkbox */ 438);
+	var _Checkbox = __webpack_require__(/*! ../Checkbox */ 433);
 	
 	var _Checkbox2 = _interopRequireDefault(_Checkbox);
 	
@@ -41428,7 +41121,7 @@
 	};
 
 /***/ },
-/* 446 */
+/* 441 */
 /*!***********************************************!*\
   !*** ./~/react-mdl/~/lodash.isequal/index.js ***!
   \***********************************************/
@@ -43087,7 +42780,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(/*! ./../../../webpack/buildin/module.js */ 304)(module)))
 
 /***/ },
-/* 447 */
+/* 442 */
 /*!***********************************************!*\
   !*** ./~/react-mdl/lib/DataTable/Sortable.js ***!
   \***********************************************/
@@ -43111,7 +42804,7 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _TableHeader = __webpack_require__(/*! ./TableHeader */ 442);
+	var _TableHeader = __webpack_require__(/*! ./TableHeader */ 437);
 	
 	var _TableHeader2 = _interopRequireDefault(_TableHeader);
 	
@@ -43285,7 +42978,7 @@
 	};
 
 /***/ },
-/* 448 */
+/* 443 */
 /*!*****************************************!*\
   !*** ./~/react-mdl/lib/Dialog/index.js ***!
   \*****************************************/
@@ -43298,7 +42991,7 @@
 	});
 	exports.DialogActions = exports.DialogContent = exports.DialogTitle = exports.Dialog = undefined;
 	
-	var _Dialog = __webpack_require__(/*! ./Dialog */ 449);
+	var _Dialog = __webpack_require__(/*! ./Dialog */ 444);
 	
 	Object.defineProperty(exports, 'Dialog', {
 	  enumerable: true,
@@ -43307,7 +43000,7 @@
 	  }
 	});
 	
-	var _DialogTitle = __webpack_require__(/*! ./DialogTitle */ 450);
+	var _DialogTitle = __webpack_require__(/*! ./DialogTitle */ 445);
 	
 	Object.defineProperty(exports, 'DialogTitle', {
 	  enumerable: true,
@@ -43316,7 +43009,7 @@
 	  }
 	});
 	
-	var _DialogActions = __webpack_require__(/*! ./DialogActions */ 451);
+	var _DialogActions = __webpack_require__(/*! ./DialogActions */ 446);
 	
 	Object.defineProperty(exports, 'DialogActions', {
 	  enumerable: true,
@@ -43334,7 +43027,7 @@
 	var DialogContent = exports.DialogContent = (0, _basicClassCreator2.default)('DialogContent', 'mdl-dialog__content');
 
 /***/ },
-/* 449 */
+/* 444 */
 /*!******************************************!*\
   !*** ./~/react-mdl/lib/Dialog/Dialog.js ***!
   \******************************************/
@@ -43461,7 +43154,7 @@
 	exports.default = Dialog;
 
 /***/ },
-/* 450 */
+/* 445 */
 /*!***********************************************!*\
   !*** ./~/react-mdl/lib/Dialog/DialogTitle.js ***!
   \***********************************************/
@@ -43507,7 +43200,7 @@
 	exports.default = DialogTitle;
 
 /***/ },
-/* 451 */
+/* 446 */
 /*!*************************************************!*\
   !*** ./~/react-mdl/lib/Dialog/DialogActions.js ***!
   \*************************************************/
@@ -43559,7 +43252,7 @@
 	exports.default = DialogActions;
 
 /***/ },
-/* 452 */
+/* 447 */
 /*!**************************************!*\
   !*** ./~/react-mdl/lib/FABButton.js ***!
   \**************************************/
@@ -43581,7 +43274,7 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _Button = __webpack_require__(/*! ./Button */ 437);
+	var _Button = __webpack_require__(/*! ./Button */ 432);
 	
 	var _Button2 = _interopRequireDefault(_Button);
 	
@@ -43613,6 +43306,313 @@
 	};
 	
 	exports.default = FABButton;
+
+/***/ },
+/* 448 */
+/*!*****************************************!*\
+  !*** ./~/react-mdl/lib/Footer/index.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _Footer = __webpack_require__(/*! ./Footer */ 449);
+	
+	Object.defineProperty(exports, 'Footer', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_Footer).default;
+	  }
+	});
+	
+	var _Section = __webpack_require__(/*! ./Section */ 450);
+	
+	Object.defineProperty(exports, 'FooterSection', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_Section).default;
+	  }
+	});
+	
+	var _DropDownSection = __webpack_require__(/*! ./DropDownSection */ 451);
+	
+	Object.defineProperty(exports, 'FooterDropDownSection', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_DropDownSection).default;
+	  }
+	});
+	
+	var _LinkList = __webpack_require__(/*! ./LinkList */ 452);
+	
+	Object.defineProperty(exports, 'FooterLinkList', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_LinkList).default;
+	  }
+	});
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ },
+/* 449 */
+/*!******************************************!*\
+  !*** ./~/react-mdl/lib/Footer/Footer.js ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _classnames = __webpack_require__(/*! classnames */ 410);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _cloneChildren = __webpack_require__(/*! ../utils/cloneChildren */ 422);
+	
+	var _cloneChildren2 = _interopRequireDefault(_cloneChildren);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	var Footer = function Footer(props) {
+	    var className = props.className;
+	    var size = props.size;
+	    var children = props.children;
+	
+	    var otherProps = _objectWithoutProperties(props, ['className', 'size', 'children']);
+	
+	    var classes = (0, _classnames2.default)(_defineProperty({}, 'mdl-' + size + '-footer', true), className);
+	
+	    return _react2.default.createElement(
+	        'footer',
+	        _extends({ className: classes }, otherProps),
+	        (0, _cloneChildren2.default)(children, { size: size })
+	    );
+	};
+	
+	Footer.propTypes = {
+	    className: _react.PropTypes.string,
+	    size: _react.PropTypes.oneOf(['mini', 'mega'])
+	};
+	Footer.defaultProps = {
+	    size: 'mega'
+	};
+	
+	exports.default = Footer;
+
+/***/ },
+/* 450 */
+/*!*******************************************!*\
+  !*** ./~/react-mdl/lib/Footer/Section.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _classnames = __webpack_require__(/*! classnames */ 410);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _cloneChildren = __webpack_require__(/*! ../utils/cloneChildren */ 422);
+	
+	var _cloneChildren2 = _interopRequireDefault(_cloneChildren);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	var Section = function Section(props) {
+	    var className = props.className;
+	    var logo = props.logo;
+	    var size = props.size;
+	    var type = props.type;
+	    var children = props.children;
+	
+	    var otherProps = _objectWithoutProperties(props, ['className', 'logo', 'size', 'type', 'children']);
+	
+	    var classes = (0, _classnames2.default)(_defineProperty({}, 'mdl-' + size + '-footer__' + type + '-section', true), className);
+	
+	    return _react2.default.createElement(
+	        'div',
+	        _extends({ className: classes }, otherProps),
+	        logo ? _react2.default.createElement(
+	            'div',
+	            { className: 'mdl-logo' },
+	            logo
+	        ) : null,
+	        (0, _cloneChildren2.default)(children, { size: size })
+	    );
+	};
+	
+	Section.propTypes = {
+	    className: _react.PropTypes.string,
+	    logo: _react.PropTypes.node,
+	    size: _react.PropTypes.oneOf(['mini', 'mega']),
+	    type: _react.PropTypes.oneOf(['top', 'middle', 'bottom', 'left', 'right'])
+	};
+	Section.defaultProps = {
+	    size: 'mega',
+	    type: 'left'
+	};
+	
+	exports.default = Section;
+
+/***/ },
+/* 451 */
+/*!***************************************************!*\
+  !*** ./~/react-mdl/lib/Footer/DropDownSection.js ***!
+  \***************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _classnames = __webpack_require__(/*! classnames */ 410);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _cloneChildren = __webpack_require__(/*! ../utils/cloneChildren */ 422);
+	
+	var _cloneChildren2 = _interopRequireDefault(_cloneChildren);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	var DropDownSection = function DropDownSection(props) {
+	    var className = props.className;
+	    var size = props.size;
+	    var title = props.title;
+	    var children = props.children;
+	
+	    var otherProps = _objectWithoutProperties(props, ['className', 'size', 'title', 'children']);
+	
+	    var classes = (0, _classnames2.default)(_defineProperty({}, 'mdl-' + size + '-footer__drop-down-section', true), className);
+	
+	    return _react2.default.createElement(
+	        'div',
+	        _extends({ className: classes }, otherProps),
+	        _react2.default.createElement('input', { className: 'mdl-' + size + '-footer__heading-checkbox', type: 'checkbox', defaultChecked: true }),
+	        _react2.default.createElement(
+	            'h1',
+	            { className: 'mdl-' + size + '-footer__heading' },
+	            title
+	        ),
+	        (0, _cloneChildren2.default)(children, { size: size })
+	    );
+	};
+	
+	DropDownSection.propTypes = {
+	    className: _react.PropTypes.string,
+	    size: _react.PropTypes.oneOf(['mini', 'mega']),
+	    title: _react.PropTypes.node.isRequired
+	};
+	DropDownSection.defaultProps = {
+	    size: 'mega'
+	};
+	
+	exports.default = DropDownSection;
+
+/***/ },
+/* 452 */
+/*!********************************************!*\
+  !*** ./~/react-mdl/lib/Footer/LinkList.js ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _classnames = __webpack_require__(/*! classnames */ 410);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	var LinkList = function LinkList(props) {
+	    var className = props.className;
+	    var size = props.size;
+	    var children = props.children;
+	
+	    var otherProps = _objectWithoutProperties(props, ['className', 'size', 'children']);
+	
+	    var classes = (0, _classnames2.default)(_defineProperty({}, 'mdl-' + size + '-footer__link-list', true), className);
+	
+	    return _react2.default.createElement(
+	        'ul',
+	        _extends({ className: classes }, otherProps),
+	        _react2.default.Children.map(children, function (child) {
+	            return _react2.default.createElement(
+	                'li',
+	                null,
+	                child
+	            );
+	        })
+	    );
+	};
+	
+	LinkList.propTypes = {
+	    className: _react.PropTypes.string,
+	    size: _react.PropTypes.oneOf(['mini', 'mega'])
+	};
+	LinkList.defaultProps = {
+	    size: 'mega'
+	};
+	
+	exports.default = LinkList;
 
 /***/ },
 /* 453 */
@@ -43676,11 +43676,11 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _clamp = __webpack_require__(/*! clamp */ 431);
+	var _clamp = __webpack_require__(/*! clamp */ 426);
 	
 	var _clamp2 = _interopRequireDefault(_clamp);
 	
-	var _shadows = __webpack_require__(/*! ../utils/shadows */ 432);
+	var _shadows = __webpack_require__(/*! ../utils/shadows */ 427);
 	
 	var _shadows2 = _interopRequireDefault(_shadows);
 	
@@ -43745,11 +43745,11 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _clamp = __webpack_require__(/*! clamp */ 431);
+	var _clamp = __webpack_require__(/*! clamp */ 426);
 	
 	var _clamp2 = _interopRequireDefault(_clamp);
 	
-	var _shadows = __webpack_require__(/*! ../utils/shadows */ 432);
+	var _shadows = __webpack_require__(/*! ../utils/shadows */ 427);
 	
 	var _shadows2 = _interopRequireDefault(_shadows);
 	
@@ -43838,11 +43838,11 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _Button = __webpack_require__(/*! ./Button */ 437);
+	var _Button = __webpack_require__(/*! ./Button */ 432);
 	
 	var _Button2 = _interopRequireDefault(_Button);
 	
-	var _Icon = __webpack_require__(/*! ./Icon */ 440);
+	var _Icon = __webpack_require__(/*! ./Icon */ 435);
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
@@ -43899,7 +43899,7 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _Icon = __webpack_require__(/*! ./Icon */ 440);
+	var _Icon = __webpack_require__(/*! ./Icon */ 435);
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
@@ -44129,7 +44129,7 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _Icon = __webpack_require__(/*! ../Icon */ 440);
+	var _Icon = __webpack_require__(/*! ../Icon */ 435);
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
@@ -45585,7 +45585,7 @@
 	                    _react2.default.createElement('p', null),
 	                    ' 1: Csak a rendes j\xE1t\xE9kid\u0151 v\xE9geredm\xE9nye sz\xE1m\xEDt.',
 	                    _react2.default.createElement('p', null),
-	                    ' 2: Tippeket csak a m\xE9rk\u0151z\xE9s kezdet\xE9ig lehet leadni!',
+	                    ' 2: Tippeket csak a fordul\xF3 els\u0151 m\xE9rk\u0151z\xE9s\xE9nek kezdet\xE9ig lehet leadni!',
 	                    _react2.default.createElement('p', null),
 	                    ' 3: Pontoz\xE1s: ',
 	                    _react2.default.createElement(
@@ -52298,9 +52298,11 @@
 	            matches: [],
 	            goals: [],
 	            betButtonDisabled: false,
-	            dateErrorText: 'Sajnos a mérkőzések már elkezdődtek, így a tippelés nem lehetséges!',
+	            dateErrorText: 'Sajnos a forduló első mérkőzése már elkezdődött, így a tippelés nem lehetséges!',
 	            showTooltip: false,
 	            dialogOpen: false,
+	            firstMatchDate: '',
+	            firstMatchDateJSON: '',
 	            errorText: '',
 	            value: props.value
 	        };
@@ -52321,7 +52323,7 @@
 	    }, {
 	        key: 'onMouseEnter',
 	        value: function onMouseEnter() {
-	            var matchesStarted = this.state.matches[0].dateTime < new Date().toJSON();
+	            var matchesStarted = this.state.firstMatchDateJSON < new Date().toJSON();
 	            if (matchesStarted) {
 	                this.setState({ showTooltip: true, betButtonDisabled: true });
 	            } else {
@@ -52358,7 +52360,11 @@
 	            fetch(window.backendHost + '/api/matches/search/findByStatus?status=SCHEDULED').then(function (response) {
 	                return response.json();
 	            }).then(function (json) {
-	                _this3.setState({ matches: json._embedded.matches });
+	                _this3.setState({
+	                    matches: json._embedded.matches,
+	                    firstMatchDateJSON: getFirstMatchDate(json._embedded.matches),
+	                    firstMatchDate: formatDate(getFirstMatchDate(json._embedded.matches))
+	                });
 	
 	                var initGoals = [];
 	                for (var i = 0; i < json._embedded.matches.length * 2; i++) {
@@ -52425,16 +52431,6 @@
 	                return sheets;
 	            });
 	
-	            var times = this.state.matches.map(function (match, i) {
-	                if (i == 0) {
-	                    var dateTime = match.dateTime.replace("T", " ").substring(0, 16);
-	                    var num = Number(dateTime.substring(12, 13)) + 1;
-	                    return dateTime.substr(0, 12) + num + dateTime.substr(13);
-	                } else {
-	                    return "";
-	                }
-	            });
-	
 	            if (this.state.matches.length > 0) {
 	                var actions = [_react2.default.createElement(_FlatButton2.default, { label: 'Rendben', primary: true, onTouchTap: this.handleClose })];
 	
@@ -52448,8 +52444,8 @@
 	                        _react2.default.createElement(
 	                            _Card.CardText,
 	                            { style: blackStyle },
-	                            ' Minden m\xE9rk\u0151z\xE9s kezd\xE9si id\u0151pontja: ',
-	                            times[0],
+	                            ' Fordul\xF3 els\u0151 m\xE9rk\u0151z\xE9s\xE9nek kezd\xE9si id\u0151pontja: ',
+	                            this.state.firstMatchDate,
 	                            ' '
 	                        ),
 	                        _react2.default.createElement(
@@ -52467,7 +52463,7 @@
 	                            _react2.default.createElement('p', null),
 	                            ' 3: Kiz\xE1r\xF3lag 0 \xE9s 99 k\xF6z\xF6tti sz\xE1mokat lehet megadni!',
 	                            _react2.default.createElement('p', null),
-	                            ' 4: Minden m\xE9rk\u0151z\xE9sre \xE9rv\xE9nyes \xE9rt\xE9ket kell be\xEDrni a m\xE9rk\u0151z\xE9s kezdet\xE9ig, meccsenk\xE9nti tippel\xE9s nem lehets\xE9ges!'
+	                            ' 4: Minden m\xE9rk\u0151z\xE9sre \xE9rv\xE9nyes \xE9rt\xE9ket kell be\xEDrni a fordul\xF3 legkor\xE1bbi m\xE9rk\u0151z\xE9s\xE9nek kezdet\xE9ig, meccsenk\xE9nti tippel\xE9s nem lehets\xE9ges!'
 	                        ),
 	                        _react2.default.createElement(
 	                            _Card.CardText,
@@ -52524,6 +52520,23 @@
 	    }
 	
 	    return window.backendHost + "/bet/create?userId=" + window.account.id + "&matchIds=" + matchIds + "&homeGoals=" + homeGoals + "&awayGoals=" + awayGoals;
+	}
+	
+	function getFirstMatchDate(matches) {
+	    var firstMatchDate = matches[0].dateTime;
+	    for (var i = 1; i < matches.length; i++) {
+	        if (matches[i].dateTime < firstMatchDate) {
+	            firstMatchDate = matches[i].dateTime;
+	        }
+	    }
+	
+	    return firstMatchDate;
+	}
+	
+	function formatDate(firstMatchDate) {
+	    firstMatchDate = firstMatchDate.replace("T", " ").substring(0, 16);
+	    var num = Number(firstMatchDate.substring(12, 13)) + 1;
+	    return firstMatchDate.substr(0, 12) + num + firstMatchDate.substr(13);
 	}
 	
 	exports.default = UpcomingMatches;

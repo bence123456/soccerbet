@@ -30,9 +30,11 @@ class UpcomingMatches extends React.Component {
 		    matches: [],
 		    goals: [],
 		    betButtonDisabled: false,
-		    dateErrorText: 'Sajnos a mérkőzések már elkezdődtek, így a tippelés nem lehetséges!',
+		    dateErrorText: 'Sajnos a forduló első mérkőzése már elkezdődött, így a tippelés nem lehetséges!',
 		    showTooltip: false,
 		    dialogOpen: false,
+		    firstMatchDate: '',
+		    firstMatchDateJSON: '',
 		    errorText: '',
 		    value: props.value
 		}
@@ -56,7 +58,7 @@ class UpcomingMatches extends React.Component {
     }
 
     onMouseEnter() {
-        var matchesStarted = this.state.matches[0].dateTime < new Date().toJSON();
+        var matchesStarted = this.state.firstMatchDateJSON < new Date().toJSON();
         if (matchesStarted) {
             this.setState({showTooltip: true, betButtonDisabled: true});
         } else {
@@ -92,7 +94,11 @@ class UpcomingMatches extends React.Component {
         fetch(window.backendHost + '/api/matches/search/findByStatus?status=SCHEDULED')
         .then((response) => { return response.json() })
         .then( (json) => {
-            this.setState({matches: json._embedded.matches});
+            this.setState({
+                matches: json._embedded.matches,
+                firstMatchDateJSON: getFirstMatchDate(json._embedded.matches),
+                firstMatchDate: formatDate(getFirstMatchDate(json._embedded.matches))
+            });
 
             var initGoals = [];
             for(var i=0; i<json._embedded.matches.length*2; i++) {
@@ -146,16 +152,6 @@ class UpcomingMatches extends React.Component {
 			return sheets;
 		});
 
-        var times = this.state.matches.map(function (match, i) {
-            if (i == 0) {
-                var dateTime = match.dateTime.replace("T"," ").substring(0,16);
-                var num = Number(dateTime.substring(12,13)) + 1;
-                return dateTime.substr(0, 12) + num + dateTime.substr(13);
-            } else {
-                return "";
-            }
-        });
-
         if (this.state.matches.length > 0) {
             const actions = [
                 <FlatButton label="Rendben" primary={true} onTouchTap={this.handleClose} />
@@ -165,13 +161,13 @@ class UpcomingMatches extends React.Component {
 			    <div style={{display: 'flex', flexWrap: 'wrap', marginLeft: '145px'}}>
                     <Card style={{backgroundColor:'#E0E0E0', marginTop: '24px', height: '520px', width: '520px'}} >
                         <CardHeader style={{fontWeight: 'bold'}} title="Tippeld meg az aktuális forduló párosításainak eredményeit!" />
-                        <CardText style={blackStyle}> Minden mérkőzés kezdési időpontja: {times[0]} </CardText>
+                        <CardText style={blackStyle}> Forduló első mérkőzésének kezdési időpontja: {this.state.firstMatchDate} </CardText>
                         <CardText style={blackStyle}>
                             <p style={{fontStyle: 'italic'}}> Néhány fontos tudnivalő a tippek leadása előtt: </p>
                                  <p/> 1: Tippelés megadásához írd be a csapatok mellett található szürke körbe az általad gondolt gólok számát!
                                  <p/> 2: Egy felhasználónak egy meccshez csak egy tippje lehet. Az új tippek mindig felülírják a régit!
                                  <p/> 3: Kizárólag 0 és 99 közötti számokat lehet megadni!
-                                 <p/> 4: Minden mérkőzésre érvényes értéket kell beírni a mérkőzés kezdetéig, meccsenkénti tippelés nem lehetséges!
+                                 <p/> 4: Minden mérkőzésre érvényes értéket kell beírni a forduló legkorábbi mérkőzésének kezdetéig, meccsenkénti tippelés nem lehetséges!
                         </CardText>
                         <CardText style={errorStyle}>
                             {this.state.errorText}
@@ -218,6 +214,23 @@ function getSaveLink(page) {
     }
 
     return window.backendHost + "/bet/create?userId=" + window.account.id + "&matchIds=" + matchIds + "&homeGoals=" + homeGoals + "&awayGoals=" + awayGoals;
+}
+
+function getFirstMatchDate(matches) {
+    var firstMatchDate = matches[0].dateTime;
+    for(var i=1; i<matches.length; i++) {
+        if (matches[i].dateTime < firstMatchDate) {
+            firstMatchDate = matches[i].dateTime;
+        }
+    }
+
+    return firstMatchDate;
+}
+
+function formatDate(firstMatchDate) {
+    firstMatchDate = firstMatchDate.replace("T"," ").substring(0,16);
+    var num = Number(firstMatchDate.substring(12,13)) + 1;
+    return firstMatchDate.substr(0, 12) + num + firstMatchDate.substr(13);
 }
 
 export default UpcomingMatches;
