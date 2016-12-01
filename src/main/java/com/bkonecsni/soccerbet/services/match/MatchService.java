@@ -1,35 +1,44 @@
-package com.bkonecsni.soccerbet.controllers;
+package com.bkonecsni.soccerbet.services.match;
 
-import com.bkonecsni.soccerbet.common.service.CommonService;
-import com.bkonecsni.soccerbet.domain.Match;
+import com.bkonecsni.soccerbet.services.common.CommonService;
 import com.bkonecsni.soccerbet.domain.DBTeam;
-import com.bkonecsni.soccerbet.football.data.api.FootballDataService;
+import com.bkonecsni.soccerbet.domain.Match;
+import com.bkonecsni.soccerbet.services.football.data.api.FootballDataService;
 import com.bkonecsni.soccerbet.football.data.domain.fixtures.Fixture;
 import com.bkonecsni.soccerbet.football.data.domain.fixtures.FixtureList;
 import com.bkonecsni.soccerbet.football.data.domain.fixtures.FixtureWrapper;
 import com.bkonecsni.soccerbet.repositories.MatchRepository;
+import com.bkonecsni.soccerbet.repositories.TeamRepository;
+import com.bkonecsni.soccerbet.services.match.pointcalculator.PointCalculatorAndPersisterService;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import retrofit.Call;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
-@Controller
-public class MatchController {
+@Service
+public class MatchService {
 
     @Autowired
     private MatchRepository matchRepository;
 
     @Autowired
+    private TeamRepository teamRepository;
+
+    @Autowired
     private CommonService commonService;
 
-    @Scheduled(fixedRate = 10000)
-    private void updateScheduledMatchesStatus() throws IOException {
+    @Autowired
+    private PointCalculatorAndPersisterService pointCalculatorAndPersisterService;
+
+    private final int oneMinInMs = 60000;
+
+    @Scheduled(fixedRate = oneMinInMs)
+    private void updateScheduledMatchStatus() throws IOException {
         List<Match> scheduledMatchList = matchRepository.findByStatus("SCHEDULED");
         for (Match match : scheduledMatchList) {
             if (new DateTime(match.getDateTime()).isBefore(new DateTime())) {
@@ -39,11 +48,11 @@ public class MatchController {
         }
     }
 
-    @Scheduled(fixedRate = 30000)
-    private void updateMatchesStatus() throws IOException {
+    @Scheduled(fixedRate = oneMinInMs)
+    private void updateInPlayMatchStatus() throws IOException {
         List<Match> matchesInPlay = matchRepository.findByStatus("IN_PLAY");
         for (Match match : matchesInPlay) {
-            if (elapsed110To130MinsFromStart(match)) {
+            if (elapsed105To130MinsFromStart(match)) {
                 Fixture fixtureById = getFixtureById(match.getId().intValue());
                 updateMatchBetAndUserIfNecessary(match, fixtureById);
             }
@@ -56,26 +65,26 @@ public class MatchController {
             match.setHomeTeamGoals(fixtureById.getResult().getGoalsHomeTeam());
             match.setAwayTeamGoals(fixtureById.getResult().getGoalsAwayTeam());
             matchRepository.save(match);
-            commonService.calculateAndSavePoints(match);
+            pointCalculatorAndPersisterService.calculateAndSavePoints(match);
         }
     }
 
-    private boolean elapsed110To130MinsFromStart(Match match) {
+    private boolean elapsed105To130MinsFromStart(Match match) {
         DateTime matchDate = new DateTime(match.getDateTime());
-        boolean elapsedMoreThan110Mins = matchDate.isBefore(new DateTime().plusMinutes(110));
+        boolean elapsedMoreThan105Mins = matchDate.isBefore(new DateTime().plusMinutes(105));
         boolean elapsedLessThan130Mins = matchDate.isAfter(new DateTime().plusMinutes(130));
 
-        return elapsedMoreThan110Mins && elapsedLessThan130Mins;
+        return elapsedMoreThan105Mins && elapsedLessThan130Mins;
     }
 
-    @PostConstruct
-    private void persistMatchesIfNecessaryOnStart() throws IOException {
+    @Scheduled(fixedRate = oneMinInMs*60*24)
+    private void persistMatchesIfNecessary() throws IOException {
         FixtureList fixtureList = getFixtureList();
 
         if (fixtureList != null) {
             for (Fixture fixture : fixtureList.getFixtures()) {
                 Long id = commonService.getIdFromUrl(fixture.get_links().getSelf().getHref());
-                if (!matchRepository.exists(id) || !fixture.getStatus().equals(matchRepository.findOne(id))) {
+                if (!matchRepository.exists(id)) {
                     persistMatch(fixture, id);
                 }
             }
@@ -105,7 +114,7 @@ public class MatchController {
     private DBTeam loadTeamFromDB(String teamUrl) {
         Long teamId = commonService.getIdFromUrl(teamUrl);
 
-        return commonService.findTeamById(teamId);
+        return teamRepository.findOne(teamId);
     }
 
     private FixtureList getFixtureList() throws IOException {

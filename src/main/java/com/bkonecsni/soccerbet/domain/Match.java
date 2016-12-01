@@ -1,7 +1,5 @@
 package com.bkonecsni.soccerbet.domain;
 
-import com.bkonecsni.soccerbet.common.MatchResult;
-
 import javax.persistence.*;
 import java.util.Date;
 

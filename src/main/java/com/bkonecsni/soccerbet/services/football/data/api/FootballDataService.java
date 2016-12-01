@@ -1,4 +1,4 @@
-package com.bkonecsni.soccerbet.football.data.api;
+package com.bkonecsni.soccerbet.services.football.data.api;
 
 import com.bkonecsni.soccerbet.football.data.domain.fixtures.FixtureList;
 import com.bkonecsni.soccerbet.football.data.domain.fixtures.FixtureWrapper;

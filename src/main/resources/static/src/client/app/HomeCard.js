@@ -50,7 +50,6 @@ class HomeCard extends React.Component {
                 <CardMedia expandable={true} overlay={<CardTitle title="Szabályok" />} >
                     <img src="/images/rules.png" />
                 </CardMedia>
-                <CardTitle title="Szabályok" expandable={true} />
                 <CardText expandable={true}>
                     <p style={{fontStyle: 'italic'}}> A játék elkezdéséhez minndössze az alábbi három szabályt érdemes észben tartani: </p>
                          <p/> 1: Csak a rendes játékidő végeredménye számít.

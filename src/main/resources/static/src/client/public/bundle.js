@@ -45573,7 +45573,6 @@
 	                    { expandable: true, overlay: _react2.default.createElement(_Card.CardTitle, { title: 'Szab\xE1lyok' }) },
 	                    _react2.default.createElement('img', { src: '/images/rules.png' })
 	                ),
-	                _react2.default.createElement(_Card.CardTitle, { title: 'Szab\xE1lyok', expandable: true }),
 	                _react2.default.createElement(
 	                    _Card.CardText,
 	                    { expandable: true },

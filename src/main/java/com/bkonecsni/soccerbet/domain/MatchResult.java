@@ -1,4 +1,4 @@
-package com.bkonecsni.soccerbet.common;
+package com.bkonecsni.soccerbet.domain;
 
 public enum MatchResult {
 

@@ -1,65 +1,23 @@
-package com.bkonecsni.soccerbet.common.service;
+package com.bkonecsni.soccerbet.services.match.pointcalculator;
 
 import com.bkonecsni.soccerbet.domain.Bet;
-import com.bkonecsni.soccerbet.domain.DBTeam;
 import com.bkonecsni.soccerbet.domain.Match;
 import com.bkonecsni.soccerbet.domain.User;
-import com.bkonecsni.soccerbet.football.data.api.FootballDataService;
 import com.bkonecsni.soccerbet.repositories.BetRepository;
-import com.bkonecsni.soccerbet.repositories.MatchRepository;
-import com.bkonecsni.soccerbet.repositories.TeamRepository;
 import com.bkonecsni.soccerbet.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
 
 import java.util.List;
 
 @Service
-public class CommonServiceImpl implements CommonService{
-
-    private FootballDataService footballDataService = createFootballDataService();
+public class PointCalculatorAndPersisterServiceImpl implements PointCalculatorAndPersisterService {
 
     @Autowired
-    BetRepository betRepository;
+    private BetRepository betRepository;
 
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    TeamRepository teamRepository;
-
-    @Autowired
-    MatchRepository matchRepository;
-
-    @Override
-    public Long getIdFromUrl(String url) {
-        int lastIndexOfBackSlash = url.lastIndexOf("/");
-        String stringId = url.substring(lastIndexOfBackSlash + 1);
-
-        return Long.valueOf(stringId);
-    }
-
-    @Override
-    public FootballDataService getFootballDataService() {
-        return footballDataService;
-    }
-
-    @Override
-    public DBTeam findTeamById(Long id) {
-        return teamRepository.findOne(id);
-    }
-
-    @Override
-    public User findUserById(String id) {
-        return userRepository.findOne(id);
-    }
-
-    @Override
-    public Match findMatchById(Long id) {
-        return matchRepository.findOne(id);
-    }
+    private UserRepository userRepository;
 
     @Override
     public void calculateAndSavePoints(Match match) {
@@ -90,13 +48,6 @@ public class CommonServiceImpl implements CommonService{
             gainedPoints = 1;
         }
         return gainedPoints;
-    }
-
-    private FootballDataService createFootballDataService() {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://api.football-data.org/")
-                .addConverterFactory(GsonConverterFactory.create()).build();
-
-        return retrofit.create(FootballDataService.class);
     }
 
     public void setBetRepository(BetRepository betRepository) {

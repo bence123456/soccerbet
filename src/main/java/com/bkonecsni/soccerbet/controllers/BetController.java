@@ -1,10 +1,7 @@
 package com.bkonecsni.soccerbet.controllers;
 
-import com.bkonecsni.soccerbet.common.service.CommonService;
 import com.bkonecsni.soccerbet.domain.Bet;
-import com.bkonecsni.soccerbet.domain.Match;
-import com.bkonecsni.soccerbet.domain.User;
-import com.bkonecsni.soccerbet.repositories.BetRepository;
+import com.bkonecsni.soccerbet.services.bet.BetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,15 +13,12 @@ import java.util.*;
 public class BetController {
 
     @Autowired
-    private BetRepository betRepository;
-
-    @Autowired
-    private CommonService commonService;
+    private BetService betService;
 
     @RequestMapping("/bet/list")
     @ResponseBody
-    public List<Bet> loadBets(String userId){
-        return betRepository.findByUserId(userId);
+    public List<Bet> listBets(String userId){
+        return betService.listBets(userId);
     }
 
     @RequestMapping("/bet/create")
@@ -34,37 +28,7 @@ public class BetController {
         List<Integer> homeTeamGoalsList = createGoalsList(homeGoals);
         List<Integer> awayTeamGoalsList = createGoalsList(awayGoals);
 
-        Map<String, Boolean> success = new HashMap<>();
-        try {
-            User user = commonService.findUserById(userId);
-            for (int i=0; i<matchIdList.size(); i++) {
-                saveOrUpdateBet(matchIdList, homeTeamGoalsList, awayTeamGoalsList, user, i);
-            }
-
-            success.put("success", true);
-        }
-        catch (Exception ex) {
-            success.put("success", false);
-        }
-
-        return success;
-    }
-
-    private void saveOrUpdateBet(List<Long> matchIdList, List<Integer> homeTeamGoalsList, List<Integer> awayTeamGoalsList, User user, int i) {
-        Match match = commonService.findMatchById(matchIdList.get(i));
-        Bet existingBet = betRepository.findByUserAndMatch(user, match);
-
-        Integer homeTeamGoals = homeTeamGoalsList.get(i);
-        Integer awayTeamGoals = awayTeamGoalsList.get(i);
-        if (existingBet != null) {
-            existingBet.setHomeTeamGoals(homeTeamGoals);
-            existingBet.setAwayTeamGoals(awayTeamGoals);
-            existingBet.setMatchResult(existingBet.calculateMatchResult(homeTeamGoals, awayTeamGoals));
-            betRepository.save(existingBet);
-        } else {
-            Bet bet = new Bet(user, match, homeTeamGoals, awayTeamGoals);
-            betRepository.save(bet);
-        }
+        return betService.createBet(userId, matchIdList, homeTeamGoalsList, awayTeamGoalsList);
     }
 
     private List<Long> createMatchIdList(String matchIds) {
