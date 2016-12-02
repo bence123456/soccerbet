@@ -49,12 +49,4 @@ public class PointCalculatorAndPersisterServiceImpl implements PointCalculatorAn
         }
         return gainedPoints;
     }
-
-    public void setBetRepository(BetRepository betRepository) {
-        this.betRepository = betRepository;
-    }
-
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 }

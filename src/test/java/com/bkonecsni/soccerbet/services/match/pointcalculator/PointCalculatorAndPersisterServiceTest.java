@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -22,21 +23,18 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class PointCalculatorAndPersisterServiceTest {
 
+    @InjectMocks
     private PointCalculatorAndPersisterServiceImpl pointCalculatorAndPersister;
 
     @Mock
-    private BetRepository betRepository = Mockito.mock(BetRepository.class);
+    private BetRepository betRepository;
 
     @Mock
-    private UserRepository userRepository = Mockito.mock(UserRepository.class);
+    private UserRepository userRepository;
 
     @Before
     public void setUp() throws IOException {
         MockitoAnnotations.initMocks(this);
-
-        pointCalculatorAndPersister = new PointCalculatorAndPersisterServiceImpl();
-        pointCalculatorAndPersister.setBetRepository(betRepository);
-        pointCalculatorAndPersister.setUserRepository(userRepository);
     }
 
     @Test
