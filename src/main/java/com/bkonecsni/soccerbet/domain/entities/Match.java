@@ -1,4 +1,6 @@
-package com.bkonecsni.soccerbet.domain;
+package com.bkonecsni.soccerbet.domain.entities;
+
+import com.bkonecsni.soccerbet.domain.MatchResult;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,13 +14,13 @@ public class Match {
     @Id
     private Long Id;
 
-    @ManyToOne(targetEntity = DBTeam.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Team.class)
     @JoinColumn(name = "home_team_id")
-    private DBTeam homeTeam;
+    private Team homeTeam;
 
-    @ManyToOne(targetEntity = DBTeam.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Team.class)
     @JoinColumn(name = "away_team_id")
-    private DBTeam awayTeam;
+    private Team awayTeam;
 
     private String homeTeamName;
 
@@ -41,7 +43,7 @@ public class Match {
 
     public Match() {}
 
-    public Match(Long id, DBTeam homeTeam, DBTeam awayTeam, String homeTeamName, String awayTeamName,
+    public Match(Long id, Team homeTeam, Team awayTeam, String homeTeamName, String awayTeamName,
                  Integer homeTeamGoals, Integer awayTeamGoals, String status, int round, Date dateTime) {
         this.Id = id;
         this.homeTeam = homeTeam;
@@ -53,40 +55,7 @@ public class Match {
         this.status = status;
         this.round = round;
         this.dateTime = dateTime;
-        this.matchResult = calculateMatchResult(homeTeamGoals, awayTeamGoals);
-    }
-
-    private MatchResult calculateMatchResult(Integer homeTeamGoals, Integer awayTeamGoals) {
-        MatchResult matchResult = MatchResult.NOT_FINISHED;
-
-        if (status.equals("FINISHED")) {
-            matchResult = MatchResult.HOME_TEAM_WINS;
-
-            if (homeTeamGoals == awayTeamGoals) {
-                matchResult = MatchResult.DRAW;
-            } else if (homeTeamGoals < awayTeamGoals) {
-                matchResult = MatchResult.AWAY_TEAM_WINS;
-            }
-        }
-
-        return matchResult;
-    }
-
-    @Override
-    public String toString() {
-        return "Match{" +
-                "Id=" + Id +
-                ", homeTeam=" + homeTeam +
-                ", awayTeam=" + awayTeam +
-                ", homeTeamName=" + homeTeamName +
-                ", awayTeamName=" + awayTeamName +
-                ", homeTeamGoals=" + homeTeamGoals +
-                ", awayTeamGoals=" + awayTeamGoals +
-                ", status='" + status + '\'' +
-                ", round=" + round +
-                ", dateTime=" + dateTime +
-                ", matchResult=" + matchResult +
-                '}';
+        this.matchResult = status.equals("FINISHED") ? MatchResult.calculateMatchResult(homeTeamGoals, awayTeamGoals) : null;
     }
 
     public Long getId() {
@@ -97,19 +66,19 @@ public class Match {
         this.Id = id;
     }
 
-    public DBTeam getHomeTeam() {
+    public Team getHomeTeam() {
         return homeTeam;
     }
 
-    public void setHomeTeam(DBTeam homeTeam) {
+    public void setHomeTeam(Team homeTeam) {
         this.homeTeam = homeTeam;
     }
 
-    public DBTeam getAwayTeam() {
+    public Team getAwayTeam() {
         return awayTeam;
     }
 
-    public void setAwayTeam(DBTeam awayTeam) {
+    public void setAwayTeam(Team awayTeam) {
         this.awayTeam = awayTeam;
     }
 

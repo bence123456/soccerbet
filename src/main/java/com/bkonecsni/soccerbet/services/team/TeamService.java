@@ -1,9 +1,9 @@
 package com.bkonecsni.soccerbet.services.team;
 
+import com.bkonecsni.soccerbet.domain.entities.Team;
 import com.bkonecsni.soccerbet.services.common.CommonService;
-import com.bkonecsni.soccerbet.domain.DBTeam;
 import com.bkonecsni.soccerbet.services.football.data.api.FootballDataService;
-import com.bkonecsni.soccerbet.football.data.domain.teams.Team;
+import com.bkonecsni.soccerbet.football.data.domain.teams.ApiTeam;
 import com.bkonecsni.soccerbet.football.data.domain.teams.TeamList;
 import com.bkonecsni.soccerbet.repositories.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class TeamService {
     private CommonService commonService;
 
     @PostConstruct
-    private void persistTeamsIfNecessary() throws IOException {
+    private void persistTeamsIfNecessaryOnStartup() throws IOException {
         if (teamRepository.count() != 64) {
             FootballDataService footballDataService = commonService.getFootballDataService();
             Call<TeamList> call = footballDataService.listTeams();
@@ -36,11 +36,11 @@ public class TeamService {
     }
 
     private void persistTeams(TeamList teamList) {
-        for (Team dataApiTeam : teamList.getTeams()) {
-            Long id = commonService.getIdFromUrl(dataApiTeam.get_links().getSelf().getHref());
-            DBTeam dbTeam = new DBTeam(id, dataApiTeam.getName());
+        for (ApiTeam apiTeam : teamList.getTeams()) {
+            Long id = commonService.getIdFromUrl(apiTeam.get_links().getSelf().getHref());
+            Team team = new Team(id, apiTeam.getName());
 
-            teamRepository.save(dbTeam);
+            teamRepository.save(team);
         }
     }
 }

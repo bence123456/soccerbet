@@ -1,4 +1,4 @@
-package com.bkonecsni.soccerbet.domain;
+package com.bkonecsni.soccerbet.domain.entities;
 
 import javax.persistence.*;
 
@@ -24,15 +24,6 @@ public class User {
         this.id = id;
         this.name = name;
         this.points = points;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", points=" + points +
-                '}';
     }
 
     public String getId() {

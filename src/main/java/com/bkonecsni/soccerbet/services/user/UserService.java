@@ -1,6 +1,6 @@
 package com.bkonecsni.soccerbet.services.user;
 
-import com.bkonecsni.soccerbet.domain.User;
+import com.bkonecsni.soccerbet.domain.entities.User;
 
 public interface UserService {
 

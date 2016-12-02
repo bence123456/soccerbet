@@ -1,4 +1,6 @@
-package com.bkonecsni.soccerbet.domain;
+package com.bkonecsni.soccerbet.domain.entities;
+
+import com.bkonecsni.soccerbet.domain.MatchResult;
 
 import javax.persistence.*;
 
@@ -12,11 +14,11 @@ public class Bet {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(targetEntity = Match.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Match.class)
     @JoinColumn(name = "match_id")
     private Match match;
 
@@ -36,32 +38,8 @@ public class Bet {
         this.match = match;
         this.homeTeamGoals = homeTeamGoals;
         this.awayTeamGoals = awayTeamGoals;
-        this.matchResult = calculateMatchResult(homeTeamGoals, awayTeamGoals);
+        this.matchResult = MatchResult.calculateMatchResult(homeTeamGoals, awayTeamGoals);
         this.gainedPoints = null;
-    }
-
-    public MatchResult calculateMatchResult(int homeTeamGoals, int awayTeamGoals) {
-        MatchResult matchResult = MatchResult.HOME_TEAM_WINS;
-
-        if (homeTeamGoals == awayTeamGoals) {
-            matchResult = MatchResult.DRAW;
-        } else if (homeTeamGoals < awayTeamGoals) {
-            matchResult = MatchResult.AWAY_TEAM_WINS;
-        }
-
-        return matchResult;
-    }
-
-    @Override
-    public String toString() {
-        return "Bet{" +
-                "id=" + id +
-                ", user=" + user +
-                ", match=" + match +
-                ", homeTeamGoals=" + homeTeamGoals +
-                ", awayTeamGoals=" + awayTeamGoals +
-                ", matchResult=" + matchResult +
-                '}';
     }
 
     public Long getId() {

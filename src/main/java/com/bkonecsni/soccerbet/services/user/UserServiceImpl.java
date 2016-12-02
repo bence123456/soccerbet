@@ -1,6 +1,6 @@
 package com.bkonecsni.soccerbet.services.user;
 
-import com.bkonecsni.soccerbet.domain.User;
+import com.bkonecsni.soccerbet.domain.entities.User;
 import com.bkonecsni.soccerbet.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

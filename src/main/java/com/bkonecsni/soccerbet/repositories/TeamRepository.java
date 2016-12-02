@@ -1,11 +1,11 @@
 package com.bkonecsni.soccerbet.repositories;
 
-import com.bkonecsni.soccerbet.domain.DBTeam;
+import com.bkonecsni.soccerbet.domain.entities.Team;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-public interface TeamRepository extends CrudRepository<DBTeam, Long> {
+public interface TeamRepository extends CrudRepository<Team, Long> {
 
-    DBTeam findByName(String name);
+    Team findByName(String name);
 }

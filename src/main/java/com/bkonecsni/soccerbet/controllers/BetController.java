@@ -1,6 +1,6 @@
 package com.bkonecsni.soccerbet.controllers;
 
-import com.bkonecsni.soccerbet.domain.Bet;
+import com.bkonecsni.soccerbet.domain.entities.Bet;
 import com.bkonecsni.soccerbet.services.bet.BetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

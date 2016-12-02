@@ -1,6 +1,6 @@
 package com.bkonecsni.soccerbet.services.bet;
 
-import com.bkonecsni.soccerbet.domain.Bet;
+import com.bkonecsni.soccerbet.domain.entities.Bet;
 
 import java.util.List;
 import java.util.Map;

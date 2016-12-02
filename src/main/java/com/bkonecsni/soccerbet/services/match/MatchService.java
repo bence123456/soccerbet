@@ -1,8 +1,8 @@
 package com.bkonecsni.soccerbet.services.match;
 
 import com.bkonecsni.soccerbet.services.common.CommonService;
-import com.bkonecsni.soccerbet.domain.DBTeam;
-import com.bkonecsni.soccerbet.domain.Match;
+import com.bkonecsni.soccerbet.domain.entities.Team;
+import com.bkonecsni.soccerbet.domain.entities.Match;
 import com.bkonecsni.soccerbet.services.football.data.api.FootballDataService;
 import com.bkonecsni.soccerbet.football.data.domain.fixtures.Fixture;
 import com.bkonecsni.soccerbet.football.data.domain.fixtures.FixtureList;
@@ -98,8 +98,8 @@ public class MatchService {
     }
 
     private Match createMatchFromFixture(Fixture fixture, Long id) {
-        DBTeam homeTeam = loadTeamFromDB(fixture.get_links().getHomeTeam().getHref());
-        DBTeam awayTeam = loadTeamFromDB(fixture.get_links().getAwayTeam().getHref());
+        Team homeTeam = loadTeamFromDB(fixture.get_links().getHomeTeam().getHref());
+        Team awayTeam = loadTeamFromDB(fixture.get_links().getAwayTeam().getHref());
         String homeTeamName = fixture.getHomeTeamName();
         String awayTeamName = fixture.getAwayTeamName();
         Integer homeTeamGoals = fixture.getResult().getGoalsHomeTeam();
@@ -111,7 +111,7 @@ public class MatchService {
         return new Match(id, homeTeam, awayTeam, homeTeamName, awayTeamName, homeTeamGoals, awayTeamGoals, status, round, date);
     }
 
-    private DBTeam loadTeamFromDB(String teamUrl) {
+    private Team loadTeamFromDB(String teamUrl) {
         Long teamId = commonService.getIdFromUrl(teamUrl);
 
         return teamRepository.findOne(teamId);

@@ -2,7 +2,7 @@ package com.bkonecsni.soccerbet.football.data.domain.teams;
 
 import com.bkonecsni.soccerbet.football.data.domain._links;
 
-public class Team {
+public class ApiTeam {
 
     private String name;
 

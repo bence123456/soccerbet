@@ -1,8 +1,8 @@
 package com.bkonecsni.soccerbet.services.match.pointcalculator;
 
-import com.bkonecsni.soccerbet.domain.Bet;
-import com.bkonecsni.soccerbet.domain.Match;
-import com.bkonecsni.soccerbet.domain.User;
+import com.bkonecsni.soccerbet.domain.entities.Bet;
+import com.bkonecsni.soccerbet.domain.entities.Match;
+import com.bkonecsni.soccerbet.domain.entities.User;
 import com.bkonecsni.soccerbet.repositories.BetRepository;
 import com.bkonecsni.soccerbet.repositories.UserRepository;
 import org.junit.Assert;

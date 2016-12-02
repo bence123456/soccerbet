@@ -1,8 +1,9 @@
 package com.bkonecsni.soccerbet.services.bet;
 
-import com.bkonecsni.soccerbet.domain.Bet;
-import com.bkonecsni.soccerbet.domain.Match;
-import com.bkonecsni.soccerbet.domain.User;
+import com.bkonecsni.soccerbet.domain.MatchResult;
+import com.bkonecsni.soccerbet.domain.entities.Bet;
+import com.bkonecsni.soccerbet.domain.entities.Match;
+import com.bkonecsni.soccerbet.domain.entities.User;
 import com.bkonecsni.soccerbet.repositories.BetRepository;
 import com.bkonecsni.soccerbet.repositories.MatchRepository;
 import com.bkonecsni.soccerbet.repositories.UserRepository;
@@ -65,7 +66,7 @@ public class BetServiceImpl implements BetService{
     private void setExistingBetFieldsAndUpdate(Bet existingBet, Integer homeTeamGoals, Integer awayTeamGoals) {
         existingBet.setHomeTeamGoals(homeTeamGoals);
         existingBet.setAwayTeamGoals(awayTeamGoals);
-        existingBet.setMatchResult(existingBet.calculateMatchResult(homeTeamGoals, awayTeamGoals));
+        existingBet.setMatchResult(MatchResult.calculateMatchResult(homeTeamGoals, awayTeamGoals));
         betRepository.save(existingBet);
     }
 }

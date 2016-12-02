@@ -1,26 +1,26 @@
-package com.bkonecsni.soccerbet.domain;
+package com.bkonecsni.soccerbet.domain.entities;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "team", catalog = "soccerbet")
-public class DBTeam {
+public class Team {
 
     @Id
     private Long id;
 
     private String name;
 
-    public DBTeam(){}
+    public Team() {}
 
-    public DBTeam(Long id, String name) {
+    public Team(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
     @Override
     public String toString() {
-        return "DBTeam{" +
+        return "Team{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

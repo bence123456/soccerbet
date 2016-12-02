@@ -4,15 +4,15 @@ import java.util.List;
 
 public class TeamList {
 
-    private List<Team> teams;
+    private List<ApiTeam> teams;
 
     private int count;
 
-    public List<Team> getTeams() {
+    public List<ApiTeam> getTeams() {
         return teams;
     }
 
-    public void setTeams(List<Team> teams) {
+    public void setTeams(List<ApiTeam> teams) {
         this.teams = teams;
     }
 

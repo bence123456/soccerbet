@@ -1,8 +1,8 @@
 package com.bkonecsni.soccerbet.repositories;
 
-import com.bkonecsni.soccerbet.domain.Bet;
-import com.bkonecsni.soccerbet.domain.Match;
-import com.bkonecsni.soccerbet.domain.User;
+import com.bkonecsni.soccerbet.domain.entities.Bet;
+import com.bkonecsni.soccerbet.domain.entities.Match;
+import com.bkonecsni.soccerbet.domain.entities.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
