@@ -12,7 +12,7 @@ public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
 
     @Override
-    public User createUser(String id, String name) {
+    public User createUserIfNotExists(String id, String name) {
         User user = userRepository.findOne(id);
 
         if (user == null) {

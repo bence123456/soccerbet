@@ -16,6 +16,6 @@ public class UserController {
     @RequestMapping("/user/create")
     @ResponseBody
     public User save(String id, String name) {
-        return userService.createUser(id, name);
+        return userService.createUserIfNotExists(id, name);
     }
 }

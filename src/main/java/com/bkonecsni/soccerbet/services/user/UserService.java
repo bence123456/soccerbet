@@ -4,5 +4,5 @@ import com.bkonecsni.soccerbet.domain.entities.User;
 
 public interface UserService {
 
-    User createUser(String id, String name);
+    User createUserIfNotExists(String id, String name);
 }
