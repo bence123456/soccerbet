@@ -1,0 +1,99 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="Bejelentkezés">|Login|</title>
+    <!--/*/ <th:block th:include="${headViewName} :: ${headFragmentSelector}"/> /*/-->
+</head>
+<body class="login">
+<div class="container custom-container">
+    <div class="va-wrapper">
+        <div class="view login-view container">
+
+            <div class="box row">
+
+                <div th:class="'email-password-area col-xs-12 ' + ${#lists.isEmpty(accountStores) ? 'large col-sm-12' : 'small col-sm-8'}">
+
+                    <div class="header">
+                        <a th:if="${registerEnabled}" th:href="@{${registerUri}}"
+                           th:text="Regisztrálok">|Register|</a>
+                    </div>
+
+                    <div class="alert alert-dismissable alert-success" th:if="${not #strings.isEmpty(status)}">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <p th:text="${status}">|Login Status|</p>
+                    </div>
+
+                    <div class="alert alert-dismissable alert-danger bad-login"
+                         th:if="${errors != null and not #lists.isEmpty(errors)}">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <!--/*/ <th:block data-th-each="error : ${errors}"> /*/-->
+                        <p>Hibás felhasználónév és/vagy jelszó!</p>
+                        <!--/*/ </th:block> /*/-->
+                    </div>
+
+                    <form method="post" role="form" class="login-form form-horizontal">
+                        <div th:each="field : ${form.fields}" form-group="true"
+                             th:class="'form-group group-' + ${field.name}">
+                            <th:block th:if="${field.type == 'hidden'}">
+                                <input th:name="${field.name}" th:type="${field.type}" th:value="${field.value}"/>
+                            </th:block>
+                            <th:block th:if="${field.type != 'hidden'}">
+                                <label th:class="${#lists.isEmpty(accountStores) ? 'col-sm-4' : 'col-sm-12'}"
+                                       th:text="${field.label}">|Field label|</label>
+                                <div th:class="${#lists.isEmpty(accountStores) ? 'col-sm-8' : 'col-sm-12'}">
+                                    <input th:name="${field.name}" th:value="${field.value}" th:type="${field.type}"
+                                           th:placeholder="${field.placeholder}"
+                                           th:required="${field.required}" class="form-control"/>
+                                </div>
+                            </th:block>
+                        </div>
+
+                        <div>
+                            <button type="submit" class="login btn btn-login btn-sp-green"
+                                    th:text="Bejelentkezés">|Login|
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+
+                <div th:if="${not #lists.isEmpty(accountStores)}" class="provider-area col-xs-12 col-sm-4">
+                    <div class="header">&nbsp;</div>
+                    <label>Easy 1-click login:</label>
+                    <th:block th:each="accountStore : ${accountStores}">
+                        <th:block th:switch="${accountStore.provider.providerId}">
+                            <button th:case="saml" class="btn btn-social btn-saml"
+                                    th:id="${accountStore.href}">
+                                <span class="fa fa-lock"></span>
+                                <span th:text="${accountStore.name}" th:remove="tag">|SAML|</span>
+                            </button>
+                            <button th:case="google" class="btn btn-social btn-google"
+                                    th:id="${accountStore.provider.clientId}"
+                                    th:attr="data-scope=${accountStore.provider.scope}, data-hd=${accountStore.provider.hd}, data-display=${accountStore.provider.display}, data-access_type=${accountStore.provider.accessType}"
+                            >
+                                <i class="fa fa-google"></i>
+                                <span th:text="google">|Provider|</span>
+                            </button>
+                            <button th:case="*" class="btn btn-social" th:classappend="${'btn-'+accountStore.provider.providerId}"
+                                    th:id="${accountStore.provider.clientId}" th:attr="data-scope=${accountStore.provider.scope}">
+                                <i class="fa" th:classappend="${'fa-'+accountStore.provider.providerId}"></i>
+                                <span th:text="${accountStore.provider.providerId}">|Provider|</span>
+                            </button>
+                        </th:block>
+                    </th:block>
+                </div>
+            </div>
+
+            <a th:if="${verifyEnabled}" th:href="@{${verifyUri}}" class="verify"
+               th:text="#{stormpath.web.login.form.verifyEmail.text}">|Resend Email Verification|</a>
+            <a th:if="${forgotPasswordEnabled}" th:href="@{${forgotPasswordUri}}"> Elfelejtetted a jelszavad?</a>
+
+        </div>
+        <input type="hidden" id="baseUrl"
+               th:value="${#httpServletRequest.scheme + '://' + #httpServletRequest.serverName + ':'+#httpServletRequest.serverPort+#httpServletRequest.contextPath}"/>
+    </div>
+</div>
+
+<script th:src="${#httpServletRequest.contextPath + '/assets/js/stormpath.js'}"></script>
+
+</body>
+</html>
