@@ -75,6 +75,7 @@ const Container = (props) => (
 </div>
 )
 
+var logoutLink = window.backendHost + "/logout";
 const FooterLinks = () => (
     <table>
         <tbody>
@@ -90,6 +91,11 @@ const FooterLinks = () => (
                         <img src="/images/github.png" alt="GitHub" width="60" height="30" />
                         <br/> GitHub Link
                     </a>
+                </td>
+                <td>
+                    <form id="logoutForm" action={logoutLink} method="post">
+                        <input type="submit"  value="Kijelentkezés"/>
+                    </form>
                 </td>
             </tr>
         </tbody>

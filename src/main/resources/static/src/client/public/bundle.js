@@ -226,6 +226,7 @@
 	    );
 	};
 	
+	var logoutLink = window.backendHost + "/logout";
 	var FooterLinks = function FooterLinks() {
 	    return _react2.default.createElement(
 	        'table',
@@ -256,6 +257,15 @@
 	                        _react2.default.createElement('img', { src: '/images/github.png', alt: 'GitHub', width: '60', height: '30' }),
 	                        _react2.default.createElement('br', null),
 	                        ' GitHub Link'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'td',
+	                    null,
+	                    _react2.default.createElement(
+	                        'form',
+	                        { id: 'logoutForm', action: logoutLink, method: 'post' },
+	                        _react2.default.createElement('input', { type: 'submit', value: 'Kijelentkez\xE9s' })
 	                    )
 	                )
 	            )
@@ -50672,9 +50682,9 @@
 					var homeTeamLogoSrc = "/images/logos/" + homeTeamName.replace("/", "") + ".png";
 					var awayTeamLogoSrc = "/images/logos/" + awayTeamName + ".png";
 	
-					var homeStyle = { color: 'black' },
-					    awayStyle = { color: 'black' },
-					    wonStyle = { color: 'black', fontWeight: 'bold' };
+					var homeStyle = { color: 'white' },
+					    awayStyle = { color: 'white' },
+					    wonStyle = { color: 'white', fontWeight: 'bold' };
 					if (match.matchResult === "HOME_TEAM_WINS") {
 						homeStyle = wonStyle;
 					} else if (match.matchResult === "AWAY_TEAM_WINS") {

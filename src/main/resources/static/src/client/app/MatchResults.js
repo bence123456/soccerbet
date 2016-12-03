@@ -27,7 +27,7 @@ class MatchResult extends React.Component {
 			var homeTeamLogoSrc = "/images/logos/" + homeTeamName.replace("/", "") + ".png";
 			var awayTeamLogoSrc = "/images/logos/" + awayTeamName + ".png";
 			
-			var homeStyle = {color: 'black'}, awayStyle = {color: 'black'}, wonStyle = {color: 'black', fontWeight: 'bold'};
+			var homeStyle = {color: 'white'}, awayStyle = {color: 'white'}, wonStyle = {color: 'white', fontWeight: 'bold'};
 			if (match.matchResult === "HOME_TEAM_WINS") {
 				homeStyle = wonStyle;
 			} else if (match.matchResult === "AWAY_TEAM_WINS") {
