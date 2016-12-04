@@ -200,7 +200,7 @@
 	                { style: { background: 'url(/images/4.jpg) center / cover' } },
 	                _react2.default.createElement(
 	                    _Layout.Header,
-	                    { transparent: true, title: _react2.default.createElement(_FlatButton2.default, { label: 'DFB-Pokal Tippj\xE1t\xE9k', containerElement: _react2.default.createElement(_reactRouter.Link, { to: '/' }), style: { color: 'green' } }) },
+	                    { transparent: true, title: _react2.default.createElement(_FlatButton2.default, { label: 'DFB-Pokal Tippj\xE1t\xE9k', containerElement: _react2.default.createElement(_reactRouter.Link, { to: '/' }), labelStyle: { color: '#4CAF50', fontWeight: 'bold' } }) },
 	                    _react2.default.createElement(
 	                        _Layout.Navigation,
 	                        null,

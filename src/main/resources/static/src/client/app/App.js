@@ -54,25 +54,25 @@ const Nav = () => (
 )
 
 const Container = (props) => (
-<div>
-    <div style={{height: '700px', position: 'relative'}}>
-        <Layout style={{ background: 'url(/images/4.jpg) center / cover'}}>
-            <Header transparent title={<FlatButton label="DFB-Pokal Tippjáték" containerElement={<Link to="/"/>} style={{color: 'green'}} />} >
-                <Navigation>
-                    <Nav />
-                </Navigation>
-            </Header>
-            <Content>
-                {props.children}
-            </Content>
-        </Layout>
+    <div>
+        <div style={{height: '700px', position: 'relative'}}>
+            <Layout style={{ background: 'url(/images/4.jpg) center / cover'}}>
+                <Header transparent title={<FlatButton label="DFB-Pokal Tippjáték" containerElement={<Link to="/"/>} labelStyle={{color: '#4CAF50', fontWeight: 'bold'}} />} >
+                    <Navigation>
+                        <Nav />
+                    </Navigation>
+                </Header>
+                <Content>
+                    {props.children}
+                </Content>
+            </Layout>
+        </div>
+        <div style={{height: '89px', backgroundColor: 'grey'}} >
+            <footer>
+                <FooterLinks />
+            </footer>
+        </div>
     </div>
-    <div style={{height: '89px', backgroundColor: 'grey'}} >
-        <footer>
-            <FooterLinks />
-        </footer>
-    </div>
-</div>
 )
 
 var logoutLink = window.backendHost + "/logout";

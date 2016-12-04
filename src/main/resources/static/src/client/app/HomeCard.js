@@ -33,7 +33,7 @@ class HomeCard extends React.Component {
         return (
             <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
                 <CardHeader
-                    title="Az egyetlen  német kupa tippjáték oldal"
+                    title="Az egyetlen  Német kupa tippjáték oldal"
                     subtitle="Mérd össze tudásodat a barátaid ellen, és lépj a toplista élére!"
                     actAsExpander={true}
                     showExpandableButton={true}
