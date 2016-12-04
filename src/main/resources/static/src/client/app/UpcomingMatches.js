@@ -18,6 +18,10 @@ const blackStyle = {
 	color: 'black'
 };
 
+const whiteStyle = {
+	color: 'white'
+};
+
 const errorStyle = {
 	color: 'red'
 };
@@ -118,12 +122,12 @@ class UpcomingMatches extends React.Component {
 
             return (
 				<List >
-					<ListItem style={blackStyle}
+					<ListItem style={whiteStyle}
 						primaryText = {homeTeamName}
 						rightAvatar = { <Avatar> <TextField value={this.state.goals[i]} underlineShow={false} inputStyle={{textAlign:'center'}} style={{width: '20px'}}
 						        hintStyle={{textAlign:'center', width: '20px'}} hintText="0" onChange={this.onGoalsChange.bind(this, i)} /> </Avatar> }
 						leftAvatar = {<Avatar src = {homeTeamLogoSrc} />} />
-					<ListItem style={blackStyle}
+					<ListItem style={whiteStyle}
 						primaryText = {awayTeamName}
 						rightAvatar = { <Avatar> <TextField value={this.state.goals[awayIndex]} underlineShow={false} inputStyle={{textAlign:'center'}} style={{width: '20px'}}
 						        hintStyle={{textAlign:'center', width: '20px'}} hintText="0" onChange={this.onGoalsChange.bind(this, awayIndex)} /> </Avatar> }
@@ -188,7 +192,7 @@ class UpcomingMatches extends React.Component {
 			return (
                 <div>
                     <h4 style={leftMarginStyle}>
-                        Jelenleg nincs kiírt mérkőzés a német kupában, kérlek nézz vissza később!
+                        Jelenleg nincs kiírt mérkőzés a Német kupában, kérlek nézz vissza később!
                     </h4>
                     <FlatButton label="Vissza a kezdőlapra" containerElement={<Link to="/"/>} backgroundColor= "white" style={leftMarginStyle} />
                 </div>

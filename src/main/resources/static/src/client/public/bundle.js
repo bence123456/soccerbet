@@ -45568,7 +45568,7 @@
 	                _Card.Card,
 	                { expanded: this.state.expanded, onExpandChange: this.handleExpandChange },
 	                _react2.default.createElement(_Card.CardHeader, {
-	                    title: 'Az egyetlen  n\xE9met kupa tippj\xE1t\xE9k oldal',
+	                    title: 'Az egyetlen  N\xE9met kupa tippj\xE1t\xE9k oldal',
 	                    subtitle: 'M\xE9rd \xF6ssze tud\xE1sodat a bar\xE1taid ellen, \xE9s l\xE9pj a toplista \xE9l\xE9re!',
 	                    actAsExpander: true,
 	                    showExpandableButton: true
@@ -52282,6 +52282,10 @@
 	    color: 'black'
 	};
 	
+	var whiteStyle = {
+	    color: 'white'
+	};
+	
 	var errorStyle = {
 	    color: 'red'
 	};
@@ -52401,7 +52405,7 @@
 	                return _react2.default.createElement(
 	                    _List.List,
 	                    null,
-	                    _react2.default.createElement(_List.ListItem, { style: blackStyle,
+	                    _react2.default.createElement(_List.ListItem, { style: whiteStyle,
 	                        primaryText: homeTeamName,
 	                        rightAvatar: _react2.default.createElement(
 	                            _Avatar2.default,
@@ -52412,7 +52416,7 @@
 	                            ' '
 	                        ),
 	                        leftAvatar: _react2.default.createElement(_Avatar2.default, { src: homeTeamLogoSrc }) }),
-	                    _react2.default.createElement(_List.ListItem, { style: blackStyle,
+	                    _react2.default.createElement(_List.ListItem, { style: whiteStyle,
 	                        primaryText: awayTeamName,
 	                        rightAvatar: _react2.default.createElement(
 	                            _Avatar2.default,
@@ -52507,7 +52511,7 @@
 	                    _react2.default.createElement(
 	                        'h4',
 	                        { style: leftMarginStyle },
-	                        'Jelenleg nincs ki\xEDrt m\xE9rk\u0151z\xE9s a n\xE9met kup\xE1ban, k\xE9rlek n\xE9zz vissza k\xE9s\u0151bb!'
+	                        'Jelenleg nincs ki\xEDrt m\xE9rk\u0151z\xE9s a N\xE9met kup\xE1ban, k\xE9rlek n\xE9zz vissza k\xE9s\u0151bb!'
 	                    ),
 	                    _react2.default.createElement(_FlatButton2.default, { label: 'Vissza a kezd\u0151lapra', containerElement: _react2.default.createElement(_reactRouter.Link, { to: '/' }), backgroundColor: 'white', style: leftMarginStyle })
 	                );
