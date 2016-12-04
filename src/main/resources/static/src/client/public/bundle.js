@@ -183,7 +183,7 @@
 	        _react2.default.createElement(
 	            _reactRouter.Link,
 	            { style: linkStyle, to: '/mybets' },
-	            'Fogad\xE1saim'
+	            'Tippjeim'
 	        )
 	    );
 	};
@@ -264,8 +264,14 @@
 	                    null,
 	                    _react2.default.createElement(
 	                        'form',
-	                        { id: 'logoutForm', action: logoutLink, method: 'post' },
-	                        _react2.default.createElement('input', { type: 'submit', value: 'Kijelentkez\xE9s' })
+	                        { method: 'post', action: logoutLink, className: 'inline' },
+	                        _react2.default.createElement(
+	                            'button',
+	                            { type: 'submit', value: 'Kijelentkez\xE9s', className: 'logout-button' },
+	                            _react2.default.createElement('img', { src: '/images/logout.png', alt: 'logout', width: '30', height: '30' }),
+	                            _react2.default.createElement('br', null),
+	                            'Kijelentkez\xE9s'
+	                        )
 	                    )
 	                )
 	            )

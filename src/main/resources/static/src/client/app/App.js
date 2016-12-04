@@ -49,7 +49,7 @@ const Nav = () => (
         <Link style={linkStyle} to='/finishedmatchresults'>Eredmények</Link>
         <Link style={linkStyle} to='/upcomingmatches'>Tippelés</Link>
         <Link style={linkStyle} to='/ranking'>Ranglista</Link>
-        <Link style={linkStyle} to='/mybets'>Fogadásaim</Link>
+        <Link style={linkStyle} to='/mybets'>Tippjeim</Link>
     </div>
 )
 
@@ -93,8 +93,12 @@ const FooterLinks = () => (
                     </a>
                 </td>
                 <td>
-                    <form id="logoutForm" action={logoutLink} method="post">
-                        <input type="submit"  value="Kijelentkezés"/>
+                    <form method="post" action={logoutLink} className="inline">
+                        <button type="submit" value="Kijelentkezés" className="logout-button">
+                            <img src="/images/logout.png" alt="logout" width="30" height="30" />
+                            <br/>
+                            Kijelentkezés
+                        </button>
                     </form>
                 </td>
             </tr>
