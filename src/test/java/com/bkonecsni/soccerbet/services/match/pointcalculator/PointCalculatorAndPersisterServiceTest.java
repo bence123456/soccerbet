@@ -6,16 +6,13 @@ import com.bkonecsni.soccerbet.domain.entities.User;
 import com.bkonecsni.soccerbet.repositories.BetRepository;
 import com.bkonecsni.soccerbet.repositories.UserRepository;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,11 +28,6 @@ public class PointCalculatorAndPersisterServiceTest {
 
     @Mock
     private UserRepository userRepository;
-
-    @Before
-    public void setUp() throws IOException {
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
     public void shouldCalculatePointsCorrectlyWhenMatchResultIsDraw() {
