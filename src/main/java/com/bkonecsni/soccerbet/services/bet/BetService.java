@@ -9,5 +9,5 @@ public interface BetService {
 
     List<Bet> listBets(String userId);
 
-    Map<String, Boolean> createBet(String userId, List<Long> matchIdList, List<Integer> homeTeamGoalsList, List<Integer> awayTeamGoalsList);
+    Map<String, Boolean> persistBets(String userId, List<Long> matchIdList, List<Integer> homeTeamGoalsList, List<Integer> awayTeamGoalsList);
 }

@@ -32,14 +32,13 @@ public class BetServiceImpl implements BetService{
     }
 
     @Override
-    public Map<String, Boolean> createBet(String userId, List<Long> matchIdList, List<Integer> homeTeamGoalsList, List<Integer> awayTeamGoalsList) {
+    public Map<String, Boolean> persistBets(String userId, List<Long> matchIdList, List<Integer> homeTeamGoalsList, List<Integer> awayTeamGoalsList) {
         Map<String, Boolean> success = new HashMap<>();
         try {
             User user = userRepository.findOne(userId);
             for (int i=0; i<matchIdList.size(); i++) {
                 saveOrUpdateBet(matchIdList, homeTeamGoalsList, awayTeamGoalsList, user, i);
             }
-
             success.put("success", true);
         }
         catch (Exception ex) {
@@ -56,17 +55,17 @@ public class BetServiceImpl implements BetService{
         Integer homeTeamGoals = homeTeamGoalsList.get(i);
         Integer awayTeamGoals = awayTeamGoalsList.get(i);
         if (existingBet != null) {
-            setExistingBetFieldsAndUpdate(existingBet, homeTeamGoals, awayTeamGoals);
+            setExistingBetFields(existingBet, homeTeamGoals, awayTeamGoals);
+            betRepository.save(existingBet);
         } else {
             Bet bet = new Bet(user, match, homeTeamGoals, awayTeamGoals);
             betRepository.save(bet);
         }
     }
 
-    private void setExistingBetFieldsAndUpdate(Bet existingBet, Integer homeTeamGoals, Integer awayTeamGoals) {
+    private void setExistingBetFields(Bet existingBet, Integer homeTeamGoals, Integer awayTeamGoals) {
         existingBet.setHomeTeamGoals(homeTeamGoals);
         existingBet.setAwayTeamGoals(awayTeamGoals);
         existingBet.setMatchResult(MatchResult.calculateMatchResult(homeTeamGoals, awayTeamGoals));
-        betRepository.save(existingBet);
     }
 }

@@ -3,32 +3,43 @@ package com.bkonecsni.soccerbet.controllers;
 import com.bkonecsni.soccerbet.domain.entities.Bet;
 import com.bkonecsni.soccerbet.services.bet.BetService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
-@Controller
+@RestController
 public class BetController {
 
     @Autowired
     private BetService betService;
 
     @RequestMapping("/bet/list")
-    @ResponseBody
     public List<Bet> listBets(String userId){
         return betService.listBets(userId);
     }
 
     @RequestMapping("/bet/create")
-    @ResponseBody
     public Map<String, Boolean> create(String userId, String matchIds, String homeGoals, String awayGoals) {
         List<Long> matchIdList = createMatchIdList(matchIds);
         List<Integer> homeTeamGoalsList = createGoalsList(homeGoals);
         List<Integer> awayTeamGoalsList = createGoalsList(awayGoals);
 
-        return betService.createBet(userId, matchIdList, homeTeamGoalsList, awayTeamGoalsList);
+        if (listAreSameSize(matchIdList, homeTeamGoalsList, awayTeamGoalsList)) {
+            return betService.persistBets(userId, matchIdList, homeTeamGoalsList, awayTeamGoalsList);
+        }
+
+        Map<String, Boolean> unSuccessFullMap = new HashMap();
+        unSuccessFullMap.put("success", false);
+        return unSuccessFullMap;
+    }
+
+    private boolean listAreSameSize(List<Long> matchIdList, List<Integer> homeTeamGoalsList, List<Integer> awayTeamGoalsList) {
+        int homeTeamGoalsListSize = homeTeamGoalsList.size();
+        int awayTeamGoalsListSize = awayTeamGoalsList.size();
+        int matchIdListSize = matchIdList.size();
+
+        return homeTeamGoalsListSize == awayTeamGoalsListSize && homeTeamGoalsListSize == matchIdListSize;
     }
 
     private List<Long> createMatchIdList(String matchIds) {
