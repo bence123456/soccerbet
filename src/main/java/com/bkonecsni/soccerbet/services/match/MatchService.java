@@ -1,5 +1,6 @@
 package com.bkonecsni.soccerbet.services.match;
 
+import com.bkonecsni.soccerbet.domain.MatchResult;
 import com.bkonecsni.soccerbet.services.common.CommonService;
 import com.bkonecsni.soccerbet.domain.entities.Team;
 import com.bkonecsni.soccerbet.domain.entities.Match;
@@ -59,22 +60,30 @@ public class MatchService {
         }
     }
 
-    private void updateMatchBetAndUserIfNecessary(Match match, Fixture fixtureById) {
-        if (fixtureById != null && fixtureById.getResult().getGoalsHomeTeam() != null) {
-            match.setStatus("FINISHED");
-            match.setHomeTeamGoals(fixtureById.getResult().getGoalsHomeTeam());
-            match.setAwayTeamGoals(fixtureById.getResult().getGoalsAwayTeam());
-            matchRepository.save(match);
-            pointCalculatorAndPersisterService.calculateAndSavePoints(match);
-        }
-    }
-
     private boolean elapsed105To130MinsFromStart(Match match) {
         DateTime matchDate = new DateTime(match.getDateTime());
         boolean elapsedMoreThan105Mins = matchDate.isBefore(new DateTime().plusMinutes(105));
         boolean elapsedLessThan130Mins = matchDate.isAfter(new DateTime().plusMinutes(130));
 
         return elapsedMoreThan105Mins && elapsedLessThan130Mins;
+    }
+
+    private void updateMatchBetAndUserIfNecessary(Match match, Fixture fixtureById) {
+        if (fixtureById != null && fixtureById.getResult().getGoalsHomeTeam() != null) {
+            updateMatchFields(match, fixtureById);
+            matchRepository.save(match);
+            pointCalculatorAndPersisterService.calculateAndSavePoints(match);
+        }
+    }
+
+    private void updateMatchFields(Match match, Fixture fixtureById) {
+        Integer homeTeamGoals = fixtureById.getResult().getGoalsHomeTeam();
+        Integer awayTeamGoals = fixtureById.getResult().getGoalsAwayTeam();
+
+        match.setStatus("FINISHED");
+        match.setHomeTeamGoals(homeTeamGoals);
+        match.setAwayTeamGoals(awayTeamGoals);
+        match.setMatchResult(MatchResult.calculateMatchResult(homeTeamGoals, awayTeamGoals));
     }
 
     @Scheduled(fixedRate = oneMinInMs*60*24)

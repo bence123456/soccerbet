@@ -12,15 +12,10 @@ public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
 
     @Override
-    public User createUserIfNotExists(String id, String name) {
-        User user = userRepository.findOne(id);
-
-        if (user == null) {
+    public void createUserIfNotExists(String id, String name) {
+        if (!userRepository.exists(id)) {
             User newUser = new User(id, name);
             userRepository.save(newUser);
-            return newUser;
         }
-
-        return user;
     }
 }

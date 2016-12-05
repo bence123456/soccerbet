@@ -6,6 +6,4 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public interface TeamRepository extends CrudRepository<Team, Long> {
-
-    Team findByName(String name);
 }

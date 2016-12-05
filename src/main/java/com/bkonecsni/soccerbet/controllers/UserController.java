@@ -1,6 +1,5 @@
 package com.bkonecsni.soccerbet.controllers;
 
-import com.bkonecsni.soccerbet.domain.entities.User;
 import com.bkonecsni.soccerbet.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +14,7 @@ public class UserController {
 
     @RequestMapping("/user/create")
     @ResponseBody
-    public User save(String id, String name) {
-        return userService.createUserIfNotExists(id, name);
+    public void create(String id, String name) {
+        userService.createUserIfNotExists(id, name);
     }
 }

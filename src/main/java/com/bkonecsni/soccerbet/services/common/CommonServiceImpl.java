@@ -8,6 +8,8 @@ import retrofit.Retrofit;
 @Service
 public class CommonServiceImpl implements CommonService{
 
+    private FootballDataService footballDataService = createFootballDataService();
+
     @Override
     public Long getIdFromUrl(String url) {
         int lastIndexOfBackSlash = url.lastIndexOf("/");
@@ -18,7 +20,7 @@ public class CommonServiceImpl implements CommonService{
 
     @Override
     public FootballDataService getFootballDataService() {
-        return createFootballDataService();
+        return footballDataService;
     }
 
     private FootballDataService createFootballDataService() {
