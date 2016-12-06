@@ -9,7 +9,7 @@ class HomeCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-        expanded: false,
+            expanded: false,
         };
     }
 
@@ -19,14 +19,6 @@ class HomeCard extends React.Component {
 
     handleToggle = (event, toggle) => {
         this.setState({expanded: toggle});
-    };
-
-    handleExpand = () => {
-        this.setState({expanded: true});
-    };
-
-    handleReduce = () => {
-        this.setState({expanded: false});
     };
 
     render() {

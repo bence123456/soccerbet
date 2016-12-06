@@ -45547,14 +45547,6 @@
 	            _this.setState({ expanded: toggle });
 	        };
 	
-	        _this.handleExpand = function () {
-	            _this.setState({ expanded: true });
-	        };
-	
-	        _this.handleReduce = function () {
-	            _this.setState({ expanded: false });
-	        };
-	
 	        _this.state = {
 	            expanded: false
 	        };
